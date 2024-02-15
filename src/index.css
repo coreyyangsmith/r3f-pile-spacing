@@ -36,13 +36,14 @@ body,
 .configurator__section__title {
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 16px;
 }
 
 .configurator__section__options {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .item__label {

@@ -5,7 +5,11 @@ const Configurator = () => {
     const { length,
         setLength,
         diameter,
-        setDiameter } = useCustomization();
+        setDiameter,
+        number,
+        setNumber,
+        radius,
+        setRadius } = useCustomization();
 
     return (
         <div className="configurator">
@@ -31,27 +35,78 @@ const Configurator = () => {
                 </div>
             </div >
 
-            {/* Pile Width */}
+            {/* Pile Diameter */}
             <div className="configurator__section__title">
-                Pile Width
+                Pile Diameter
             </div>
             <div className="configurator__section__options">
-                <div className={`item ${length === 1 ? 'item--active' : ""}`} onClick={() => setDiameter(1)}>
+                <div className={`item ${diameter === 1 ? 'item--active' : ""}`} onClick={() => setDiameter(1)}>
                     <div className="item__label">
                         1m
                     </div>
                 </div>
-                <div className={`item ${length === 22 ? 'item--active' : ""}`} onClick={() => setDiameter(2)} >
+                <div className={`item ${diameter === 2 ? 'item--active' : ""}`} onClick={() => setDiameter(2)} >
                     <div className="item__label">
                         2m
                     </div>
                 </div>
-                <div className={`item ${length === 3 ? 'item--active' : ""}`} onClick={() => setDiameter(3)}>
+                <div className={`item ${diameter === 3 ? 'item--active' : ""}`} onClick={() => setDiameter(3)}>
                     <div className="item__label">
                         3m
                     </div>
                 </div>
             </div >
+
+            {/* Number */}
+            <div className="configurator__section__title">
+                Pile Number
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${number === 1 ? 'item--active' : ""}`} onClick={() => setNumber(1)}>
+                    <div className="item__label">
+                        1
+                    </div>
+                </div>
+                <div className={`item ${number === 2 ? 'item--active' : ""}`} onClick={() => setNumber(2)} >
+                    <div className="item__label">
+                        2
+                    </div>
+                </div>
+                <div className={`item ${number === 3 ? 'item--active' : ""}`} onClick={() => setNumber(3)}>
+                    <div className="item__label">
+                        3
+                    </div>
+                </div>
+                <div className={`item ${number === 4 ? 'item--active' : ""}`} onClick={() => setNumber(4)}>
+                    <div className="item__label">
+                        4
+                    </div>
+                </div>
+
+            </div >
+
+            {/* Radius */}
+            <div className="configurator__section__title">
+                Spacing Radius
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${radius === 1 ? 'item--active' : ""}`} onClick={() => setRadius(1)}>
+                    <div className="item__label">
+                        1m
+                    </div>
+                </div>
+                <div className={`item ${radius === 2 ? 'item--active' : ""}`} onClick={() => setRadius(2)} >
+                    <div className="item__label">
+                        2m
+                    </div>
+                </div>
+                <div className={`item ${radius === 3 ? 'item--active' : ""}`} onClick={() => setRadius(3)}>
+                    <div className="item__label">
+                        3m
+                    </div>
+                </div>
+            </div >
+
         </div >
     )
 }
