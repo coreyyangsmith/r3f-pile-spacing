@@ -22,9 +22,11 @@ const PileSpacingExperience = () => {
         <color args={['#2D3250']} attach="background" />
 
         <ambientLight intensity={0.5} />
+        <directionalLight intensity={0.5} position={[-10, 10, -10]} />
         <pointLight position={[10, 10, 10]} />
 
         {generatePiles(number, radius, diameter, length)}
+
     </>
 }
 
