@@ -9,10 +9,20 @@ const Configurator = () => {
         number,
         setNumber,
         radius,
-        setRadius } = useCustomization();
+        setRadius,
+        numHelices,
+        setNumHelices,
+        firstHelixDistFromBottom,
+        setFirstHelixDistFromBottom,
+        helixSpacing,
+        setHelixSpacing,
+        helixDiameter,
+        setHelixDiameter,
+    } = useCustomization();
 
     return (
         <div className="configurator">
+            {/* Pile Information  */}
             {/* Pile Length */}
             <div className="configurator__section__title">
                 Pile Length
@@ -103,6 +113,95 @@ const Configurator = () => {
                 <div className={`item ${radius === 3 ? 'item--active' : ""}`} onClick={() => setRadius(3)}>
                     <div className="item__label">
                         3m
+                    </div>
+                </div>
+            </div >
+
+            {/* Helix Information  */}
+            {/* Num Helices */}
+            <div className="configurator__section__title">
+                Number of Helices
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${numHelices === 1 ? 'item--active' : ""}`} onClick={() => setNumHelices(1)}>
+                    <div className="item__label">
+                        1
+                    </div>
+                </div>
+                <div className={`item ${numHelices === 2 ? 'item--active' : ""}`} onClick={() => setNumHelices(2)} >
+                    <div className="item__label">
+                        2
+                    </div>
+                </div>
+                <div className={`item ${numHelices === 3 ? 'item--active' : ""}`} onClick={() => setNumHelices(3)}>
+                    <div className="item__label">
+                        3
+                    </div>
+                </div>
+            </div >
+
+            {/* First Helix Distance from Bottom */}
+            <div className="configurator__section__title">
+                First Helix Distance from Bottom
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${firstHelixDistFromBottom === 0.25 ? 'item--active' : ""}`} onClick={() => setFirstHelixDistFromBottom(0.25)}>
+                    <div className="item__label">
+                        0.25m
+                    </div>
+                </div>
+                <div className={`item ${firstHelixDistFromBottom === 0.5 ? 'item--active' : ""}`} onClick={() => setFirstHelixDistFromBottom(0.5)} >
+                    <div className="item__label">
+                        0.5m
+                    </div>
+                </div>
+                <div className={`item ${firstHelixDistFromBottom === 1 ? 'item--active' : ""}`} onClick={() => setFirstHelixDistFromBottom(1)}>
+                    <div className="item__label">
+                        1m
+                    </div>
+                </div>
+            </div >
+
+            {/* Helix Spacing */}
+            <div className="configurator__section__title">
+                Helix Spacing
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${helixSpacing === 0.5 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(0.5)}>
+                    <div className="item__label">
+                        0.5m
+                    </div>
+                </div>
+                <div className={`item ${helixSpacing === 1 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(1)} >
+                    <div className="item__label">
+                        1m
+                    </div>
+                </div>
+                <div className={`item ${helixSpacing === 1.5 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(1.5)}>
+                    <div className="item__label">
+                        1.5m
+                    </div>
+                </div>
+            </div >
+
+            {/* Helix Diameter */}
+            <div className="configurator__section__title">
+                Helix Diameter
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${helixDiameter === 1.25 ? 'item--active' : ""}`} onClick={() => setHelixDiameter(1.25)}>
+                    <div className="item__label">
+                        1.25m
+                    </div>
+                </div>
+                <div className={`item ${helixDiameter === 2.25 ? 'item--active' : ""}`} onClick={() => setHelixDiameter(2.25)} >
+                    <div className="item__label">
+                        2.25m
+                    </div>
+                </div>
+                <div className={`item ${helixDiameter === 3.25 ? 'item--active' : ""}`} onClick={() => setHelixDiameter(3.25)}>
+                    <div className="item__label">
+                        3.25m
                     </div>
                 </div>
             </div >

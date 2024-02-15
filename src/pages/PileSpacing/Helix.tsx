@@ -1,10 +1,11 @@
 import { useRef, useEffect } from "react";
 import * as THREE from 'three'
 import { metalMaterial } from "../../utils/parameters";
+import MeshGalvanizedMetalMaterial from '../../utils/MeshGalvanizedMetalMaterial.jsx'
 
 const Helix = (props) => {
     let helixWidth = 1;
-    let helixSize = 1;
+    let helixSize = props.helixDiameter;
     let helixRotations = 1;
     let helixClimbLength = 1;
     let helixSegsPerStep = 128;
@@ -64,16 +65,13 @@ const Helix = (props) => {
 
         // Assign the geometry to the mesh
         ref.current.geometry = geometry;
-    }, []);
+    }, [props]);
 
 
     return (
         <mesh ref={ref} position={props.position}>
             <axesHelper />
-            <meshStandardMaterial
-                metalness={metalMaterial.metalness}
-                roughness={metalMaterial.roughness}
-                color={metalMaterial.color} />
+            <MeshGalvanizedMetalMaterial />
         </mesh>
     )
 }
