@@ -10,6 +10,8 @@ const Configurator = () => {
         setNumber,
         radius,
         setRadius,
+        batterAngle,
+        setBatterAngle,
         numHelices,
         setNumHelices,
         firstHelixDistFromBottom,
@@ -93,6 +95,58 @@ const Configurator = () => {
                     </div>
                 </div>
 
+                <div className={`item ${number === 5 ? 'item--active' : ""}`} onClick={() => setNumber(5)}>
+                    <div className="item__label">
+                        5
+                    </div>
+                </div>
+
+                <div className={`item ${number === 6 ? 'item--active' : ""}`} onClick={() => setNumber(6)}>
+                    <div className="item__label">
+                        6
+                    </div>
+                </div>
+
+                <div className={`item ${number === 7 ? 'item--active' : ""}`} onClick={() => setNumber(7)}>
+                    <div className="item__label">
+                        7
+                    </div>
+                </div>
+
+                <div className={`item ${number === 8 ? 'item--active' : ""}`} onClick={() => setNumber(8)}>
+                    <div className="item__label">
+                        8
+                    </div>
+                </div>
+
+
+                <div className={`item ${number === 9 ? 'item--active' : ""}`} onClick={() => setNumber(9)}>
+                    <div className="item__label">
+                        9
+                    </div>
+                </div>
+
+
+                <div className={`item ${number === 10 ? 'item--active' : ""}`} onClick={() => setNumber(10)}>
+                    <div className="item__label">
+                        10
+                    </div>
+                </div>
+
+
+                <div className={`item ${number === 11 ? 'item--active' : ""}`} onClick={() => setNumber(11)}>
+                    <div className="item__label">
+                        11
+                    </div>
+                </div>
+
+
+                <div className={`item ${number === 12 ? 'item--active' : ""}`} onClick={() => setNumber(12)}>
+                    <div className="item__label">
+                        12
+                    </div>
+                </div>
+
             </div >
 
             {/* Radius */}
@@ -113,6 +167,51 @@ const Configurator = () => {
                 <div className={`item ${radius === 3 ? 'item--active' : ""}`} onClick={() => setRadius(3)}>
                     <div className="item__label">
                         3m
+                    </div>
+                </div>
+            </div >
+
+            {/* Batter Angle */}
+            <div className="configurator__section__title">
+                Batter Angle
+            </div>
+            <div className="configurator__section__options">
+                <div className={`item ${batterAngle === 0 ? 'item--active' : ""}`} onClick={() => setBatterAngle(0)}>
+                    <div className="item__label">
+                        0deg
+                    </div>
+                </div>
+                <div className={`item ${batterAngle === 5 ? 'item--active' : ""}`} onClick={() => setBatterAngle(5)}>
+                    <div className="item__label">
+                        5deg
+                    </div>
+                </div>
+                <div className={`item ${batterAngle === 10 ? 'item--active' : ""}`} onClick={() => setBatterAngle(10)} >
+                    <div className="item__label">
+                        10deg
+                    </div>
+                </div>
+                <div className={`item ${batterAngle === 15 ? 'item--active' : ""}`} onClick={() => setBatterAngle(15)}>
+                    <div className="item__label">
+                        15deg
+                    </div>
+                </div>
+
+                <div className={`item ${batterAngle === 30 ? 'item--active' : ""}`} onClick={() => setBatterAngle(30)}>
+                    <div className="item__label">
+                        30deg
+                    </div>
+                </div>
+
+                <div className={`item ${batterAngle === 45 ? 'item--active' : ""}`} onClick={() => setBatterAngle(45)}>
+                    <div className="item__label">
+                        45deg
+                    </div>
+                </div>
+
+                <div className={`item ${batterAngle === 90 ? 'item--active' : ""}`} onClick={() => setBatterAngle(90)}>
+                    <div className="item__label">
+                        90deg
                     </div>
                 </div>
             </div >
@@ -138,6 +237,18 @@ const Configurator = () => {
                         3
                     </div>
                 </div>
+                <div className={`item ${numHelices === 4 ? 'item--active' : ""}`} onClick={() => setNumHelices(4)}>
+                    <div className="item__label">
+                        4
+                    </div>
+                </div>
+
+                <div className={`item ${numHelices === 5 ? 'item--active' : ""}`} onClick={() => setNumHelices(5)}>
+                    <div className="item__label">
+                        5
+                    </div>
+                </div>
+
             </div >
 
             {/* First Helix Distance from Bottom */}
@@ -180,6 +291,30 @@ const Configurator = () => {
                 <div className={`item ${helixSpacing === 1.5 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(1.5)}>
                     <div className="item__label">
                         1.5m
+                    </div>
+                </div>
+
+                <div className={`item ${helixSpacing === 2.0 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(2.0)}>
+                    <div className="item__label">
+                        2.0m
+                    </div>
+                </div>
+
+                <div className={`item ${helixSpacing === 2.5 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(2.5)}>
+                    <div className="item__label">
+                        2.5m
+                    </div>
+                </div>
+
+                <div className={`item ${helixSpacing === 3.0 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(3.0)}>
+                    <div className="item__label">
+                        3.0m
+                    </div>
+                </div>
+
+                <div className={`item ${helixSpacing === 3.5 ? 'item--active' : ""}`} onClick={() => setHelixSpacing(3.5)}>
+                    <div className="item__label">
+                        3.5m
                     </div>
                 </div>
             </div >

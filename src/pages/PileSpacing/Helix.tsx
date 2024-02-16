@@ -11,8 +11,6 @@ const Helix = (props) => {
     let helixSegsPerStep = 128;
     let helixRadius = 1;
 
-    console.log('helix props: ', props)
-
     const ref = useRef();
 
     useEffect(() => {
@@ -25,25 +23,6 @@ const Helix = (props) => {
             1
         );
 
-        // // Calculate the center manually
-        // const center = new THREE.Vector3(
-        //     helixRotations * Math.PI * 2 / 2,
-        //     helixWidth / 2,
-        //     helixSize / 2
-        // );
-
-        // // Translate vertices to center
-        // geometry.attributes.position.array.forEach((value, index) => {
-        //     if (index % 3 === 0) {
-        //         geometry.attributes.position.array[index] += center.x;
-        //     } else if (index % 3 === 1) {
-        //         geometry.attributes.position.array[index] += center.y;
-        //     } else if (index % 3 === 2) {
-        //         geometry.attributes.position.array[index] += center.z;
-        //     }
-        // });
-
-        // bend it!
         geometry.attributes.position.array.forEach((_, index, arr) => {
             if (index % 3 === 0) {
                 const x = arr[index];

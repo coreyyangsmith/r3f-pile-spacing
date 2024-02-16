@@ -8,6 +8,7 @@ export const CustomizationProvider = (props) => {
     const [diameter, setDiameter] = useState(1);
     const [number, setNumber] = useState(1);
     const [radius, setRadius] = useState(1);
+    const [batterAngle, setBatterAngle] = useState(5);
 
     {/* Helix Information */ }
     const [numHelices, setNumHelices] = useState(2);
@@ -26,6 +27,8 @@ export const CustomizationProvider = (props) => {
         setNumber,
         radius,
         setRadius,
+        batterAngle,
+        setBatterAngle,
         numHelices,
         setNumHelices,
         firstHelixDistFromBottom,

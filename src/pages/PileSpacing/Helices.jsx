@@ -6,7 +6,8 @@ import Helix from './Helix'
 
 const Helices = (props) => {
 
-    const generateHelices = (pileDiameter,
+    const generateHelices = (position,
+        pileDiameter,
         pileLength,
         numHelices,
         firstHelixDistFromBottom,
@@ -17,8 +18,9 @@ const Helices = (props) => {
         if (numHelices === 0) return (<></>)
 
         return Array.from({ length: numHelices }, (_, i) => {
-            let position = [0,
-                -pileLength / 2 + firstHelixDistFromBottom + i * helixSpacing,
+            let position = [
+                0,
+                props.position[1] + -pileLength / 2 + firstHelixDistFromBottom + i * helixSpacing,
                 0];
             return <Helix key={i} position={position} diameter={pileDiameter} helixDiameter={helixDiameter} />;
         });
@@ -28,7 +30,9 @@ const Helices = (props) => {
 
     return (
         <>
-            {generateHelices(props.diameter,
+            {generateHelices(
+                props.position,
+                props.diameter,
                 props.length,
                 props.numHelices,
                 props.firstHelixDistFromBottom,
