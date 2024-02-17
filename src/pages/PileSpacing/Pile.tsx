@@ -5,14 +5,13 @@ import Helices from './Helices.jsx'
 
 const Pile = (props) => {
 
-    console.log('position:', props.position)
-
-    return <group position={[props.position[0], 0, props.position[2]]} rotation={[props.rotation[0], 0, props.rotation[2]]}>
+    return <group position={[props.position[0], 0, props.position[2]]}
+        rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
         <axesHelper />
 
         {/* Main Pipe */}
         <mesh position={[0, props.position[1], 0]}
-            rotation={[0, props.rotation[1], 0]}>
+            rotation={[0, 0, 0]}>
             <cylinderGeometry args={[props.diameter / 2, props.diameter / 2, props.length, 16, 1]} />
             <MeshGalvanizedMetalMaterial />
         </mesh>

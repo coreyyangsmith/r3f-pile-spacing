@@ -28,12 +28,14 @@ const PileSpacingExperience = () => {
             const x = Math.cos(angle) * radius;
             const z = Math.sin(angle) * radius;
 
-            console.log(x, z);
-
+            console.log(angle, x, z)
 
             return <Pile key={i}
                 position={[x, -length / 2, z]}
-                rotation={[-z * Math.PI / 180 * batterAngle, 0, x * Math.PI / 180 * batterAngle]}
+                rotation={[
+                    0,
+                    -angle,
+                    Math.PI / 180 * batterAngle]}
                 diameter={diameter}
                 length={length}
                 numHelices={numHelices}
