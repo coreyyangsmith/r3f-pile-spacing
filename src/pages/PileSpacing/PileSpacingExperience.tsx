@@ -14,6 +14,9 @@ const PileSpacingExperience = () => {
         helixSpacing,
         helixDiameter } = useCustomization();
 
+
+    // TODO CY
+    // If number == 0, centre pipe, no offset
     const generatePiles = (number: number,
         radius: number,
         diameter: number,
@@ -24,11 +27,21 @@ const PileSpacingExperience = () => {
         helixSpacing: number,
         helixDiameter: number) => {
         return Array.from({ length: number }).map((_, i) => {
-            const angle = (i / number) * Math.PI * 2;
-            const x = Math.cos(angle) * radius;
-            const z = Math.sin(angle) * radius;
+            if (number < 1) return null;
 
-            console.log(angle, x, z)
+
+            let angle;
+            let x;
+            let z;
+            if (number === 1) {
+                angle = 0;
+                x = 0;
+                z = 0;
+            } else {
+                angle = (i / number) * Math.PI * 2;
+                x = Math.cos(angle) * radius;
+                z = Math.sin(angle) * radius;
+            }
 
             return <Pile key={i}
                 position={[x, -length / 2, z]}
