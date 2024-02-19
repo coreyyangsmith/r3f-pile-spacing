@@ -1,6 +1,4 @@
-import React from 'react'
-import { metalMaterial } from '../../utils/parameters.js'
-import MeshGalvanizedMetalMaterial from '../../utils/MeshGalvanizedMetalMaterial.jsx'
+import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
 import Helices from './Helices.jsx'
 
 const Pile = (props) => {

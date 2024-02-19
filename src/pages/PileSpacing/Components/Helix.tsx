@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import * as THREE from 'three'
-import { metalMaterial } from "../../utils/parameters";
-import MeshGalvanizedMetalMaterial from '../../utils/MeshGalvanizedMetalMaterial.jsx'
+import { metalMaterial } from "../../../utils/parameters.js";
+import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
 
 const Helix = (props) => {
     let helixWidth = 1;

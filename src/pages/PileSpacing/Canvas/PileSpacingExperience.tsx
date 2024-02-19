@@ -1,8 +1,20 @@
 import { OrbitControls } from "@react-three/drei";
-import { useCustomization } from "../../context/Customization";
-import Pile from "./Pile";
+import { useCustomization } from "../../../context/Customization";
+import Pile from "../Components/Pile";
 
 const PileSpacingExperience = () => {
+
+    interface Pile {
+        number: number, // number of piles (count)
+        length: number,
+        diameter: number,
+        radius: number, // spacing radius
+        batterAngle: number,
+        numHelices: number,
+        firstHelixDistFromBottom: number,
+        helixSpacing: number,
+        helixDiameter: number,
+    }
 
     const { length,
         diameter,
@@ -26,7 +38,7 @@ const PileSpacingExperience = () => {
         firstHelixDistFromBottom: number,
         helixSpacing: number,
         helixDiameter: number) => {
-        return Array.from({ length: number }).map((_, i) => {
+        return Array.from({ length: number } as Array<number>).map((_, i) => {
             if (number < 1) return null;
 
 
@@ -61,7 +73,7 @@ const PileSpacingExperience = () => {
 
     return <>
         <OrbitControls />
-        <color args={['#0A2647']} attach="background" />
+        <color args={['#0B2847']} attach="background" />
 
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[-10, 10, -10]} />
