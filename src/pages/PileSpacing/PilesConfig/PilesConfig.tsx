@@ -1,7 +1,14 @@
 import { Paper, Typography } from '@mui/material'
-import React from 'react'
 
-const ConflictConfig = () => {
+// Pile Config
+// "Main Config Page"
+// --> To set general pile layout; able to dive deeper and adjust each pile as desired as well
+// General Pile Settings
+// - Number of Piles
+// - Radius of Piles
+// - Length of Piles
+
+const PilesConfig = () => {
     return (
         <Paper
             square={true}
@@ -29,9 +36,16 @@ const ConflictConfig = () => {
             }}
         >
             {/* Title */}
-            <Typography variant='h6' sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Conflig Config</Typography>
-        </Paper>
+            <Typography variant="h6" // TODO, implement theme to make text size responsive
+                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Pile Configuration</Typography>
+
+            {/* Tab & Box */}
+            <Paper>
+
+            </Paper>
+
+        </Paper >
     )
 }
 
-export default ConflictConfig
+export default PilesConfig

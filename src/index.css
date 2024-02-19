@@ -23,6 +23,11 @@ body,
   font-family: 'Roboto';
 }
 
+.active {
+  color: white !important;
+  background-color: blue;
+}
+
 .configurator {
   position: fixed;
   right: 24px;
@@ -66,8 +71,6 @@ body,
 .item.item--active .item__label {
   color: white;
 }
-
-
 
 .roboto-thin {
   font-family: "Roboto", sans-serif;

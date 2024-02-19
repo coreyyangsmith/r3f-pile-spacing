@@ -1,15 +1,15 @@
-import { Box, Paper, Typography } from '@mui/material'
-import React from 'react'
+import { Paper, Typography } from '@mui/material'
 
-const PileConfig = () => {
+const SettingsConfig = () => {
     return (
-        <Paper elevation={4}
+        <Paper
             square={true}
             variant='outlined'
             sx={{
                 position: 'absolute',
                 zIndex: 10,
                 background: 'rgba(255, 255, 255, 0.1)',
+                top: "calc(7% + 8px)",
                 margin: '16px',
                 width: {
                     xs: 'calc(33% - 32px)', // 0 - 600px
@@ -19,17 +19,17 @@ const PileConfig = () => {
                     xl: 'calc(25% - 32px)', // 1536px and up
                 },
                 height: {
-                    xs: 'calc(75% - 16px)', // 0 - 600px
-                    sm: 'calc(75% - 16px)', // 600 - 900px
-                    md: 'calc(75% - 16px)', // 900 - 1200px
-                    lg: 'calc(75% - 16px)', // 1200 - 1536px
-                    xl: 'calc(75% - 16px)', // 1536px and up
+                    xs: 'calc(92% - 32px)', // 0 - 600px
+                    sm: 'calc(92% - 32px)', // 600 - 900px
+                    md: 'calc(92% - 32px)', // 900 - 1200px
+                    lg: 'calc(92% - 32px)', // 1200 - 1536px
+                    xl: 'calc(92% - 32px)', // 1536px and up
                 },
             }}
         >
             {/* Title */}
             <Typography variant="h6" // TODO, implement theme to make text size responsive
-                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Pile Configuration</Typography>
+                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
 
             {/* Tab & Box */}
             <Paper>
@@ -40,4 +40,4 @@ const PileConfig = () => {
     )
 }
 
-export default PileConfig
+export default SettingsConfig

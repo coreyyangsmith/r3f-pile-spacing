@@ -73,7 +73,7 @@ const PileSpacingExperience = () => {
 
     return <>
         <OrbitControls />
-        <color args={['#0A2647']} attach="background" />
+        <color args={['#0B2847']} attach="background" />
 
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[-10, 10, -10]} />

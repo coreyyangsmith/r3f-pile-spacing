@@ -1,7 +1,6 @@
 import { Paper, Typography } from '@mui/material'
-import React from 'react'
 
-const ConflictConfig = () => {
+const HelicesConfig = () => {
     return (
         <Paper
             square={true}
@@ -29,9 +28,16 @@ const ConflictConfig = () => {
             }}
         >
             {/* Title */}
-            <Typography variant='h6' sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Conflig Config</Typography>
-        </Paper>
+            <Typography variant="h6" // TODO, implement theme to make text size responsive
+                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Helix Config</Typography>
+
+            {/* Tab & Box */}
+            <Paper>
+
+            </Paper>
+
+        </Paper >
     )
 }
 
-export default ConflictConfig
+export default HelicesConfig
