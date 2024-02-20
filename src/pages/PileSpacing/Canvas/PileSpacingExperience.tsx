@@ -1,6 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { useCustomization } from "../../../context/Customization";
 import Pile from "../Components/Pile";
+import { useSettings } from "../../../context/Settings";
 
 const PileSpacingExperience = () => {
 
@@ -25,6 +26,8 @@ const PileSpacingExperience = () => {
         firstHelixDistFromBottom,
         helixSpacing,
         helixDiameter } = useCustomization();
+
+    const { backgroundColor, setBackgroundColor } = useSettings();
 
 
     // TODO CY
@@ -73,7 +76,7 @@ const PileSpacingExperience = () => {
 
     return <>
         <OrbitControls />
-        <color args={['#0B2847']} attach="background" />
+        <color args={[backgroundColor]} attach="background" />
 
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[-10, 10, -10]} />

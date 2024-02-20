@@ -20,19 +20,24 @@ const PileSpacing = () => {
     const [chipState, setChipState] = useState('conflict')
     let defThreeCanvas = 'calc(75% - 16px)';
 
+    const handleThreeCanvasFormat = () => {
+        if (chipState === 'settings') {
+            defThreeCanvas = 'calc(100% - 32px)';
+        }
+    }
+
     return <>
         <ChipConfig chipState={chipState} setChipState={setChipState} />
 
 
-        ${chipState === 'conflict' && <ConflictConfig />}
-        ${chipState === 'pile' && <PilesConfig />}
-        ${chipState === 'helix' && <HelicesConfig />}
-        ${chipState === 'settings' && <SettingsConfig />}
-
-        ${chipState === 'conflict' && <GroupEffectConfig />}
-        ${chipState === 'pile' && <PileConfig />}
-        ${chipState === 'helix' && <HelixConfig />}
-        ${chipState === 'settings' && (defThreeCanvas = 'calc(100% - 32px)')}
+        {chipState === 'conflict' && <ConflictConfig />}
+        {chipState === 'pile' && <PilesConfig />}
+        {chipState === 'helix' && <HelicesConfig />}
+        {chipState === 'settings' && <SettingsConfig />}
+        {chipState === 'conflict' && <GroupEffectConfig />}
+        {chipState === 'pile' && <PileConfig />}
+        {chipState === 'helix' && <HelixConfig />}
+        {handleThreeCanvasFormat()}
 
         <Paper
             square={true}

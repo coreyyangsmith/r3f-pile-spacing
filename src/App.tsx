@@ -9,6 +9,7 @@ import PileSpacing from './pages/PileSpacing/PileSpacing';
 // Routing Imports
 import { Route, Routes, Link } from "react-router-dom"
 import { CustomizationProvider } from './context/Customization';
+import { SettingsProvider } from './context/Settings';
 
 // Theme Definition
 const lightTheme = createTheme({
@@ -88,13 +89,14 @@ function App() {
   return (
     <>
       <CustomizationProvider>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          <Routes>
-            <Route path="/" element={<PileSpacing />} />
-          </Routes>
-
-        </ThemeProvider>
+        <SettingsProvider>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
+            <Routes>
+              <Route path="/" element={<PileSpacing />} />
+            </Routes>
+          </ThemeProvider>
+        </SettingsProvider>
       </CustomizationProvider>
     </>
   )

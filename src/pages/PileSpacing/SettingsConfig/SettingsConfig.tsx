@@ -1,6 +1,11 @@
 import { Paper, Typography } from '@mui/material'
+import BackgroundColor from './BackgroundColor'
+import { useSettings } from '../../../context/Settings'
 
 const SettingsConfig = () => {
+
+    const { backgroundColor, setBackgroundColor } = useSettings()
+
     return (
         <Paper
             square={true}
@@ -31,9 +36,17 @@ const SettingsConfig = () => {
             <Typography variant="h6" // TODO, implement theme to make text size responsive
                 sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
 
-            {/* Tab & Box */}
-            <Paper>
-
+            {/* Container */}
+            <Paper
+                square={true}
+                variant='outlined'
+                sx={{
+                    position: 'absolute',
+                    background: 'rgba(200, 200, 200, 0.10)',
+                    width: '100%',
+                    height: '100%',
+                }}>
+                <BackgroundColor />
             </Paper>
 
         </Paper >
