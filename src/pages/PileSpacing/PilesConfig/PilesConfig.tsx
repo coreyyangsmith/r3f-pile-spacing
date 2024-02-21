@@ -1,4 +1,8 @@
-import { Paper, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
+import NumOfPilesConfigurator from './NumOfPilesConfigurator'
+import GroupLengthConfigurator from './GroupLengthConfigurator'
+import GroupRadialConfigurator from './GroupRadialConfigurator'
+import GroupBatterConfigurator from './GroupBatterConfigurator'
 
 // Pile Config
 // "Main Config Page"
@@ -16,7 +20,7 @@ const PilesConfig = () => {
             sx={{
                 position: 'absolute',
                 zIndex: 10,
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: 'rgba(0, 0, 0, 1)',
                 top: "calc(7% + 8px)",
                 margin: '16px',
                 width: {
@@ -35,14 +39,19 @@ const PilesConfig = () => {
                 },
             }}
         >
-            {/* Title */}
-            <Typography variant="h6" // TODO, implement theme to make text size responsive
-                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Pile Configuration</Typography>
 
-            {/* Tab & Box */}
-            <Paper>
+            <Stack direction="column">
+                {/* Title */}
+                <Typography variant="h6" // TODO, implement theme to make text size responsive
+                    sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Pile Configuration</Typography>
 
-            </Paper>
+                {/* Tab & Box */}
+
+                <NumOfPilesConfigurator />
+                <GroupLengthConfigurator />
+                <GroupRadialConfigurator />
+                <GroupBatterConfigurator />
+            </Stack>
 
         </Paper >
     )

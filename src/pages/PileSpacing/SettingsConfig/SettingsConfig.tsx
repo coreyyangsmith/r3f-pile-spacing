@@ -1,11 +1,8 @@
 import { Paper, Typography } from '@mui/material'
 import BackgroundColor from './BackgroundColor'
-import { useSettings } from '../../../context/Settings'
+import ToggleAxesHelper from './ToggleAxesHelper'
 
 const SettingsConfig = () => {
-
-    const { backgroundColor, setBackgroundColor } = useSettings()
-
     return (
         <Paper
             square={true}
@@ -47,6 +44,7 @@ const SettingsConfig = () => {
                     height: '100%',
                 }}>
                 <BackgroundColor />
+                <ToggleAxesHelper />
             </Paper>
 
         </Paper >

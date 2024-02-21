@@ -7,7 +7,6 @@ const BackgroundColor = () => {
     const { backgroundColor, setBackgroundColor } = useSettings()
 
     const handleChange = (event) => {
-        console.log(event)
         setBackgroundColor(event.hex)
     }
     return (
@@ -19,7 +18,7 @@ const BackgroundColor = () => {
                 background: 'rgba(150,150,150,0.2)'
             }}>
             <Stack direction="row" sx={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-                <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Background Color</Typography>
+                <Typography variant='body' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Background Color</Typography>
                 <GithubPicker
                     width="250px"
                     triangle="hide"

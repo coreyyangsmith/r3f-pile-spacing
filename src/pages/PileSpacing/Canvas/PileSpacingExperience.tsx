@@ -5,6 +5,8 @@ import { useSettings } from "../../../context/Settings";
 
 const PileSpacingExperience = () => {
 
+    const { useAxesHelper } = useSettings()
+
     interface Pile {
         number: number, // number of piles (count)
         length: number,
@@ -84,7 +86,8 @@ const PileSpacingExperience = () => {
 
         {/* Floor */}
         <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
-            <axesHelper scale={[10, 10, 10]} />
+
+            {useAxesHelper && <axesHelper scale={[10, 10, 10]} />}
             <planeGeometry args={[10, 10, 10]} />
             <meshBasicMaterial color='green' wireframe />
         </mesh>
