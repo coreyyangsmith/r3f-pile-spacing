@@ -1,27 +1,52 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: GroupRadialConfigurator.ts
+Type: Data Component
+
+Description:
+This is a Data Component for the Pile object.
+It configures the radial spacing of all Piles objects.
+*/
+
+// Imports
 import { Paper, Stack, TextField, Typography } from '@mui/material'
-import { useCustomization } from '../../../context/Customization';
-import Pile from '../../../components/Pile';
-import { usePiles } from '../../../context/PileContext';
+import { ChangeEvent } from 'react';
+
+// Hooks
+import { usePiles } from '../../../hooks/usePiles';
 
 const GroupRadialConfigurator = () => {
-    const {
-        number,
-        length,
-        diameter,
-        radius,
-        setRadius,
-        batterAngle
-    } = useCustomization();
-    const { piles, setPiles } = usePiles();
+    const piles = usePiles();
 
-    const handleChange = (event) => {
-        setRadius(event.target.value);
-        const newPiles = {}
-        for (let i = 0; i < number; i++) {
-            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const newRadius = parseFloat(event.target.value);
+
+        if (piles?.piles) {
+            for (let i = 0; i < piles?.piles.number; i++) {
+                piles?.piles.piles[i].setRadius(newRadius);
+            }
         }
-        setPiles(newPiles)
     }
+
+    const getRadius = () => {
+        if (piles?.piles) {
+            let radius: number | string;
+            radius = piles?.piles.piles[0].radius;
+
+            for (let i = 1; i < piles?.piles.number; i++) {
+                if (radius === piles?.piles.piles[i].radius) {
+                    radius = piles?.piles.piles[i].radius;
+                } else {
+                    radius = 'varies';
+                    break;
+                }
+            }
+            return radius;
+        }
+        return -1;
+    }
+
     return (
         <Paper
             square={true}
@@ -40,7 +65,7 @@ const GroupRadialConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={radius}
+                    value={getRadius}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

@@ -10,7 +10,6 @@ It is a core object in the Pile Visualization.
 */
 
 // Imports
-import { Nullable } from './Generics.ts';
 import { IHelix } from '../types/Helix.ts';
 
 export interface IPile {
@@ -20,15 +19,26 @@ export interface IPile {
     radius: number;
     batterAngle: number;
     helices: Array<IHelix> | null;
+
+    setId: (id: number) => void;
+    setLength: (length: number) => void;
+    setDiameter: (diameter: number) => void;
+    setRadius: (radius: number) => void;
+    setBatterAngle: (batterAngle: number) => void;
+    setHelices: (helices: Array<IHelix>) => void;
 }
 
 export interface IPiles {
     piles: Array<IPile>;
+    number: number;
+
+    setPiles: (piles: Array<IPile>) => void;
+    setNumber: (number: number) => void;
 }
 
 export type PileContextType = {
-    piles: IPile[];
-    setPiles: (piles: Array<IPile>) => void;
+    piles: IPiles;
+    setPiles: (piles: IPiles) => void;
 }
 
 export type setPiles = (piles: Array<IPile>) => void;

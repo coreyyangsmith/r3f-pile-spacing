@@ -1,28 +1,34 @@
-import { Paper, Stack, TextField, Typography } from '@mui/material'
-import { useCustomization } from '../../../context/Customization';
-import { usePiles } from '../../../context/PileContext';
-import Pile from '../../../components/Pile';
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: GroupLengthConfigurator.ts
+Type: Data Component
 
+Description:
+This is a Data Component for the Pile object.
+It configures the length of all Pile objects.
+*/
+
+// Imports
+import { Paper, Stack, TextField, Typography } from '@mui/material'
+import { ChangeEvent } from 'react';
+
+// Hooks
+import { usePiles } from '../../../hooks/usePiles';
 
 const GroupLengthConfigurator = () => {
-    const {
-        number,
-        length,
-        setLength,
-        diameter,
-        radius,
-        batterAngle
-    } = useCustomization();
-    const { piles, setPiles } = usePiles();
+    const piles = usePiles();
 
-    const handleChange = (event) => {
-        setLength(event.target.value);
-        const newPiles = {}
-        for (let i = 0; i < number; i++) {
-            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const newLength = parseFloat(event.target.value);
+
+        if (piles?.piles) {
+            for (let i = 0; i < piles?.piles.number; i++) {
+                piles?.piles.piles[i].setLength(newLength);
+            }
         }
-        setPiles(newPiles)
     }
+
     return (
         <Paper
             square={true}
@@ -41,7 +47,7 @@ const GroupLengthConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={length}
+                    value={length} // to change?
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

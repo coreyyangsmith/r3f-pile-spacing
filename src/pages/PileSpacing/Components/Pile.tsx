@@ -2,7 +2,7 @@ import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMater
 import Helices from './Helices.jsx'
 
 const Pile = (props) => {
-
+    // TODO, generate helices
     return <group position={[props.position[0], 0, props.position[2]]}
         rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
         <axesHelper />
@@ -19,6 +19,8 @@ const Pile = (props) => {
             <coneGeometry args={[props.diameter / 2, props.diameter / 2, 16, 1, false, 0, Math.PI * 2]} />
             <MeshGalvanizedMetalMaterial />
         </mesh>
+
+
 
         {/* Helices */}
         <Helices

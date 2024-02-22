@@ -15,17 +15,25 @@ export interface IHelix {
     firstHelixDistance: number;
     spacing: number;
     diameter: number;
-    pileRef: number | null;
+
+    setId: (id: number) => void;
+    setNumber: (number: number) => void;
+    setFirstHelixDistance: (firstHelixDistance: number) => void;
+    setSpacing: (spacing: number) => void;
+    setDiameter: (diameter: number) => void;
 }
 
 export interface IHelices {
-    helices: Array<IHelix>;
+    helices: IHelix[];
     pileRef: number | null;
+
+    setHelices: (helices: Array<IHelix>) => void;
+    setPileRef: (pileRef: number | null) => void;
 }
 
 export type HelixContextType = {
-    helices: IHelix[];
-    setHelices: (helices: Array<IHelix>) => void;
+    helices: IHelices;
+    setHelices: (helices: IHelices) => void;
 }
 
 export type setHelices = (helices: Array<IHelix>) => void;

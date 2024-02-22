@@ -10,6 +10,7 @@ It is a core object in the Pile Visualization.
 */
 
 export default class Helix {
+    id: number
     number: number;
     firstHelixDistance: number;
     spacing: number;
@@ -17,12 +18,14 @@ export default class Helix {
     pileRef: number | null;
 
     constructor(
+        id: number = 0,
         number: number = 0,
         firstHelixDistance: number = 1,
         spacing: number = 1,
         diameter: number = 1,
         pileRef: number | null = null) {
 
+        this.id = id;
         this.number = number;
         this.firstHelixDistance = firstHelixDistance;
         this.spacing = spacing;

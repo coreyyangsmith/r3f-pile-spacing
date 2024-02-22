@@ -17,30 +17,46 @@ import { Paper, Stack, TextField, Typography } from '@mui/material'
 import Pile from '../../../components/Pile';
 
 // Context
-import { useCustomization } from '../../../context/Customization';
-import { usePiles } from '../../../context/PileContext';
+import { usePiles } from '../../../hooks/usePiles';
+import { ChangeEvent } from 'react';
+import { IPile, IPiles } from '../../../types/Pile';
 
 const NumOfPilesConfigurator = () => {
-    const {
-        number,
-        setNumber,
-        length,
-        diameter,
-        radius,
-        batterAngle
-    } = useCustomization();
-    const { setPiles } = usePiles();
+    const piles = usePiles();
 
-    const handleChange = (event) => {
-        setNumber(event.target.value); // set Number of Piles for Configurator
-        //
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const newNumber = parseInt(event.target.value);
+        piles?.piles.setNumber(newNumber); // set Number of Piles for Configurator
 
+        if (newNumber !== undefined && newNumber > 0) {
+            const newPileArray: IPile[] = [];
 
-        const newPiles = {}
-        for (let i = 0; i < number; i++) {
-            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+            for (let i = 0; i < newNumber; i++) {
+                const newPile = new Pile(
+                    id = i,
+                    length = 0,
+                    diameter = 0,
+                    radius = 0,
+                    batterAngle = 0,
+                    helices = null,
+                    setId = () => { },
+                    setLength = () => { },
+                    setDiameter = () => { },
+                    setRadius = () => { },
+                    setBatterAngle = () => { },
+                    setHelices = () => { }
+                );
+                newPileArray.push(newPile);
+            }
+            const newPiles: IPiles = {
+                piles: newPileArray,
+                number: parseInt(event.target.value),
+                setPiles: () => { },
+                setNumber: () => { }
+            }
+
+            piles?.setPiles(newPiles)
         }
-        setPiles(newPiles)
     }
     return (
         <Paper
@@ -60,7 +76,7 @@ const NumOfPilesConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={number}
+                    value={piles?.piles.number}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

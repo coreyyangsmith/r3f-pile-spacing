@@ -1,31 +1,53 @@
-import { Paper, Stack, TextField, Typography } from '@mui/material'
-import { useCustomization } from '../../../context/Customization';
-import { usePiles } from '../../../context/PileContext';
-import Pile from '../../../components/Pile';
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: GroupBatterConfigurator.ts
+Type: Data Component
 
-import { IPiles, setPiles } from '../../../types/Pile.ts'
+Description:
+This is a Data Component for the Pile object.
+It configures the batter angle for all Pile objects.
+*/
+
+// Imports
+import { Paper, Stack, TextField, Typography } from '@mui/material'
+import { ChangeEvent } from 'react';
+
+// Hooks
+import { usePiles } from '../../../hooks/usePiles';
 
 const GroupBatterConfigurator = () => {
-    const {
-        number,
-        length,
-        diameter,
-        radius,
-        batterAngle,
-        setBatterAngle
-    } = useCustomization();
-    const { piles: IPiles, setPiles: setPiles } = usePiles();
+    const piles = usePiles()
 
-    const handleChange = (event: React.MouseEvent<HTMLElement>) => {
-        setBatterAngle(event.target.value);
-        regeneratePiles(piles, 'batterAngle', event.target.value);
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const newBatterAngle = parseFloat(event.target.value);
 
-        const newPiles = {}
-        for (let i = 0; i < number; i++) {
-            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+        if (piles?.piles) {
+            for (let i = 0; i < piles?.piles.number; i++) {
+                piles?.piles.piles[i].setBatterAngle(newBatterAngle);
+            }
         }
-        setPiles(newPiles)
     }
+
+
+    const getBatterAngle = () => {
+        if (piles?.piles) {
+            let batterAngle: number | string;
+            batterAngle = piles?.piles.piles[0].batterAngle;
+
+            for (let i = 1; i < piles?.piles.number; i++) {
+                if (batterAngle === piles?.piles.piles[i].batterAngle) {
+                    batterAngle = piles?.piles.piles[i].batterAngle;
+                } else {
+                    batterAngle = 'varies';
+                    break;
+                }
+            }
+            return batterAngle;
+        }
+        return -1;
+    }
+
     return (
         <Paper
             square={true}
@@ -44,7 +66,7 @@ const GroupBatterConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={batterAngle}
+                    value={getBatterAngle}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

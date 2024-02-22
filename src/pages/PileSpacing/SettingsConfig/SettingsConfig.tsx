@@ -1,4 +1,20 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: SettingsConfig.tsx
+Type: Layout Component
+
+Description:
+This is a layout component for the Overall Project Settings.
+This is the parent component for all the individual settings configuration
+components. It is a paper for the user to input general information that affects
+and generates various aspects of the project.
+*/
+
+// Imports
 import { Paper, Stack, Typography } from '@mui/material'
+
+// Components
 import BackgroundColor from './BackgroundColor'
 import ToggleAxesHelper from './ToggleAxesHelper'
 
@@ -36,7 +52,6 @@ const SettingsConfig = () => {
                     sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
 
                 {/* Container */}
-
                 <BackgroundColor />
                 <ToggleAxesHelper />
             </Stack>

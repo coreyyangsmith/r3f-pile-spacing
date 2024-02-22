@@ -1,87 +1,75 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: PileSpacingExperience.ts
+Type: Three.js Component
+
+Description:
+This is the main scene for the Pile Spacing Experience.
+It uses the Pile component to generate the piles
+and generates the scene using the usePiles hook.
+*/
+
+// Imports
 import { OrbitControls } from "@react-three/drei";
-import { useCustomization } from "../../../context/Customization";
+
+// Types
+import { IPiles } from "../../../types/Pile";
+
+// Hooks
+import { useSettings } from "../../../hooks/useSettings";
+import { usePiles } from "../../../hooks/usePiles";
+
+// Components
 import Pile from "../Components/Pile";
-import { useSettings } from "../../../context/Settings";
-import { usePiles } from "../../../context/PileContext";
 
 const PileSpacingExperience = () => {
 
-    const { useAxesHelper } = useSettings()
+    const settings = useSettings()
+    const piles = usePiles();
 
-    interface Pile {
-        number: number, // number of piles (count)
-        length: number,
-        diameter: number,
-        radius: number, // spacing radius
-        batterAngle: number,
-        numHelices: number,
-        firstHelixDistFromBottom: number,
-        helixSpacing: number,
-        helixDiameter: number,
-    }
+    const generatePiles = (piles: IPiles) => {
+        if (!piles) return (<>Error</>);
 
-    const { length,
-        diameter,
-        number,
-        radius,
-        batterAngle,
-        numHelices,
-        firstHelixDistFromBottom,
-        helixSpacing,
-        helixDiameter } = useCustomization();
-
-    const { piles } = usePiles();
-
-    const { backgroundColor, setBackgroundColor } = useSettings();
-
-
-    // TODO CY
-    // If number == 0, centre pipe, no offset
-    const generatePiles = (number: number,
-        radius: number,
-        diameter: number,
-        length: number,
-        batterAngle: number,
-        numHelices: number,
-        firstHelixDistFromBottom: number,
-        helixSpacing: number,
-        helixDiameter: number) => {
-        return Array.from({ length: number } as Array<number>).map((_, i) => {
-            if (number < 1) return null;
-
+        return piles.piles.map((pile, i) => {
+            console.log(i, pile)
+            if (piles.number < 1) return null;
 
             let angle;
             let x;
             let z;
-            if (number === 1) {
+
+            if (piles.number === 1) {
                 angle = 0;
                 x = 0;
                 z = 0;
             } else {
-                angle = (i / number) * Math.PI * 2;
-                x = Math.cos(angle) * radius;
-                z = Math.sin(angle) * radius;
+                angle = (i / piles.number) * Math.PI * 2;
+                x = Math.cos(angle) * pile.radius;
+                z = Math.sin(angle) * pile.radius;
             }
 
-            return <Pile key={i}
-                position={[x, -length / 2, z]}
+            return <Pile
+                key={i}
+                position={[
+                    x,
+                    -pile.length / 2,
+                    z]}
                 rotation={[
                     0,
                     -angle,
-                    Math.PI / 180 * batterAngle]}
-                diameter={diameter}
-                length={length}
-                numHelices={numHelices}
-                firstHelixDistFromBottom={firstHelixDistFromBottom}
-                helixSpacing={helixSpacing}
-                helixDiameter={helixDiameter} />;
-        });
-    }
+                    Math.PI / 180 * pile.batterAngle]}
+                diameter={pile.diameter}
+                length={pile.length}
+                helices={pile.helices}
+            />;
+        })
+    };
 
 
     return <>
         <OrbitControls />
-        <color args={[backgroundColor]} attach="background" />
+        <color args={[settings?.settings.backgroundColor || 'black']} attach="background" />
 
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[-10, 10, -10]} />
@@ -90,12 +78,12 @@ const PileSpacingExperience = () => {
         {/* Floor */}
         <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
 
-            {useAxesHelper && <axesHelper scale={[10, 10, 10]} />}
+            {settings?.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
             <planeGeometry args={[10, 10, 10]} />
             <meshBasicMaterial color='green' wireframe />
         </mesh>
 
-        {generatePiles(number, radius, diameter, length, batterAngle, numHelices, firstHelixDistFromBottom, helixSpacing, helixDiameter)}
+        {piles && generatePiles(piles?.piles)}
 
     </>
 }
