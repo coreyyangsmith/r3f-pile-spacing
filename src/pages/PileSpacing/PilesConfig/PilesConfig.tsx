@@ -1,19 +1,26 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: PilesConfig.tsx
+Type: Layout Component
+
+Description:
+This is a layout component for the Piles Configuration,
+it is a paper component with a stack of configurators
+for the user to input general information that affects
+and generates all related piles in the visualization.
+*/
+
+// Imports
 import { Paper, Stack, Typography } from '@mui/material'
+
+// Components
 import NumOfPilesConfigurator from './NumOfPilesConfigurator'
 import GroupLengthConfigurator from './GroupLengthConfigurator'
 import GroupRadialConfigurator from './GroupRadialConfigurator'
 import GroupBatterConfigurator from './GroupBatterConfigurator'
 
-// Pile Config
-// "Main Config Page"
-// --> To set general pile layout; able to dive deeper and adjust each pile as desired as well
-// General Pile Settings
-// - Number of Piles
-// - Radius of Piles
-// - Length of Piles
-
 const PilesConfig = () => {
-    console.log('component re-render');
     return (
         <Paper
             square={true}

@@ -1,9 +1,23 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: main.tsx
+Type: Core Component
+
+Description:
+This is the root react component for the entire project.
+*/
+
+// Imports
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-
 import { BrowserRouter } from 'react-router-dom';
+
+// Components
+import App from './App.tsx'
+
+// Styling
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

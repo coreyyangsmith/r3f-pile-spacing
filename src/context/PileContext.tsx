@@ -1,16 +1,28 @@
-import { createContext, useState, useContext } from 'react';
+// Imports
+import { createContext, useState, useContext, FC } from 'react';
 
-const PileContext = createContext({});
+// Types
+import { IPile, PileContextType } from '../types/Pile.ts';
 
-export const PileContextProvider = (props) => {
-    const [piles, setPiles] = useState({});
+export const PileContext = createContext<PileContextType | null>(null);
 
-    return <PileContext.Provider value={{
-        piles,
-        setPiles,
-    }}>
-        {props.children}
-    </PileContext.Provider>
+export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [piles, setPiles] = useState<IPile[]>([
+        {
+            id: 0,
+            length: 0,
+            diameter: 0,
+            radius: 0,
+            batterAngle: 0,
+            helices: null
+        },
+    ]);
+
+    return (
+        <PileContext.Provider value={{ piles, setPiles }}>
+            {children}
+        </PileContext.Provider>
+    );
 }
 
 export const usePiles = () => {

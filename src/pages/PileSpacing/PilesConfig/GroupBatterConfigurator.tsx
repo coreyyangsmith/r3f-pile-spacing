@@ -3,6 +3,8 @@ import { useCustomization } from '../../../context/Customization';
 import { usePiles } from '../../../context/PileContext';
 import Pile from '../../../components/Pile';
 
+import { IPiles, setPiles } from '../../../types/Pile.ts'
+
 const GroupBatterConfigurator = () => {
     const {
         number,
@@ -12,10 +14,12 @@ const GroupBatterConfigurator = () => {
         batterAngle,
         setBatterAngle
     } = useCustomization();
-    const { piles, setPiles } = usePiles();
+    const { piles: IPiles, setPiles: setPiles } = usePiles();
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.MouseEvent<HTMLElement>) => {
         setBatterAngle(event.target.value);
+        regeneratePiles(piles, 'batterAngle', event.target.value);
+
         const newPiles = {}
         for (let i = 0; i < number; i++) {
             newPiles[i] = new Pile(length, diameter, radius, batterAngle);

@@ -1,4 +1,20 @@
+/*
+Date: 2024-02-21
+Author: Corey Yang-Smith
+File: HelicesConfig.tsx
+Type: Layout Component
+
+Description:
+This is a layout component for the Helices Configuration,
+it is a paper component with a stack of configurators
+for the user to input general information that affects
+and generates all related piles in the visualization.
+*/
+
+// Imports
 import { Paper, Stack, Typography } from '@mui/material'
+
+// Components
 import NumOfHelicesConfigurator from './NumOfHelicesConfigurator'
 import FirstHelixDistanceConfigurator from './FirstHelixDistanceConfigurator'
 import HelixSpacingConfigurator from './HelixSpacingConfigurator'
@@ -36,7 +52,7 @@ const HelicesConfig = () => {
                 <Typography variant="h6" // TODO, implement theme to make text size responsive
                     sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Helices Configuration</Typography>
 
-                {/* Tab & Box */}
+                {/* Data Components */}
 
                 <NumOfHelicesConfigurator />
                 <FirstHelixDistanceConfigurator />
