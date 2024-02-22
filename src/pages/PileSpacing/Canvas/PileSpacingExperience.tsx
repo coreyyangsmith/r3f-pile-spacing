@@ -2,6 +2,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useCustomization } from "../../../context/Customization";
 import Pile from "../Components/Pile";
 import { useSettings } from "../../../context/Settings";
+import { usePiles } from "../../../context/PileContext";
 
 const PileSpacingExperience = () => {
 
@@ -28,6 +29,8 @@ const PileSpacingExperience = () => {
         firstHelixDistFromBottom,
         helixSpacing,
         helixDiameter } = useCustomization();
+
+    const { piles } = usePiles();
 
     const { backgroundColor, setBackgroundColor } = useSettings();
 

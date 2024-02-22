@@ -1,12 +1,26 @@
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { useCustomization } from '../../../context/Customization';
-
+import { usePiles } from '../../../context/PileContext';
+import Pile from '../../../components/Pile';
 
 const GroupBatterConfigurator = () => {
-    const { batterAngle, setBatterAngle } = useCustomization();
+    const {
+        number,
+        length,
+        diameter,
+        radius,
+        batterAngle,
+        setBatterAngle
+    } = useCustomization();
+    const { piles, setPiles } = usePiles();
 
     const handleChange = (event) => {
         setBatterAngle(event.target.value);
+        const newPiles = {}
+        for (let i = 0; i < number; i++) {
+            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+        }
+        setPiles(newPiles)
     }
     return (
         <Paper
@@ -14,7 +28,7 @@ const GroupBatterConfigurator = () => {
             variant='outlined'
             sx={{
                 zIndex: 1,
-                background: 'rgba(50, 50, 50, 1)',
+                background: 'rgba(255, 255, 255, .1)',
                 marginLeft: "16px",
                 marginRight: "16px",
                 width: "calc(100% - 32px)",

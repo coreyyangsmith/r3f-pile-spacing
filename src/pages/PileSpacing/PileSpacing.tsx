@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber'
 
 // My Components
 import PileSpacingExperience from "./Canvas/PileSpacingExperience"
-import Configurator from '../../components/Configurator'
 import ConflictConfig from './ConflictConfig/ConflictConfig'
 import { Paper } from '@mui/material'
 import ChipConfig from './ChipConfig/ChipConfig'
@@ -40,9 +39,9 @@ const PileSpacing = () => {
         {handleThreeCanvasFormat()}
 
         <Paper
-            square={true}
-            elevation={4}
+            square={false}
             sx={{
+                borderRadius: "16px",
                 width: {
                     xs: "calc(67% - 16px)",
                     sm: "calc(67% - 16px)",
@@ -66,9 +65,6 @@ const PileSpacing = () => {
                 <PileSpacingExperience />
             </Canvas >
         </Paper >
-
-
-        <Configurator />
     </>
 
 }

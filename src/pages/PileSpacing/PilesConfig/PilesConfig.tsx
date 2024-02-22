@@ -13,6 +13,7 @@ import GroupBatterConfigurator from './GroupBatterConfigurator'
 // - Length of Piles
 
 const PilesConfig = () => {
+    console.log('component re-render');
     return (
         <Paper
             square={true}
@@ -20,7 +21,7 @@ const PilesConfig = () => {
             sx={{
                 position: 'absolute',
                 zIndex: 10,
-                background: 'rgba(0, 0, 0, 1)',
+                background: 'rgba(255, 255, 255, 0.1)',
                 top: "calc(7% + 8px)",
                 margin: '16px',
                 width: {
@@ -40,13 +41,12 @@ const PilesConfig = () => {
             }}
         >
 
-            <Stack direction="column">
+            <Stack direction="column" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                 {/* Title */}
                 <Typography variant="h6" // TODO, implement theme to make text size responsive
                     sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Pile Configuration</Typography>
 
                 {/* Tab & Box */}
-
                 <NumOfPilesConfigurator />
                 <GroupLengthConfigurator />
                 <GroupRadialConfigurator />

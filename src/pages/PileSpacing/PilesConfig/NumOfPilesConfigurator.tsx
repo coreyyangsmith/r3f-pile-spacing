@@ -1,12 +1,28 @@
 import { Paper, Stack, TextField, Typography } from '@mui/material'
+import Pile from '../../../components/Pile';
+
 import { useCustomization } from '../../../context/Customization';
+import { usePiles } from '../../../context/PileContext';
 
 
 const NumOfPilesConfigurator = () => {
-    const { number, setNumber } = useCustomization();
+    const {
+        number,
+        setNumber,
+        length,
+        diameter,
+        radius,
+        batterAngle
+    } = useCustomization();
+    const { piles, setPiles } = usePiles();
 
     const handleChange = (event) => {
-        setNumber(event.target.value);
+        setNumber(event.target.value); // set Number of Piles for Configurator
+        const newPiles = {}
+        for (let i = 0; i < number; i++) {
+            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+        }
+        setPiles(newPiles)
     }
     return (
         <Paper
@@ -14,7 +30,7 @@ const NumOfPilesConfigurator = () => {
             variant='outlined'
             sx={{
                 zIndex: 1,
-                background: 'rgba(0, 0, 0, 1)',
+                background: 'rgba(255, 255, 255, .1)',
                 marginLeft: "16px",
                 marginRight: "16px",
                 width: "calc(100% - 32px)",

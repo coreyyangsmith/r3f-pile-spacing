@@ -17,7 +17,7 @@ const ChipConfig = (props) => {
             sx={{
                 position: 'absolute',
                 zIndex: 10,
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255,255,255,0.1)',
                 margin: '16px',
                 width: {
                     xs: 'calc(33% - 32px)', // 0 - 600px

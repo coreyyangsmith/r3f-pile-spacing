@@ -16,8 +16,6 @@ export const CustomizationProvider = (props) => {
     const [helixSpacing, setHelixSpacing] = useState(1);
     const [helixDiameter, setHelixDiameter] = useState(1);
 
-
-
     return <CustomizationContext.Provider value={{
         length,
         setLength,

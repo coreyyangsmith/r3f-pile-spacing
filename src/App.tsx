@@ -10,6 +10,7 @@ import PileSpacing from './pages/PileSpacing/PileSpacing';
 import { Route, Routes, Link } from "react-router-dom"
 import { CustomizationProvider } from './context/Customization';
 import { SettingsProvider } from './context/Settings';
+import { PileContextProvider } from './context/PileContext';
 
 // Theme Definition
 const lightTheme = createTheme({
@@ -34,7 +35,7 @@ const lightTheme = createTheme({
       'inter',
       '-apple-system',
       'BlinkMacSystemFont',
-      '"Segoe UI"',
+      'Segoe UI',
       'Roboto',
       '"Helvetica Neue"',
       'Arial',
@@ -47,7 +48,7 @@ const lightTheme = createTheme({
       lineHeight: 1.6,
       fontSize: 52,
       fontWeight: 800,
-      fontFamily: 'Inter',
+      fontFamily: 'inter',
       color: 'black',
       letterSpacing: '3px',
     },
@@ -55,28 +56,28 @@ const lightTheme = createTheme({
       lineHeight: 1.6,
       fontSize: 64,
       fontWeight: 600,
-      fontFamily: 'Inter',
+      fontFamily: 'inter',
       color: 'white',
     },
     h2: {
       lineHeight: 1.6,
       fontSize: 36,
       fontWeight: 600,
-      fontFamily: 'Inter',
+      fontFamily: 'inter',
       color: 'white',
     },
     h3: {
       lineHeight: 1.6,
       fontSize: 28,
       fontWeight: 600,
-      fontFamily: 'Inter',
+      fontFamily: 'inter',
       color: 'white',
     },
     body1: {
       lineHeight: 1.6,
       fontSize: 18,
       fontWeight: 500,
-      fontFamily: 'Inter',
+      fontFamily: 'inter',
       color: 'white',
     },
   },
@@ -89,12 +90,14 @@ function App() {
     <>
       <CustomizationProvider>
         <SettingsProvider>
-          <ThemeProvider theme={lightTheme}>
-            <CssBaseline />
-            <Routes>
-              <Route path="/" element={<PileSpacing />} />
-            </Routes>
-          </ThemeProvider>
+          <PileContextProvider>
+            <ThemeProvider theme={lightTheme}>
+              <CssBaseline />
+              <Routes>
+                <Route path="/" element={<PileSpacing />} />
+              </Routes>
+            </ThemeProvider>
+          </PileContextProvider>
         </SettingsProvider>
       </CustomizationProvider>
     </>

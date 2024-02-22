@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import BackgroundColor from './BackgroundColor'
 import ToggleAxesHelper from './ToggleAxesHelper'
 
@@ -29,23 +29,17 @@ const SettingsConfig = () => {
                 },
             }}
         >
-            {/* Title */}
-            <Typography variant="h6" // TODO, implement theme to make text size responsive
-                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
 
-            {/* Container */}
-            <Paper
-                square={true}
-                variant='outlined'
-                sx={{
-                    position: 'absolute',
-                    background: 'rgba(200, 200, 200, 0.10)',
-                    width: '100%',
-                    height: '100%',
-                }}>
+            <Stack direction="column" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                {/* Title */}
+                <Typography variant="h3" // TODO, implement theme to make text size responsive
+                    sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
+
+                {/* Container */}
+
                 <BackgroundColor />
                 <ToggleAxesHelper />
-            </Paper>
+            </Stack>
 
         </Paper >
     )

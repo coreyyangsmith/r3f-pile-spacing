@@ -1,4 +1,8 @@
-import { Paper, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
+import NumOfHelicesConfigurator from './NumOfHelicesConfigurator'
+import FirstHelixDistanceConfigurator from './FirstHelixDistanceConfigurator'
+import HelixSpacingConfigurator from './HelixSpacingConfigurator'
+import HelixDiameterConfigurator from './HelixDiameterConfigurator'
 
 const HelicesConfig = () => {
     return (
@@ -8,7 +12,7 @@ const HelicesConfig = () => {
             sx={{
                 position: 'absolute',
                 zIndex: 10,
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255,255,255,0.1)',
                 top: "calc(7% + 8px)",
                 margin: '16px',
                 width: {
@@ -27,14 +31,19 @@ const HelicesConfig = () => {
                 },
             }}
         >
-            {/* Title */}
-            <Typography variant="h6" // TODO, implement theme to make text size responsive
-                sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Helix Config</Typography>
+            <Stack direction="column" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                {/* Title */}
+                <Typography variant="h6" // TODO, implement theme to make text size responsive
+                    sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Helices Configuration</Typography>
 
-            {/* Tab & Box */}
-            <Paper>
+                {/* Tab & Box */}
 
-            </Paper>
+                <NumOfHelicesConfigurator />
+                <FirstHelixDistanceConfigurator />
+                <HelixSpacingConfigurator />
+                <HelixDiameterConfigurator />
+
+            </Stack>
 
         </Paper >
     )

@@ -15,7 +15,7 @@ const PileConfig = () => {
                 height: 'calc(25% - 32px)',
             }}
         >
-            <Typography variant='h6' sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Individual Pile</Typography>
+            <Typography variant='h6' sx={{ marginLeft: '16px', padding: '8px', textAlign: 'left', color: 'white' }}>Individual Pile</Typography>
         </Paper>
     )
 }

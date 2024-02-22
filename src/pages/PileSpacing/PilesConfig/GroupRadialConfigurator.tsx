@@ -1,12 +1,26 @@
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { useCustomization } from '../../../context/Customization';
-
+import Pile from '../../../components/Pile';
+import { usePiles } from '../../../context/PileContext';
 
 const GroupRadialConfigurator = () => {
-    const { radius, setRadius } = useCustomization();
+    const {
+        number,
+        length,
+        diameter,
+        radius,
+        setRadius,
+        batterAngle
+    } = useCustomization();
+    const { piles, setPiles } = usePiles();
 
     const handleChange = (event) => {
         setRadius(event.target.value);
+        const newPiles = {}
+        for (let i = 0; i < number; i++) {
+            newPiles[i] = new Pile(length, diameter, radius, batterAngle);
+        }
+        setPiles(newPiles)
     }
     return (
         <Paper
@@ -14,7 +28,7 @@ const GroupRadialConfigurator = () => {
             variant='outlined'
             sx={{
                 zIndex: 1,
-                background: 'rgba(50, 50, 50, 1)',
+                background: 'rgba(255, 255, 255, .1)',
                 marginLeft: "16px",
                 marginRight: "16px",
                 width: "calc(100% - 32px)",
