@@ -72,6 +72,11 @@ body,
   color: white;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 @font-face {
   font-display: swap;
   font-family: 'Inter';

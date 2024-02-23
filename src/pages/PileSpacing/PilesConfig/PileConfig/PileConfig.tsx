@@ -12,10 +12,32 @@ and generates all related piles in the visualization.
 */
 
 // Import
-import { Paper, Typography } from '@mui/material'
+import { Button, Paper, Stack, Typography } from '@mui/material'
+import { useState } from 'react';
+
+// Hooks
+import { usePiles } from '../../../../hooks/usePiles';
+import PileConfigContainer from './PileConfigContainer';
 
 // TODO Extract Common MUI Components to a separate file
 const PileConfig = () => {
+    const [selectedPile, setSelectedPile] = useState<number>(0);
+    const piles = usePiles();
+
+    const handlePileSelection = (pileId: number) => {
+        setSelectedPile(pileId);
+    }
+
+    const generateIndividualPileSelection = () => {
+        if (!piles) return (<>Error</>)
+
+        return piles.piles.piles.map((pile, i) => {
+            return (
+                <Button className={i == selectedPile && 'active' || ''} key={i} onClick={() => { handlePileSelection(i) }}> Pile {i + 1}</Button >
+            )
+        })
+    }
+
     return (
         <Paper
             square={true}
@@ -36,8 +58,19 @@ const PileConfig = () => {
                 textAlign: 'left',
                 color: 'white'
             }}>
-                Individual Pile
+                Individual Piles
             </Typography>
+
+            {/* Container */}
+            <Stack direction='row' sx={{ border: '1px solid green', width: '100%', height: 'calc(100% - 48px)' }}>
+                {/* Pile Selection */}
+                <Stack direction='column' sx={{ overflowY: 'scroll', border: '1px solid red', height: '100%' }}>
+                    {generateIndividualPileSelection()}
+                </Stack>
+
+                {/* Inidivual Pile Settings */}
+                <PileConfigContainer selectedPile={selectedPile} />
+            </Stack>
         </Paper>
     )
 }
