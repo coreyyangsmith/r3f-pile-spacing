@@ -32,19 +32,14 @@ const NumOfPilesConfigurator = () => {
             const newPileArray: IPile[] = [];
 
             for (let i = 0; i < newNumber; i++) {
+                // Sets to zero-index values
                 const newPile = new Pile(
-                    id = i,
-                    length = 0,
-                    diameter = 0,
-                    radius = 0,
-                    batterAngle = 0,
-                    helices = null,
-                    setId = () => { },
-                    setLength = () => { },
-                    setDiameter = () => { },
-                    setRadius = () => { },
-                    setBatterAngle = () => { },
-                    setHelices = () => { }
+                    i,
+                    piles?.piles.piles[0].length,
+                    piles?.piles.piles[0].diameter,
+                    piles?.piles.piles[0].radius,
+                    piles?.piles.piles[0].batterAngle,
+                    null,
                 );
                 newPileArray.push(newPile);
             }

@@ -13,8 +13,14 @@ It configures the batter angle for all Pile objects.
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent } from 'react';
 
+// Types
+import { IPiles } from '../../../types/Pile';
+
 // Hooks
 import { usePiles } from '../../../hooks/usePiles';
+
+// Components
+import Pile from '../../../components/Pile';
 
 const GroupBatterConfigurator = () => {
     const piles = usePiles()
@@ -22,10 +28,29 @@ const GroupBatterConfigurator = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newBatterAngle = parseFloat(event.target.value);
 
-        if (piles?.piles) {
-            for (let i = 0; i < piles?.piles.number; i++) {
-                piles?.piles.piles[i].setBatterAngle(newBatterAngle);
+        if (newBatterAngle !== undefined && newBatterAngle > 0 && piles?.piles) {
+            const newPileArray: Pile[] = [];
+
+            for (let i = 0; i < piles.piles.number; i++) {
+                const newPile = new Pile(
+                    i,
+                    piles.piles.piles[i].length,
+                    piles.piles.piles[i].diameter,
+                    piles.piles.piles[i].radius,
+                    newBatterAngle,
+                    null,
+                );
+                newPileArray.push(newPile);
             }
+
+            const newPiles: IPiles = {
+                piles: newPileArray,
+                number: piles.piles.number,
+                setPiles: () => { },
+                setNumber: () => { }
+            }
+
+            piles.setPiles(newPiles)
         }
     }
 
@@ -66,7 +91,7 @@ const GroupBatterConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={getBatterAngle}
+                    value={getBatterAngle()}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

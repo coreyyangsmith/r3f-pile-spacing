@@ -32,7 +32,6 @@ const PileSpacingExperience = () => {
         if (!piles) return (<>Error</>);
 
         return piles.piles.map((pile, i) => {
-            console.log(i, pile)
             if (piles.number < 1) return null;
 
             let angle;
@@ -68,23 +67,26 @@ const PileSpacingExperience = () => {
 
 
     return <>
+        {/* Controls */}
         <OrbitControls />
+
+        {/* Background */}
         <color args={[settings?.settings.backgroundColor || 'black']} attach="background" />
 
+        {/* Lighting */}
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[-10, 10, -10]} />
         <pointLight position={[10, 10, 10]} />
 
         {/* Floor */}
         <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
-
             {settings?.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
             <planeGeometry args={[10, 10, 10]} />
             <meshBasicMaterial color='green' wireframe />
         </mesh>
 
+        {/* Generate Piles */}
         {piles && generatePiles(piles?.piles)}
-
     </>
 }
 

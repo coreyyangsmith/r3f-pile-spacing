@@ -7,6 +7,7 @@ Type: Context Definition
 Description:
 This is a Context API definition for the Pile object.
 It is a core object in the Pile Visualization.
+This file also defines the default generation from context
 */
 
 // Imports
