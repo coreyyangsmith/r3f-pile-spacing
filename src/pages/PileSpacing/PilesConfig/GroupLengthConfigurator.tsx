@@ -40,6 +40,8 @@ const GroupLengthConfigurator = () => {
                     piles.piles.piles[i].diameter,
                     piles.piles.piles[i].radius,
                     piles.piles.piles[i].batterAngle,
+                    piles.piles.piles[i].position,
+                    piles.piles.piles[i].rotation,
                     null,
                 );
                 newPileArray.push(newPile);

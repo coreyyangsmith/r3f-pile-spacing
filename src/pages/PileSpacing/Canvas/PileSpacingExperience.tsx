@@ -34,29 +34,31 @@ const PileSpacingExperience = () => {
         return piles.piles.map((pile, i) => {
             if (piles.number < 1) return null;
 
-            let angle;
-            let x;
-            let z;
-
-            if (piles.number === 1) {
-                angle = 0;
-                x = 0;
-                z = 0;
-            } else {
-                angle = (i / piles.number) * Math.PI * 2;
-                x = Math.cos(angle) * pile.radius;
-                z = Math.sin(angle) * pile.radius;
+            if (settings?.settings.lockPiles) {
+                if (piles.number === 1) {
+                    piles.piles[i].rotation = 0;
+                    piles.piles[i].position[0] = 0; //x
+                    piles.piles[i].position[1] = 0; //y
+                    piles.piles[i].position[2] = 0; //z
+                } else {
+                    piles.piles[i].rotation = (i / piles.number) * Math.PI * 2;
+                    piles.piles[i].position[0] = Math.cos(piles.piles[i].rotation) * pile.radius; // x
+                    piles.piles[i].position[1] = 0; // y
+                    piles.piles[i].position[2] = Math.sin(piles.piles[i].rotation) * pile.radius; // z
+                }
             }
+
+
 
             return <Pile
                 key={i}
                 position={[
-                    x,
+                    piles.piles[i].position[0],
                     -pile.length / 2,
-                    z]}
+                    piles.piles[i].position[2]]}
                 rotation={[
                     0,
-                    -angle,
+                    -piles.piles[i].rotation,
                     Math.PI / 180 * pile.batterAngle]}
                 diameter={pile.diameter}
                 length={pile.length}

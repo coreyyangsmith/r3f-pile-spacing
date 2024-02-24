@@ -38,6 +38,8 @@ const GroupBatterConfigurator = () => {
                     piles.piles.piles[i].diameter,
                     piles.piles.piles[i].radius,
                     newBatterAngle,
+                    piles.piles.piles[i].position,
+                    piles.piles.piles[i].rotation,
                     null,
                 );
                 newPileArray.push(newPile);

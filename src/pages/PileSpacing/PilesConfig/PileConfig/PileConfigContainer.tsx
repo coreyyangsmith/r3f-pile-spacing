@@ -20,6 +20,7 @@ that holds the data components for the individual pile configuration.,
 
 // Imports
 import { Paper, Typography } from "@mui/material"
+import PilePositionConfigurator from "./PilePositionConfigurator"
 
 // Types
 type props = {
@@ -27,8 +28,6 @@ type props = {
 }
 
 const PileConfigContainer = (props: props) => {
-    console.log(props)
-
     return (
         <Paper sx={{
             height: '100%',
@@ -36,6 +35,7 @@ const PileConfigContainer = (props: props) => {
             background: 'rgba(255,255,255,0.1)'
         }}>
             <Typography>Pile {props.selectedPile + 1}</Typography>
+            <PilePositionConfigurator selectedPile={props.selectedPile} />
         </Paper>
     )
 }

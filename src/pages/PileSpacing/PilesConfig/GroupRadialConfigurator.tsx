@@ -38,6 +38,8 @@ const GroupRadialConfigurator = () => {
                     piles.piles.piles[i].diameter,
                     newRadius,
                     piles.piles.piles[i].batterAngle,
+                    piles.piles.piles[i].position,
+                    piles.piles.piles[i].rotation,
                     null,
                 );
                 newPileArray.push(newPile);

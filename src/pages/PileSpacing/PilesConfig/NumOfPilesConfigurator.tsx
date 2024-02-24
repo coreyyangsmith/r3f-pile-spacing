@@ -39,6 +39,8 @@ const NumOfPilesConfigurator = () => {
                     piles?.piles.piles[0].diameter,
                     piles?.piles.piles[0].radius,
                     piles?.piles.piles[0].batterAngle,
+                    piles?.piles.piles[0].position,
+                    piles?.piles.piles[0].rotation,
                     null,
                 );
                 newPileArray.push(newPile);

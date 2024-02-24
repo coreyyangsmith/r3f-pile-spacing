@@ -19,6 +19,8 @@ export default class Pile implements IPile {
     diameter: number;
     radius: number;
     batterAngle: number;
+    position: number[];
+    rotation: number;
     helices: Array<IHelix> | null;
 
     setId: (id: number) => void;
@@ -26,6 +28,8 @@ export default class Pile implements IPile {
     setDiameter: (diameter: number) => void;
     setRadius: (radius: number) => void;
     setBatterAngle: (batterAngle: number) => void;
+    setPosition: (position: number[]) => void;
+    setRotation: (rotation: number) => void;
     setHelices: (helices: Array<IHelix> | null) => void;
 
     constructor(
@@ -34,6 +38,8 @@ export default class Pile implements IPile {
         diameter: number = 1,
         radius: number = 1,
         batterAngle: number = 5,
+        position: number[] = [0, 0, 0],
+        rotation: number = 0,
         helices: null = null,
 
         setId: (id: number) => void = () => { },
@@ -41,6 +47,8 @@ export default class Pile implements IPile {
         setDiameter: (diameter: number) => void = () => { },
         setRadius: (radius: number) => void = () => { },
         setBatterAngle: (batterAngle: number) => void = () => { },
+        setPosition: (position: number[]) => void = () => { },
+        setRotation: (rotation: number) => void = () => { },
         setHelices: (helices: Array<IHelix> | null) => void = () => { }
     ) {
         this.id = id;
@@ -48,6 +56,8 @@ export default class Pile implements IPile {
         this.diameter = diameter;
         this.radius = radius;
         this.batterAngle = batterAngle;
+        this.position = position;
+        this.rotation = rotation;
         this.helices = helices;
 
         this.setId = setId;
@@ -55,6 +65,8 @@ export default class Pile implements IPile {
         this.setDiameter = setDiameter;
         this.setRadius = setRadius;
         this.setBatterAngle = setBatterAngle;
+        this.setPosition = setPosition;
+        this.setRotation = setRotation;
         this.setHelices = setHelices;
     }
 }

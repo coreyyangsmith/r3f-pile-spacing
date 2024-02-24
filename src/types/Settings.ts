@@ -12,8 +12,10 @@ It is a core object in the Pile Visualization.
 export interface ISettings {
     backgroundColor: string;
     axesHelper: boolean;
+    lockPiles: boolean;
     setAxesHelper: (value: boolean) => void;
     setBackgroundColor: (value: string) => void;
+    setLockPiles: (value: boolean) => void;
 }
 
 export type SettingsContextType = {

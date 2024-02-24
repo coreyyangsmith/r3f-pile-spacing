@@ -27,6 +27,8 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 diameter: 1,
                 radius: 2,
                 batterAngle: 5,
+                position: [-1, -1, -1],
+                rotation: 0,
                 helices: null,
 
                 setId: () => { },
@@ -34,6 +36,8 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 setDiameter: () => { },
                 setRadius: () => { },
                 setBatterAngle: () => { },
+                setPosition: () => { },
+                setRotation: () => { },
                 setHelices: () => { },
             },
             {
@@ -42,6 +46,8 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 diameter: 1,
                 radius: 2,
                 batterAngle: 5,
+                position: [-1, -1, -1],
+                rotation: 0,
                 helices: null,
 
                 setId: () => { },
@@ -49,6 +55,8 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 setDiameter: () => { },
                 setRadius: () => { },
                 setBatterAngle: () => { },
+                setPosition: () => { },
+                setRotation: () => { },
                 setHelices: () => { },
             },
         ],

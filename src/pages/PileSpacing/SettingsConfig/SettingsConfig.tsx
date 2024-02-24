@@ -17,6 +17,7 @@ import { Paper, Stack, Typography } from '@mui/material'
 // Components
 import BackgroundColor from './BackgroundColor'
 import ToggleAxesHelper from './ToggleAxesHelper'
+import LockedPiles from './LockedPiles'
 
 const SettingsConfig = () => {
     return (
@@ -54,6 +55,7 @@ const SettingsConfig = () => {
                 {/* Container */}
                 <BackgroundColor />
                 <ToggleAxesHelper />
+                <LockedPiles />
             </Stack>
 
         </Paper >

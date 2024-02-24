@@ -18,6 +18,8 @@ export interface IPile {
     diameter: number;
     radius: number;
     batterAngle: number;
+    position: number[];
+    rotation: number;
     helices: Array<IHelix> | null;
 
     setId: (id: number) => void;
@@ -25,6 +27,8 @@ export interface IPile {
     setDiameter: (diameter: number) => void;
     setRadius: (radius: number) => void;
     setBatterAngle: (batterAngle: number) => void;
+    setPosition: (position: number[]) => void;
+    setRotation: (rotation: number) => void;
     setHelices: (helices: Array<IHelix>) => void;
 }
 

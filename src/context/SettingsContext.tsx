@@ -21,8 +21,10 @@ export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }
     const [settings, setSettings] = useState<ISettings>({
         backgroundColor: '#121212',
         axesHelper: true,
+        lockPiles: true,
         setAxesHelper: () => { },
         setBackgroundColor: () => { },
+        setLockPiles: () => { },
     });
 
     return (
