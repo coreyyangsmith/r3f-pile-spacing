@@ -1,10 +1,26 @@
+/*
+Date: 2024-02-26
+Author: Corey Yang-Smith
+File: CardinalPositionConfig.ts
+Type: Data Component
+
+Description:
+This is a Data Component for individual Pile Objects.
+It configures the position for specific Piles.
+*/
+
+// Imports
 import { Stack, TextField, Typography } from "@mui/material"
-import { usePiles } from "../../../../hooks/usePiles"
 import { ChangeEvent } from "react"
-import Pile from "../../../../components/Pile"
-import { IPiles } from "../../../../types/Pile"
+
+// Components
+import { Pile, Piles } from "../../../../components/Pile"
+
+// Context
+import { usePiles } from "../../../../hooks/usePiles"
 import { useSettings } from "../../../../hooks/useSettings"
 
+// Types
 type props = {
     text: string,
     selectedPile: number
@@ -20,7 +36,12 @@ const CardinalPositionConfig = (props: props) => {
         if (newPosPoint !== undefined && piles?.piles && settings?.settings) {
             if (settings.settings.lockPiles) return
 
-            const newPosition = piles?.piles.piles[props.selectedPile].position;
+            const newPosition = [
+                piles?.piles.piles[props.selectedPile].x,
+                piles?.piles.piles[props.selectedPile].y,
+                piles?.piles.piles[props.selectedPile].z
+            ]
+
             const newPileArray: Pile[] = [];
 
             if (props.text === 'X') newPosition[0] = newPosPoint;
@@ -34,32 +55,37 @@ const CardinalPositionConfig = (props: props) => {
                         i,
                         piles.piles.piles[i].length,
                         piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].radius,
                         piles.piles.piles[i].batterAngle,
-                        newPosition,
-                        piles.piles.piles[i].rotation,
                         null,
+                        newPosition[0],
+                        newPosition[1],
+                        newPosition[2],
+                        piles.piles.piles[i].rotation,
                     )
                 } else {
                     newPile = new Pile(
                         i,
                         piles.piles.piles[i].length,
                         piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].radius,
                         piles.piles.piles[i].batterAngle,
-                        piles.piles.piles[i].position,
-                        piles.piles.piles[i].rotation,
                         null,
+                        piles.piles.piles[i].x,
+                        piles.piles.piles[i].y,
+                        piles.piles.piles[i].z,
+                        piles.piles.piles[i].rotation,
                     );
                 }
                 newPileArray.push(newPile);
             }
 
-            const newPiles: IPiles = {
+            const newPiles: Piles = {
                 piles: newPileArray,
                 number: piles.piles.number,
+                spacingRadius: piles.piles.spacingRadius,
+
                 setPiles: () => { },
-                setNumber: () => { }
+                setNumber: () => { },
+                setSpacingRadius: () => { }
 
             }
             piles.setPiles(newPiles)
@@ -71,9 +97,9 @@ const CardinalPositionConfig = (props: props) => {
     const getPilePosition = (id: number, text: string) => {
         let position: number | string;
         if (piles?.piles) {
-            if (text === 'X') position = piles?.piles.piles[id].position[0];
-            else if (text === 'Y') position = piles?.piles.piles[id].position[1];
-            else if (text === 'Z') position = piles?.piles.piles[id].position[2];
+            if (text === 'X') position = piles?.piles.piles[id].x;
+            else if (text === 'Y') position = piles?.piles.piles[id].y;
+            else if (text === 'Z') position = piles?.piles.piles[id].z;
             else position = 'error';
 
             return position;

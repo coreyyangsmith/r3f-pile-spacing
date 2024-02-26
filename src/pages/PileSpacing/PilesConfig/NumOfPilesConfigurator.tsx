@@ -12,14 +12,13 @@ title, and a text field for the user to input the number of piles.
 
 // Imports
 import { Paper, Stack, TextField, Typography } from '@mui/material'
+import { ChangeEvent } from 'react';
 
 // Components
-import Pile from '../../../components/Pile';
+import { Pile, Piles } from '../../../components/Pile';
 
 // Context
 import { usePiles } from '../../../hooks/usePiles';
-import { ChangeEvent } from 'react';
-import { IPile, IPiles } from '../../../types/Pile';
 
 const NumOfPilesConfigurator = () => {
     const piles = usePiles();
@@ -28,30 +27,52 @@ const NumOfPilesConfigurator = () => {
         const newNumber = parseInt(event.target.value);
         piles?.piles.setNumber(newNumber); // set Number of Piles for Configurator
 
-        if (newNumber !== undefined && newNumber > 0) {
-            const newPileArray: IPile[] = [];
+        if (newNumber !== undefined
+            && newNumber > 0
+            && piles?.piles.spacingRadius !== undefined && piles?.piles.piles) {
+            const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < newNumber; i++) {
+            // Previous Piles
+            for (let i = 0; i < newNumber - 1; i++) {
+                console.log(piles?.piles.piles[i])
                 // Sets to zero-index values
                 const newPile = new Pile(
                     i,
-                    piles?.piles.piles[0].length,
-                    piles?.piles.piles[0].diameter,
-                    piles?.piles.piles[0].radius,
-                    piles?.piles.piles[0].batterAngle,
-                    piles?.piles.piles[0].position,
-                    piles?.piles.piles[0].rotation,
+                    piles?.piles.piles[i].length,
+                    piles?.piles.piles[i].diameter,
+                    piles?.piles.piles[i].batterAngle,
                     null,
+                    piles?.piles.piles[i].x,
+                    piles?.piles.piles[i].y,
+                    piles?.piles.piles[i].z,
+                    piles?.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
-            const newPiles: IPiles = {
+
+            // New Piles
+            const newPile = new Pile(
+                newNumber,
+                piles?.piles.piles[newNumber - 2].length,
+                piles?.piles.piles[newNumber - 2].diameter,
+                piles?.piles.piles[newNumber - 2].batterAngle,
+                null,
+                0,
+                0,
+                0,
+                0,
+            )
+            newPileArray.push(newPile);
+
+            const newPiles: Piles = {
                 piles: newPileArray,
                 number: parseInt(event.target.value),
-                setPiles: () => { },
-                setNumber: () => { }
-            }
+                spacingRadius: piles?.piles.spacingRadius,
 
+                setPiles: () => { },
+                setNumber: () => { },
+                setSpacingRadius: () => { }
+            }
             piles?.setPiles(newPiles)
         }
     }

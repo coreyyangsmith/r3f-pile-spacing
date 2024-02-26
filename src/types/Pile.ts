@@ -14,40 +14,39 @@ It is a core object in the Pile Visualization.
 // Imports
 
 // Types
-import { IHelices } from './Helix.ts';
-import { ICommon, Position } from './common/Common.ts';
+import { ICommon } from './common/Common.ts';
+
+// Components
+import { Pile, Piles } from '../components/Pile.ts';
+import { Helices } from '../components/Helix.ts';
 
 export interface IPile extends ICommon {
     id: number;
     length: number;
     diameter: number;
     batterAngle: number;
-    helices: IHelices | null;
-    position: Position;
-    rotation: number;
+    helices: Helices | null;
 
     setId: (id: number) => void;
     setLength: (length: number) => void;
     setDiameter: (diameter: number) => void;
     setBatterAngle: (batterAngle: number) => void;
-    setHelices: (helices: IHelices) => void;
-    setPosition: (position: Position) => void;
-    setRotation: (rotation: number) => void;
+    setHelices: (helices: Helices) => void;
 }
 
 export interface IPiles {
-    piles: Array<IPile>;
+    piles: Array<Pile>;
     number: number;
     spacingRadius: number;
 
-    setPiles: (piles: Array<IPile>) => void;
+    setPiles: (piles: Array<Pile>) => void;
     setNumber: (number: number) => void;
     setSpacingRadius: (spacingRadius: number) => void;
 }
 
 export type PileContextType = {
-    piles: IPiles;
-    setPiles: (piles: IPiles) => void;
+    piles: Piles;
+    setPiles: (piles: Piles) => void;
 }
 
 export type setPiles = (piles: Array<IPile>) => void;

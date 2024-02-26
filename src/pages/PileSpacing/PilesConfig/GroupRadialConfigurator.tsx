@@ -13,14 +13,11 @@ It configures the radial spacing of all Piles objects.
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent } from 'react';
 
-// Types
-import { IPiles } from '../../../types/Pile';
-
 // Hooks
 import { usePiles } from '../../../hooks/usePiles';
 
 // Components
-import Pile from '../../../components/Pile';
+import { Pile, Piles } from '../../../components/Pile';
 
 const GroupRadialConfigurator = () => {
     const piles = usePiles();
@@ -36,20 +33,24 @@ const GroupRadialConfigurator = () => {
                     i,
                     piles.piles.piles[i].length,
                     piles.piles.piles[i].diameter,
-                    newRadius,
                     piles.piles.piles[i].batterAngle,
-                    piles.piles.piles[i].position,
-                    piles.piles.piles[i].rotation,
                     null,
+                    piles?.piles.piles[i].x,
+                    piles?.piles.piles[i].y,
+                    piles?.piles.piles[i].z,
+                    piles?.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
-            const newPiles: IPiles = {
+            const newPiles: Piles = {
                 piles: newPileArray,
                 number: piles.piles.number,
+                spacingRadius: newRadius,
+
                 setPiles: () => { },
-                setNumber: () => { }
+                setNumber: () => { },
+                setSpacingRadius: () => { }
             }
 
             piles.setPiles(newPiles)
@@ -58,17 +59,7 @@ const GroupRadialConfigurator = () => {
 
     const getRadius = () => {
         if (piles?.piles) {
-            let radius: number | string;
-            radius = piles?.piles.piles[0].radius;
-
-            for (let i = 1; i < piles?.piles.number; i++) {
-                if (radius === piles?.piles.piles[i].radius) {
-                    radius = piles?.piles.piles[i].radius;
-                } else {
-                    radius = 'varies';
-                    break;
-                }
-            }
+            const radius: number | string = piles?.piles.spacingRadius;
             return radius;
         }
         return -1;

@@ -14,55 +14,65 @@ This file also defines the default generation from context
 import { createContext, useState, FC } from 'react';
 
 // Types
-import { IPiles, PileContextType } from '../types/Pile.ts';
+import { PileContextType } from '../types/Pile.ts';
+
+// Components
+import { Piles } from '../components/Pile.ts';
 
 export const PileContext = createContext<PileContextType | null>(null);
 
 export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [piles, setPiles] = useState<IPiles>({
+    const [piles, setPiles] = useState<Piles>({
         piles: [
             {
                 id: 0,
                 length: 10,
                 diameter: 1,
-                radius: 2,
                 batterAngle: 5,
-                position: [-1, -1, -1],
-                rotation: 0,
                 helices: null,
+                x: -1,
+                y: -1,
+                z: -1,
+                rotation: 0,
 
                 setId: () => { },
                 setLength: () => { },
                 setDiameter: () => { },
-                setRadius: () => { },
                 setBatterAngle: () => { },
-                setPosition: () => { },
-                setRotation: () => { },
                 setHelices: () => { },
+                setX: () => { },
+                setY: () => { },
+                setZ: () => { },
+                setRotation: () => { },
             },
             {
-                id: 1,
+                id: 0,
                 length: 10,
                 diameter: 1,
-                radius: 2,
                 batterAngle: 5,
-                position: [-1, -1, -1],
-                rotation: 0,
                 helices: null,
+                x: -1,
+                y: -1,
+                z: -1,
+                rotation: 0,
 
                 setId: () => { },
                 setLength: () => { },
                 setDiameter: () => { },
-                setRadius: () => { },
                 setBatterAngle: () => { },
-                setPosition: () => { },
-                setRotation: () => { },
                 setHelices: () => { },
+                setX: () => { },
+                setY: () => { },
+                setZ: () => { },
+                setRotation: () => { },
             },
         ],
         number: 2,
+        spacingRadius: 1,
+
         setPiles: () => { },
         setNumber: () => { },
+        setSpacingRadius: () => { },
     });
 
     return (

@@ -13,14 +13,11 @@ It configures the length of all Pile objects.
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent } from 'react';
 
-// Types
-import { IPiles } from '../../../types/Pile';
-
-// Hooks
+// Context
 import { usePiles } from '../../../hooks/usePiles';
 
 // Components
-import Pile from '../../../components/Pile';
+import { Pile, Piles } from '../../../components/Pile';
 
 
 
@@ -30,7 +27,9 @@ const GroupLengthConfigurator = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newLength = parseFloat(event.target.value);
 
-        if (newLength !== undefined && newLength > 0 && piles?.piles) {
+        if (newLength !== undefined
+            && newLength > 0
+            && piles?.piles.spacingRadius !== undefined) {
             const newPileArray: Pile[] = [];
 
             for (let i = 0; i < piles.piles.number; i++) {
@@ -38,20 +37,24 @@ const GroupLengthConfigurator = () => {
                     i,
                     newLength,
                     piles.piles.piles[i].diameter,
-                    piles.piles.piles[i].radius,
                     piles.piles.piles[i].batterAngle,
-                    piles.piles.piles[i].position,
-                    piles.piles.piles[i].rotation,
                     null,
+                    piles?.piles.piles[i].x,
+                    piles?.piles.piles[i].y,
+                    piles?.piles.piles[i].z,
+                    piles?.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
-            const newPiles: IPiles = {
+            const newPiles: Piles = {
                 piles: newPileArray,
                 number: piles.piles.number,
+                spacingRadius: piles.piles.spacingRadius,
+
                 setPiles: () => { },
-                setNumber: () => { }
+                setNumber: () => { },
+                setSpacingRadius: () => { }
             }
 
             piles.setPiles(newPiles)
@@ -94,7 +97,7 @@ const GroupLengthConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={getLength()} // to change?
+                    value={getLength()}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

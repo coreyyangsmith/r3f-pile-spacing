@@ -13,14 +13,11 @@ It configures the batter angle for all Pile objects.
 import { Paper, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent } from 'react';
 
-// Types
-import { IPiles } from '../../../types/Pile';
-
 // Hooks
 import { usePiles } from '../../../hooks/usePiles';
 
 // Components
-import Pile from '../../../components/Pile';
+import { Pile, Piles } from '../../../components/Pile';
 
 const GroupBatterConfigurator = () => {
     const piles = usePiles()
@@ -36,20 +33,24 @@ const GroupBatterConfigurator = () => {
                     i,
                     piles.piles.piles[i].length,
                     piles.piles.piles[i].diameter,
-                    piles.piles.piles[i].radius,
                     newBatterAngle,
-                    piles.piles.piles[i].position,
-                    piles.piles.piles[i].rotation,
                     null,
+                    piles?.piles.piles[i].x,
+                    piles?.piles.piles[i].y,
+                    piles?.piles.piles[i].z,
+                    piles?.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
-            const newPiles: IPiles = {
+            const newPiles: Piles = {
                 piles: newPileArray,
                 number: piles.piles.number,
+                spacingRadius: piles.piles.spacingRadius,
+
                 setPiles: () => { },
-                setNumber: () => { }
+                setNumber: () => { },
+                setSpacingRadius: () => { }
             }
 
             piles.setPiles(newPiles)

@@ -15,7 +15,8 @@ It is a core object in the Pile Visualization.
 import { ICommon } from './common/Common.ts';
 
 // Components
-import Pile from '../components/Pile.ts';
+import { Pile } from '../components/Pile.ts';
+import { Helix } from '../components/Helix.ts';
 
 export interface IHelix extends ICommon {
     id: number;
@@ -38,15 +39,15 @@ export interface IHelix extends ICommon {
 }
 
 export interface IHelices {
-    helices: IHelix[];
+    helices: Helix[];
     distanceFromBottom: number
     spacing: number | string;
-    pileRef: Pile;
+    pileRef: Pile | null;
 
-    setHelices: (helices: Array<IHelix>) => void;
+    setHelices: (helices: Array<Helix>) => void;
     setDistanceFromBottom: (distanceFromBottom: number) => void;
-    setSpacing(spacing: number | string) => void;
-    setPileRef: (pileRef: number | null) => void;
+    setSpacing: (spacing: number | string) => void;
+    setPileRef: (pileRef: Pile | null) => void;
 }
 
 export type HelixContextType = {
@@ -54,4 +55,4 @@ export type HelixContextType = {
     setHelices: (helices: IHelices) => void;
 }
 
-export type setHelices = (helices: Array<IHelix>) => void;
+export type setHelices = (helices: Array<Helix>) => void;

@@ -1,4 +1,3 @@
-import React from 'react'
 import Helix from './Helix'
 
 // Purpose of this class is to handle the claculation regarding positioning each helix on a pile

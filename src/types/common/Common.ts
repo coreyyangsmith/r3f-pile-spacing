@@ -8,21 +8,19 @@ Description:
 These are the type definitions for Common objects.
 */
 
-export interface ICommon {
+export interface ICommon extends IOrientation {
     id: number;
-    name: string;
-    description: string;
+
+    setId: (id: number) => void;
 }
 
-export interface Orientation extends Position {
-    position: Position;
+export interface IOrientation extends IPosition {
     rotation: number;
 
-    setPosition: (position: Position) => void;
     setRotation: (rotation: number) => void;
 }
 
-export interface Position {
+export interface IPosition {
     x: number;
     y: number;
     z: number;

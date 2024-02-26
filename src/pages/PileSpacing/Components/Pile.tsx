@@ -1,9 +1,35 @@
-import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
-import Helices from './Helices.tsx'
+/*
+Date: 2024-02-26
+Author: Corey Yang-Smith
+File: Pile.tsx
+Type: Three.js Component
 
-const Pile = (props) => {
-    // TODO, generate helices
-    return <group position={[props.position[0], 0, props.position[2]]}
+Description:
+This is the tsx component for the Three.js implementation of the Pile object.
+Given props from the PileSpacingExperience.tsx, this component will generate the Pile object(s).
+*/
+
+
+
+
+
+// Components
+import { Helices } from "../../../components/Helix"
+import MeshGalvanizedMetalMaterial from "../../../utils/MeshGalvanizedMetalMaterial";
+
+// Types
+type PileProps = {
+    key: number;
+    position: [number, number, number];
+    rotation: [number, number, number];
+    diameter: number;
+    length: number;
+    helices: Helices | null;
+}
+
+const Pile = (props: PileProps) => {
+    return <group
+        position={[props.position[0], 0, props.position[2]]}
         rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
         <axesHelper />
 
@@ -23,14 +49,14 @@ const Pile = (props) => {
 
 
         {/* Helices */}
-        <Helices
+        {/* <Helices
             position={props.position}
             diameter={props.diameter}
             length={props.length}
             numHelices={props.numHelices}
             firstHelixDistFromBottom={props.firstHelixDistFromBottom}
             helixSpacing={props.helixSpacing}
-            helixDiameter={props.helixDiameter} />
+            helixDiameter={props.helixDiameter} /> */}
     </group>
 }
 
