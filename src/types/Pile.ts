@@ -9,35 +9,40 @@ This is a Type Definition for the Pile object.
 It is a core object in the Pile Visualization.
 */
 
-// Imports
-import { IHelix } from '../types/Helix.ts';
+// DOCUMENTED
 
-export interface IPile {
+// Imports
+
+// Types
+import { IHelices } from './Helix.ts';
+import { ICommon, Position } from './common/Common.ts';
+
+export interface IPile extends ICommon {
     id: number;
     length: number;
     diameter: number;
-    radius: number;
     batterAngle: number;
-    position: number[];
+    helices: IHelices | null;
+    position: Position;
     rotation: number;
-    helices: Array<IHelix> | null;
 
     setId: (id: number) => void;
     setLength: (length: number) => void;
     setDiameter: (diameter: number) => void;
-    setRadius: (radius: number) => void;
     setBatterAngle: (batterAngle: number) => void;
-    setPosition: (position: number[]) => void;
+    setHelices: (helices: IHelices) => void;
+    setPosition: (position: Position) => void;
     setRotation: (rotation: number) => void;
-    setHelices: (helices: Array<IHelix>) => void;
 }
 
 export interface IPiles {
     piles: Array<IPile>;
     number: number;
+    spacingRadius: number;
 
     setPiles: (piles: Array<IPile>) => void;
     setNumber: (number: number) => void;
+    setSpacingRadius: (spacingRadius: number) => void;
 }
 
 export type PileContextType = {

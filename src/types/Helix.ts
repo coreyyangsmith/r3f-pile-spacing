@@ -9,25 +9,43 @@ This is a Type Definition for the Helix object.
 It is a core object in the Pile Visualization.
 */
 
-export interface IHelix {
+// DOCUMENTED
+
+// Types
+import { ICommon } from './common/Common.ts';
+
+// Components
+import Pile from '../components/Pile.ts';
+
+export interface IHelix extends ICommon {
     id: number;
     number: number;
-    firstHelixDistance: number;
-    spacing: number;
     diameter: number;
+    thickness: number;
+    rise: number;
+    rotations: number;
+    segsPerStep: number;
+    radius: number;
 
     setId: (id: number) => void;
     setNumber: (number: number) => void;
-    setFirstHelixDistance: (firstHelixDistance: number) => void;
-    setSpacing: (spacing: number) => void;
     setDiameter: (diameter: number) => void;
+    setThickness: (thickness: number) => void;
+    setRise: (rise: number) => void;
+    setRotations: (rotations: number) => void;
+    setSegsPerStep: (segsPerStep: number) => void;
+    setRadius: (radius: number) => void;
 }
 
 export interface IHelices {
     helices: IHelix[];
-    pileRef: number | null;
+    distanceFromBottom: number
+    spacing: number | string;
+    pileRef: Pile;
 
     setHelices: (helices: Array<IHelix>) => void;
+    setDistanceFromBottom: (distanceFromBottom: number) => void;
+    setSpacing(spacing: number | string) => void;
     setPileRef: (pileRef: number | null) => void;
 }
 

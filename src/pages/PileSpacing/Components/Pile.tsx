@@ -1,5 +1,5 @@
 import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
-import Helices from './Helices.jsx'
+import Helices from './Helices.tsx'
 
 const Pile = (props) => {
     // TODO, generate helices

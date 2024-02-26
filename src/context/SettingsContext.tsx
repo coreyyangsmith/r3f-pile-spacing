@@ -33,3 +33,35 @@ export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }
         </SettingsContext.Provider>
     )
 }
+
+// TODO
+//  * lockPiles: boolean - Locks the piles in place, group effect ONLY
+//  * lockHelices - boolean - Locks the helices in place, group effect ONLY
+//  * floor controls
+//      * color, size, wireframe
+//  * wireframe piles
+
+
+// Some organization below, sketching out categories of the settings (object)
+
+// PILE OBJECT (JS)
+
+
+// PILE OBJECT (3D)
+
+
+// PILE OBJECT (MENU)
+
+
+// SETTINGS OBJECT (MENU)
+// Pile Controls
+// Helices Controls
+// Floor Controls
+// - wireframe
+// - color
+// - size
+// Graphics Controls
+// - Color
+// - Skybox controls
+// Debug Controls
+// - show asxes helper
