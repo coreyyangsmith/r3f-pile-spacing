@@ -13,36 +13,55 @@ It is a core object in the Pile Visualization.
 import { createContext, useState, FC } from 'react';
 
 // Types
-import { HelixContextType, IHelices } from '../types/Helix';
+import { HelixContextType } from '../types/Helix';
+import { usePileFromId } from '../hooks/usePileFromId';
+import { Helices, HelicesCollection, Helix } from '../components/Helix';
 
 export const HelixContext = createContext<HelixContextType | null>(null);
 
 export const HelixProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [helices, setHelices] = useState<IHelices>({
-        helices: [
-            {
-                id: 0,
-                number: 0,
-                firstHelixDistance: 0,
-                spacing: 0,
-                diameter: 0,
-
-                setId: () => { },
-                setNumber: () => { },
-                setFirstHelixDistance: () => { },
-                setSpacing: () => { },
-                setDiameter: () => { },
-            },
-        ],
-        pileRef: null,
-        setHelices: () => { },
-        setPileRef: () => { },
+    const [helicesCollection, setHelicesCollection] = useState<HelicesCollection>({
+        helicesCollection: [
+            new Helices(
+                [new Helix(
+                    0,
+                    0,
+                    1.25,
+                    1,
+                    1,
+                    1,
+                    128,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                ),
+                new Helix(
+                    1,
+                    1,
+                    1.25,
+                    1,
+                    1,
+                    1,
+                    128,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                )],
+                0, // distanceFromBottom
+                0, // spacing
+                usePileFromId(0), // pileRef
+            )],
+        setHelicesCollection: () => { },
     });
 
     return (
-        <HelixContext.Provider value={{ helices, setHelices }}>
+        <HelixContext.Provider value={{ helicesCollection, setHelicesCollection }}>
             {children}
-        </HelixContext.Provider>
+        </HelixContext.Provider >
     );
 }
 

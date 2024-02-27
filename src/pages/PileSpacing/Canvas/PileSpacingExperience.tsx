@@ -22,6 +22,7 @@ import { usePiles } from "../../../hooks/usePiles";
 
 // Components
 import Pile from "../Components/Pile";
+import { useHelicesFromPileId } from "../../../hooks/useHelicesFromPileId";
 
 const PileSpacingExperience = () => {
 
@@ -32,8 +33,6 @@ const PileSpacingExperience = () => {
         if (!piles) return (<>Error</>);
 
         return piles.piles.piles.map((pile, i) => {
-            // IPile Reference
-
             // If no piles, return null
             if (piles.piles.number < 1) return null;
 
@@ -54,10 +53,11 @@ const PileSpacingExperience = () => {
                 }
             }
 
-
+            console.log('pile id', pile.id)
 
             return <Pile
-                key={i}
+                id={i}
+                key={pile.id}
                 position={[
                     pile.x,
                     -pile.length / 2,
@@ -72,7 +72,6 @@ const PileSpacingExperience = () => {
             />;
         })
     };
-
 
     return <>
         {/* Controls */}

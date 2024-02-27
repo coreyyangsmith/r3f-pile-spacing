@@ -18,6 +18,7 @@ import { PileContextType } from '../types/Pile.ts';
 
 // Components
 import { Piles } from '../components/Pile.ts';
+import { useHelicesFromPileId } from '../hooks/useHelicesFromPileId.tsx';
 
 export const PileContext = createContext<PileContextType | null>(null);
 
@@ -30,9 +31,9 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 diameter: 1,
                 batterAngle: 5,
                 helices: null,
-                x: -1,
-                y: -1,
-                z: -1,
+                x: 0,
+                y: 0,
+                z: 0,
                 rotation: 0,
 
                 setId: () => { },

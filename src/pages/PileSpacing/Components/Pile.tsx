@@ -9,25 +9,45 @@ This is the tsx component for the Three.js implementation of the Pile object.
 Given props from the PileSpacingExperience.tsx, this component will generate the Pile object(s).
 */
 
-
-
-
-
 // Components
 import { Helices } from "../../../components/Helix"
+import { useHelicesFromPileId } from "../../../hooks/useHelicesFromPileId";
 import MeshGalvanizedMetalMaterial from "../../../utils/MeshGalvanizedMetalMaterial";
+import Helix from "./Helix";
 
 // Types
 type PileProps = {
     key: number;
-    position: [number, number, number];
-    rotation: [number, number, number];
+    id: number;
     diameter: number;
     length: number;
     helices: Helices | null;
+    position: [number, number, number];
+    rotation: [number, number, number];
 }
 
 const Pile = (props: PileProps) => {
+    const helices = useHelicesFromPileId(props.id)
+
+    const generateHelices = (helices: Helices) => {
+        if (!helices) return (<>Error</>);
+
+        return helices.helices.map((helix, i) => {
+            return <Helix
+                key={helix.id}
+                id={helix.id}
+                diameter={helix.diameter}
+                thickness={helix.thickness}
+                rise={helix.rise}
+                rotations={helix.rotations}
+                segsPerStep={helix.segsPerStep}
+                radius={helix.radius}
+                position={[helix.position.x, helix.position.y, helix.position.z]}
+                rotation={helix.rotation}
+            />
+        })
+    }
+
     return <group
         position={[props.position[0], 0, props.position[2]]}
         rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
@@ -49,14 +69,7 @@ const Pile = (props: PileProps) => {
 
 
         {/* Helices */}
-        {/* <Helices
-            position={props.position}
-            diameter={props.diameter}
-            length={props.length}
-            numHelices={props.numHelices}
-            firstHelixDistFromBottom={props.firstHelixDistFromBottom}
-            helixSpacing={props.helixSpacing}
-            helixDiameter={props.helixDiameter} /> */}
+        <Helix helices={helices} />
     </group>
 }
 

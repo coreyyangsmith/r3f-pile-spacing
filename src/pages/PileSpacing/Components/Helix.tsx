@@ -1,7 +1,34 @@
+/*
+Date: 2024-02-26
+Author: Corey Yang-Smith
+File: Helix.tsx
+Type: Three.js Component
+
+Description:
+This is the tsx component for the Three.js implementation of the Helix object.
+Given props from the Pile.tsx, this component will generate the related Helices.
+*/
+
+// Impirts
 import { useRef, useEffect } from "react";
 import * as THREE from 'three'
-import { metalMaterial } from "../../../utils/parameters.js";
+
+// Materials
 import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
+
+type HelixProps = {
+    key: number,
+    id: number,
+    diameter: number,
+    thickness: number,
+    rise: number,
+    rotations: number,
+    segsPerStep: number,
+    radius: number,
+    position: [number, number, number];
+    rotation: 0;
+
+}
 
 const Helix = (props) => {
     let helixWidth = 1;

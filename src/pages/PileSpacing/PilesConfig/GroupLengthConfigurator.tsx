@@ -66,7 +66,7 @@ const GroupLengthConfigurator = () => {
             let length: number | string;
             length = piles?.piles.piles[0].length;
 
-            for (let i = 1; i < piles.piles.number; i++) {
+            for (let i = 1; i < piles.piles.number - 1; i++) {
                 if (length === piles.piles.piles[i].length) {
                     length = piles.piles.piles[i].length;
                 } else {

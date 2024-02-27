@@ -29,41 +29,54 @@ const NumOfPilesConfigurator = () => {
 
         if (newNumber !== undefined
             && newNumber > 0
-            && piles?.piles.spacingRadius !== undefined && piles?.piles.piles) {
+            && piles?.piles.spacingRadius !== undefined
+            && piles?.piles.piles) {
+
             const newPileArray: Pile[] = [];
 
-            // Previous Piles
-            for (let i = 0; i < newNumber - 1; i++) {
-                console.log(piles?.piles.piles[i])
-                // Sets to zero-index values
-                const newPile = new Pile(
-                    i,
-                    piles?.piles.piles[i].length,
-                    piles?.piles.piles[i].diameter,
-                    piles?.piles.piles[i].batterAngle,
-                    null,
-                    piles?.piles.piles[i].x,
-                    piles?.piles.piles[i].y,
-                    piles?.piles.piles[i].z,
-                    piles?.piles.piles[i].rotation
-                );
-                newPileArray.push(newPile);
+            if (newNumber > piles?.piles.number) {
+                // Incrementing Pile Counts
+                // Copy Old Piles & Initialize
+                for (let i = 0; i < newNumber - 1; i++) {
+                    newPileArray.push(new Pile(
+                        i,
+                        piles?.piles.piles[i].length,
+                        piles?.piles.piles[i].diameter,
+                        piles?.piles.piles[i].batterAngle,
+                        null,
+                        piles?.piles.piles[i].x,
+                        piles?.piles.piles[i].y,
+                        piles?.piles.piles[i].z,
+                        piles?.piles.piles[i].rotation
+                    ));
+                    newPileArray.push(new Pile(
+                        newNumber - 1,
+                        piles?.piles.piles[0].length,
+                        piles?.piles.piles[0].diameter,
+                        piles?.piles.piles[0].batterAngle,
+                        null,
+                        0,
+                        0,
+                        0,
+                        0));
+                }
+            } else {
+                // Decreasing Pile Counts
+                // Copy Old Piles
+                for (let i = 0; i < newNumber; i++) {
+                    newPileArray.push(new Pile(
+                        i,
+                        piles?.piles.piles[i].length,
+                        piles?.piles.piles[i].diameter,
+                        piles?.piles.piles[i].batterAngle,
+                        null,
+                        piles?.piles.piles[i].x,
+                        piles?.piles.piles[i].y,
+                        piles?.piles.piles[i].z,
+                        piles?.piles.piles[i].rotation
+                    ));
+                }
             }
-
-            // New Piles
-            const newPile = new Pile(
-                newNumber,
-                piles?.piles.piles[newNumber - 2].length,
-                piles?.piles.piles[newNumber - 2].diameter,
-                piles?.piles.piles[newNumber - 2].batterAngle,
-                null,
-                0,
-                0,
-                0,
-                0,
-            )
-            newPileArray.push(newPile);
-
             const newPiles: Piles = {
                 piles: newPileArray,
                 number: parseInt(event.target.value),
@@ -76,6 +89,7 @@ const NumOfPilesConfigurator = () => {
             piles?.setPiles(newPiles)
         }
     }
+
     return (
         <Paper
             square={true}

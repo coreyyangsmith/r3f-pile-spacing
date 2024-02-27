@@ -16,7 +16,7 @@ import { ICommon } from './common/Common.ts';
 
 // Components
 import { Pile } from '../components/Pile.ts';
-import { Helix } from '../components/Helix.ts';
+import { Helices, HelicesCollection, Helix } from '../components/Helix.ts';
 
 export interface IHelix extends ICommon {
     id: number;
@@ -50,9 +50,15 @@ export interface IHelices {
     setPileRef: (pileRef: Pile | null) => void;
 }
 
+export interface IHelicesCollection {
+    helicesCollection: Helices[];
+
+    setHelicesCollection: (helicesCollection: Array<Helices>) => void;
+}
+
 export type HelixContextType = {
-    helices: IHelices;
-    setHelices: (helices: IHelices) => void;
+    helicesCollection: HelicesCollection;
+    setHelicesCollection: (helicesCollection: HelicesCollection) => void;
 }
 
 export type setHelices = (helices: Array<Helix>) => void;

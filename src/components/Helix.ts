@@ -10,7 +10,7 @@ It is a core object in the Pile Visualization.
 */
 
 // Type Import
-import { IHelix, IHelices } from "../types/Helix.ts"
+import { IHelix, IHelices, IHelicesCollection } from "../types/Helix.ts"
 import { Pile } from "./Pile.ts";
 
 
@@ -20,18 +20,18 @@ export class Helices implements IHelices {
     spacing: number | string;
     pileRef: Pile | null;
 
-    setHelices: (helices: Array<IHelix>) => void;
+    setHelices: (helices: Array<Helix>) => void;
     setDistanceFromBottom: (distanceFromBottom: number) => void;
     setSpacing: (spacing: number | string) => void;
     setPileRef: (pileRef: Pile | null) => void;
 
     constructor(
-        helices: Array<IHelix> = [],
+        helices: Array<Helix> = [],
         distanceFromBottom: number = 0,
         spacing: number | string = 0,
         pileRef: Pile | null = null,
 
-        setHelices: (helices: Array<IHelix>) => void = () => { },
+        setHelices: (helices: Array<Helix>) => void = () => { },
         setDistanceFromBottom: (distanceFromBottom: number) => void = () => { },
         setSpacing: (spacing: number | string) => void = () => { },
         setPileRef: (pileRef: Pile | null) => void = () => { }
@@ -127,5 +127,18 @@ export class Helix implements IHelix {
         this.setY = setY;
         this.setZ = setZ;
         this.setRotation = setRotation;
+    }
+}
+
+export class HelicesCollection implements IHelicesCollection {
+    helicesCollection: Array<Helices>;
+    setHelicesCollection: (helicesCollection: Array<Helices>) => void;
+
+    constructor(
+        helicesCollection: Array<Helices> = [],
+        setHelicesCollection: (helicesCollection: Array<Helices>) => void = () => { },
+    ) {
+        this.helicesCollection = helicesCollection;
+        this.setHelicesCollection = setHelicesCollection;
     }
 }

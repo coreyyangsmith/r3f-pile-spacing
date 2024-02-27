@@ -63,7 +63,7 @@ const GroupBatterConfigurator = () => {
             let batterAngle: number | string;
             batterAngle = piles?.piles.piles[0].batterAngle;
 
-            for (let i = 1; i < piles?.piles.number; i++) {
+            for (let i = 1; i < piles?.piles.number - 1; i++) {
                 if (batterAngle === piles?.piles.piles[i].batterAngle) {
                     batterAngle = piles?.piles.piles[i].batterAngle;
                 } else {
