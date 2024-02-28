@@ -16,5 +16,6 @@ export const useHelicesFromPileId = (id: number) => {
     const context = useContext(HelixContext);
     const helices = context?.helicesCollection.helicesCollection
     const matchingHelix = helices?.find(x => x.pileRef?.id == id)
+    
     return matchingHelix ? matchingHelix : null;
 }

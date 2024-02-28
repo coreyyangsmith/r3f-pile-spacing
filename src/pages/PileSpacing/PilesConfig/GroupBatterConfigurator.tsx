@@ -25,7 +25,7 @@ const GroupBatterConfigurator = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newBatterAngle = parseFloat(event.target.value);
 
-        if (newBatterAngle !== undefined && newBatterAngle > 0 && piles?.piles) {
+        if (newBatterAngle !== undefined && newBatterAngle >= 0 && piles?.piles) {
             const newPileArray: Pile[] = [];
 
             for (let i = 0; i < piles.piles.number; i++) {

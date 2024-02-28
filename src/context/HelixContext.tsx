@@ -51,8 +51,8 @@ export const HelixProvider: FC<{ children: React.ReactNode }> = ({ children }) =
                     0,
                     0,
                 )],
-                0, // distanceFromBottom
-                0, // spacing
+                1, // distanceFromBottom
+                2.5, // spacing
                 usePileFromId(0), // pileRef
             )],
         setHelicesCollection: () => { },

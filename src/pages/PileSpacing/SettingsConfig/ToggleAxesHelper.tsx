@@ -17,7 +17,7 @@ import { ChangeEvent } from 'react'
 import { useSettings } from '../../../hooks/useSettings'
 
 // Components
-import Settings from '../../../components/Settings'
+import { ISettings } from '../../../types/Settings'
 
 const ToggleAxesHelper = () => {
     const settings = useSettings()
@@ -26,13 +26,25 @@ const ToggleAxesHelper = () => {
         if (event.target) {
             let newAxesSettings: boolean;
             (settings?.settings.axesHelper ? newAxesSettings = false : newAxesSettings = true)
+            if (settings?.settings) {
+                const newSettings: ISettings = {
+                    backgroundColor: settings?.settings.backgroundColor,
+                    axesHelper: newAxesSettings,
+                    lockPiles: settings?.settings.lockPiles,
+                    showFloor: settings?.settings.showFloor,
+                    floorColor: settings?.settings.floorColor,
+                    floorWireframe: settings?.settings.floorWireframe,
 
-            const newSettings = new Settings(
-                settings?.settings.backgroundColor,
-                newAxesSettings,
-                settings?.settings.lockPiles,
-            )
-            settings?.setSettings(newSettings)
+                    setAxesHelper: settings?.settings.setAxesHelper,
+                    setBackgroundColor: settings?.settings.setBackgroundColor,
+                    setLockPiles: settings?.settings.setLockPiles,
+                    setShowFloor: settings?.settings.setShowFloor,
+                    setFloorColor: settings?.settings.setFloorColor,
+                    setFloorWireframe: settings?.settings.setFloorWireframe
+                }
+                settings?.setSettings(newSettings)
+            }
+
         }
     }
 

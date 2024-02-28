@@ -1,12 +1,12 @@
 /*
-Date: 2024-02-24
+Date: 2024-02-28
 Author: Corey Yang-Smith
-File: LockedPiles.tsx
+File: ToggleFloorWireframe.tsx
 Type: Data Component
 
 Description:
 This is a Data Component for the Pile Visualization.
-It toggles the ability to manually control individual pile properties.
+It toggles the visibility of the wireframe for the floor.
 */
 
 // Imports
@@ -19,22 +19,22 @@ import { useSettings } from '../../../hooks/useSettings'
 // Types
 import { ISettings } from '../../../types/Settings'
 
-const LockedPiles = () => {
+const ToggleFloorWireframe = () => {
     const settings = useSettings()
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target) {
-            let newPileSettings: boolean;
-            (settings?.settings.lockPiles ? newPileSettings = false : newPileSettings = true)
+            let newFloorSettings: boolean;
+            (settings?.settings.floorWireframe ? newFloorSettings = false : newFloorSettings = true)
 
             if (settings?.settings) {
                 const newSettings: ISettings = {
                     backgroundColor: settings?.settings.backgroundColor,
                     axesHelper: settings?.settings.axesHelper,
-                    lockPiles: newPileSettings,
+                    lockPiles: settings?.settings.lockPiles,
                     showFloor: settings?.settings.showFloor,
                     floorColor: settings?.settings.floorColor,
-                    floorWireframe: settings?.settings.floorWireframe,
+                    floorWireframe: newFloorSettings,
 
                     setAxesHelper: settings?.settings.setAxesHelper,
                     setBackgroundColor: settings?.settings.setBackgroundColor,
@@ -59,13 +59,13 @@ const LockedPiles = () => {
                 width: "calc(100% - 32px)",
             }}>
             <Stack direction="row" sx={{ display: 'flex', width: 'calc(100%-32px)', justifyContent: 'space-between', marginLeft: '16px', marginRight: '16px' }}>
-                <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Lock Piles?</Typography>
+                <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Show Floor Wireframe?</Typography>
                 <Checkbox
-                    checked={settings?.settings.lockPiles}
+                    checked={settings?.settings.floorWireframe}
                     onChange={handleChange} />
             </Stack>
         </Paper>
     )
 }
 
-export default LockedPiles
+export default ToggleFloorWireframe

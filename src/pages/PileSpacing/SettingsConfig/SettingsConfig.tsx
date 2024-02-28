@@ -18,6 +18,9 @@ import { Paper, Stack, Typography } from '@mui/material'
 import BackgroundColor from './BackgroundColor'
 import ToggleAxesHelper from './ToggleAxesHelper'
 import LockedPiles from './LockedPiles'
+import ShowFloor from './ShowFloor'
+import FloorColor from './FloorColor'
+import ToggleFloorWireframe from './ToggleFloorWireframe'
 
 const SettingsConfig = () => {
     return (
@@ -52,10 +55,15 @@ const SettingsConfig = () => {
                 <Typography variant="h3" // TODO, implement theme to make text size responsive
                     sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Settings</Typography>
 
-                {/* Container */}
+                {/* General Settings */}
                 <BackgroundColor />
                 <ToggleAxesHelper />
                 <LockedPiles />
+
+                {/* Floor Settings */}
+                <FloorColor />
+                <ShowFloor />
+                <ToggleFloorWireframe />
             </Stack>
 
         </Paper >

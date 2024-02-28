@@ -1,34 +1,38 @@
 /*
-Date: 2024-02-22
+Date: 2024-02-28
 Author: Corey Yang-Smith
-File: BackgroundColor.tsx
+File: FloorColor.tsx
 Type: Data Component
 
 Description:
 This is a Data Component for the Pile Visualization.
-It sets the background color of the Three.js scene.
+It changes the floor color
 */
 
 // Imports
 import { Paper, Stack, Typography } from '@mui/material'
-import { ColorResult, GithubPicker } from 'react-color'
-import { colors } from '../../../utils/parameters'
+import { GithubPicker, ColorResult } from 'react-color'
+
+// Parameters
+import { colors } from '../../../utils/parameters.ts'
 
 // Hooks
 import { useSettings } from '../../../hooks/useSettings'
+
+// Types
 import { ISettings } from '../../../types/Settings'
 
-const BackgroundColor = () => {
+const FloorColor = () => {
     const settings = useSettings()
 
     const handleColorChange = (event: ColorResult) => {
         if (settings?.settings && event.hex) {
             const newSettings: ISettings = {
-                backgroundColor: event.hex,
+                backgroundColor: settings?.settings.backgroundColor,
                 axesHelper: settings?.settings.axesHelper,
                 lockPiles: settings?.settings.lockPiles,
                 showFloor: settings?.settings.showFloor,
-                floorColor: settings?.settings.floorColor,
+                floorColor: event.hex,
                 floorWireframe: settings?.settings.floorWireframe,
 
                 setAxesHelper: settings?.settings.setAxesHelper,
@@ -48,13 +52,13 @@ const BackgroundColor = () => {
             square={true}
             variant='outlined'
             sx={{
-                width: "calc(100% - 32px)",
                 background: 'rgba(255, 255, 255, .1)',
                 marginLeft: "16px",
                 marginRight: "16px",
+                width: "calc(100% - 32px)",
             }}>
             <Stack direction="row" sx={{ display: 'flex', width: 'calc(100%-32px)', justifyContent: 'space-between', marginLeft: '16px', marginRight: '16px' }}>
-                <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Background Color</Typography>
+                <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Floor Color</Typography>
                 <GithubPicker
                     width="250px"
                     triangle="hide"
@@ -66,4 +70,4 @@ const BackgroundColor = () => {
     )
 }
 
-export default BackgroundColor
+export default FloorColor

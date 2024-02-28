@@ -22,9 +22,16 @@ export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }
         backgroundColor: '#121212',
         axesHelper: true,
         lockPiles: true,
+        showFloor: true,
+        floorColor: '#121212',
+        floorWireframe: true,
+
         setAxesHelper: () => { },
         setBackgroundColor: () => { },
         setLockPiles: () => { },
+        setShowFloor: () => { },
+        setFloorColor: () => { },
+        setFloorWireframe: () => { }
     });
 
     return (

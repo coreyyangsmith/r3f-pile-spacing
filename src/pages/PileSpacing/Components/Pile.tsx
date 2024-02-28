@@ -29,12 +29,15 @@ type PileProps = {
 const Pile = (props: PileProps) => {
     const helices = useHelicesFromPileId(props.id)
 
+    console.log(helices)
+
     const generateHelices = (helices: Helices) => {
         if (!helices) return (<>Error</>);
 
         return helices.helices.map((helix, i) => {
             return <Helix
-                key={helix.id}
+
+                key={i}
                 id={helix.id}
                 diameter={helix.diameter}
                 thickness={helix.thickness}
@@ -42,8 +45,11 @@ const Pile = (props: PileProps) => {
                 rotations={helix.rotations}
                 segsPerStep={helix.segsPerStep}
                 radius={helix.radius}
-                position={[helix.position.x, helix.position.y, helix.position.z]}
+                position={[helix.x, helix.y, helix.z]}
                 rotation={helix.rotation}
+                distanceFromBottom={helices.distanceFromBottom}
+                spacing={helices.spacing}
+                pileRef={helices.pileRef}
             />
         })
     }
@@ -66,10 +72,7 @@ const Pile = (props: PileProps) => {
             <MeshGalvanizedMetalMaterial />
         </mesh>
 
-
-
-        {/* Helices */}
-        <Helix helices={helices} />
+        {helices && generateHelices(helices)}
     </group>
 }
 

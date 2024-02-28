@@ -22,12 +22,23 @@ import { usePiles } from "../../../hooks/usePiles";
 
 // Components
 import Pile from "../Components/Pile";
-import { useHelicesFromPileId } from "../../../hooks/useHelicesFromPileId";
 
 const PileSpacingExperience = () => {
 
     const settings = useSettings()
     const piles = usePiles();
+
+    const generateFloor = () => {
+        if (settings?.settings.showFloor) {
+            return (
+                <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
+                    {settings?.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
+                    <planeGeometry args={[10, 10, 10]} />
+                    <meshBasicMaterial color={settings?.settings.floorColor} wireframe={settings?.settings.floorWireframe} />
+                </mesh>
+            )
+        }
+    }
 
     const generatePiles = (piles: PileContextType) => {
         if (!piles) return (<>Error</>);
@@ -53,11 +64,9 @@ const PileSpacingExperience = () => {
                 }
             }
 
-            console.log('pile id', pile.id)
-
             return <Pile
                 id={i}
-                key={pile.id}
+                key={i}
                 position={[
                     pile.x,
                     -pile.length / 2,
@@ -86,11 +95,8 @@ const PileSpacingExperience = () => {
         <pointLight position={[10, 10, 10]} />
 
         {/* Floor */}
-        <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
-            {settings?.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
-            <planeGeometry args={[10, 10, 10]} />
-            <meshBasicMaterial color='green' wireframe />
-        </mesh>
+        {generateFloor()}
+
 
         {/* Generate Piles */}
         {piles && generatePiles(piles)}
