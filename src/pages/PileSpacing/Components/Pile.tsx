@@ -29,8 +29,6 @@ type PileProps = {
 const Pile = (props: PileProps) => {
     const helices = useHelicesFromPileId(props.id)
 
-    console.log(helices)
-
     const generateHelices = (helices: Helices) => {
         if (!helices) return (<>Error</>);
 

@@ -19,11 +19,11 @@ export const SettingsContext = createContext<SettingsContextType | null>(null);
 
 export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [settings, setSettings] = useState<ISettings>({
-        backgroundColor: '#121212',
+        backgroundColor: '#082c6c',
         axesHelper: true,
         lockPiles: true,
         showFloor: true,
-        floorColor: '#121212',
+        floorColor: '#2069e0',
         floorWireframe: true,
 
         setAxesHelper: () => { },

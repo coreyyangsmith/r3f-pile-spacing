@@ -7,12 +7,13 @@ type props = {
 
 const PilePositionConfigurator = (props: props) => {
     return (
-        <Paper sx={{
-            background: 'rgba(255,255,255,0.1)',
-            width: '100%',
-        }}>
+        <Paper square={true}
+            sx={{
+                background: 'rgba(255,255,255,0.0)',
+                width: '100%',
+            }}>
             <Typography>Position</Typography>
-            <Stack direction='column'>
+            <Stack direction='column' spacing={0.5}>
                 <CardinalPositionConfig text={'X'} selectedPile={props.selectedPile} />
                 <CardinalPositionConfig text={'Y'} selectedPile={props.selectedPile} />
                 <CardinalPositionConfig text={'Z'} selectedPile={props.selectedPile} />

@@ -19,8 +19,12 @@ that holds the data components for the individual pile configuration.,
 // - Any more...?
 
 // Imports
-import { Paper, Typography } from "@mui/material"
+import { Paper, Stack } from "@mui/material"
 import PilePositionConfigurator from "./PilePositionConfigurator"
+import PileRotationConfigurator from "./PileRotationConfigurator"
+import PileLengthConfigurator from "./PileLengthConfigurator"
+import PileDiameterConfigurator from "./PileDiameterConfigurator"
+import PileBatterConfigurator from "./PileBatterConfigurator"
 
 // Types
 type props = {
@@ -32,10 +36,17 @@ const PileConfigContainer = (props: props) => {
         <Paper sx={{
             height: '100%',
             width: '100%',
-            background: 'rgba(255,255,255,0.1)'
+            background: 'rgba(255,255,255,0.2)',
+            display: 'flex',
+            alignItems: 'center',
         }}>
-            <Typography>Pile {props.selectedPile + 1}</Typography>
-            <PilePositionConfigurator selectedPile={props.selectedPile} />
+            <Stack direction="row" sx={{ marginLeft: "16px", marginRight: '16px', marginTop: '8px', marginBottom: '4px' }}>
+                <PilePositionConfigurator selectedPile={props.selectedPile} />
+                <PileRotationConfigurator selectedPile={props.selectedPile} />
+                <PileLengthConfigurator selectedPile={props.selectedPile} />
+                <PileDiameterConfigurator selectedPile={props.selectedPile} />
+                <PileBatterConfigurator selectedPile={props.selectedPile} />
+            </Stack>
         </Paper>
     )
 }

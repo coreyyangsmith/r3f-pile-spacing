@@ -1,5 +1,4 @@
 import { Paper, Typography } from '@mui/material'
-import React from 'react'
 
 const ConflictConfig = () => {
     return (
@@ -29,7 +28,7 @@ const ConflictConfig = () => {
             }}
         >
             {/* Title */}
-            <Typography variant='h6' sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Conflig Config</Typography>
+            <Typography variant='h6' sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Conflict Config</Typography>
         </Paper>
     )
 }

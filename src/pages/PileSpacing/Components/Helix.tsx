@@ -15,7 +15,6 @@ import * as THREE from 'three'
 
 // Materials
 import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
-import { usePileFromId } from "../../../hooks/usePileFromId.js";
 import { Pile } from "../../../components/Pile.js";
 
 type HelixProps = {
@@ -38,6 +37,7 @@ type HelixProps = {
 const Helix = (props: HelixProps) => {
 
     console.log('props', props)
+    console.log('regen helix')
     // const piles = usePileFromId(props.id);
 
     const helixWidth = 1;
@@ -49,13 +49,15 @@ const Helix = (props: HelixProps) => {
 
     const ref = useRef();
 
-    const calculateNewPosition = (position: [number, number, number]) => {
-        const newPosition: Array<number> = [0, 0, 0]
+    const calculateHelixPosition = () => {
+        const newPosition = new THREE.Vector3(0, 0, 0);
+        if (props.pileRef === null) return newPosition;
 
-        newPosition[0] = 0
-        newPosition[1] = -props.pileRef.length + props.distanceFromBottom + (props.spacing * props.id) // negative length + bottom * (number * spacing)
-        newPosition[2] = 0
-        return newPosition
+        newPosition.x = 0
+        newPosition.y = -props.pileRef.length + props.distanceFromBottom + (props.spacing * props.id) // negative length + bottom * (number * spacing)
+        newPosition.z = 0
+
+        return newPosition;
     }
 
     useEffect(() => {
@@ -93,7 +95,7 @@ const Helix = (props: HelixProps) => {
 
 
     return (
-        <mesh ref={ref} position={calculateNewPosition(props.position)}>
+        <mesh ref={ref} position={calculateHelixPosition()}>
             <axesHelper />
             <MeshGalvanizedMetalMaterial />
         </mesh>

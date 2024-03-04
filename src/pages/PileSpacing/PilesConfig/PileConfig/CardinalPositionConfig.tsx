@@ -86,7 +86,6 @@ const CardinalPositionConfig = (props: props) => {
                 setPiles: () => { },
                 setNumber: () => { },
                 setSpacingRadius: () => { }
-
             }
             piles.setPiles(newPiles)
         }
@@ -108,10 +107,10 @@ const CardinalPositionConfig = (props: props) => {
 
     return (
         <Stack direction='row'>
-            <Typography>{props.text}</Typography>
+            <Typography sx={{ paddingRight: '16px' }}>{props.text}</Typography>
             <TextField
-                size='small'
                 type='number'
+                variant="standard"
                 value={getPilePosition(props.selectedPile, props.text)}
                 onChange={handleChange} />
         </Stack>
