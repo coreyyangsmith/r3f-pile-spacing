@@ -9,7 +9,7 @@ const MeshGalvanizedMetalMaterial = () => {
     const aoMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_AO.png')
     const heightMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Height.png')
 
-    const repeatAmount = 0.9;
+    const repeatAmount = 0.2;
 
     colorMap.repeat.set(repeatAmount, repeatAmount);
     normalMap.repeat.set(repeatAmount, repeatAmount);

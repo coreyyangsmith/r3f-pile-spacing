@@ -53,19 +53,40 @@ const Pile = (props: PileProps) => {
     }
 
     return <group
-        position={[props.position[0], 0, props.position[2]]}
+        position={[
+            props.position[0],
+            0,
+            props.position[2]
+        ]}
         rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
         <axesHelper />
 
         {/* Main Pipe */}
-        <mesh position={[0, props.position[1], 0]}
-            rotation={[0, 0, 0]}>
+        <mesh position={[
+            0,
+            -props.length / 2 + props.position[1],
+            0
+        ]}
+            rotation={[
+                0,
+                0,
+                0
+            ]}>
             <cylinderGeometry args={[props.diameter / 2, props.diameter / 2, props.length, 16, 1]} />
             <MeshGalvanizedMetalMaterial />
         </mesh>
 
         {/* Bottom Cone */}
-        <mesh position={[0, props.position[1] + -props.length / 2 - props.diameter / 4, 0]} rotation={[0, 0, Math.PI]}>
+        <mesh position={[
+            0,
+            props.position[1] + -props.length - props.diameter / 4,
+            0
+        ]}
+            rotation={[
+                0,
+                0,
+                Math.PI
+            ]}>
             <coneGeometry args={[props.diameter / 2, props.diameter / 2, 16, 1, false, 0, Math.PI * 2]} />
             <MeshGalvanizedMetalMaterial />
         </mesh>

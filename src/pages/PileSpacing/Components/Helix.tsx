@@ -16,6 +16,7 @@ import * as THREE from 'three'
 // Materials
 import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
 import { Pile } from "../../../components/Pile.js";
+import { usePileFromId } from "../../../hooks/usePileFromId.js";
 
 type HelixProps = {
     key: number,
@@ -27,7 +28,7 @@ type HelixProps = {
     segsPerStep: number,
     radius: number,
     position: [number, number, number];
-    rotation: 0;
+    rotation: number;
     pileRef: Pile | null;
     distanceFromBottom: number;
     spacing: number | string;
@@ -35,10 +36,8 @@ type HelixProps = {
 }
 
 const Helix = (props: HelixProps) => {
-
-    console.log('props', props)
-    console.log('regen helix')
-    // const piles = usePileFromId(props.id);
+    console.log(props.id)
+    const pile = usePileFromId(props.id);
 
     const helixWidth = 1;
     const helixSize = props.diameter;
@@ -50,12 +49,14 @@ const Helix = (props: HelixProps) => {
     const ref = useRef();
 
     const calculateHelixPosition = () => {
-        const newPosition = new THREE.Vector3(0, 0, 0);
-        if (props.pileRef === null) return newPosition;
+        const newPosition: Array<number> = [0, 0, 0];
+        if (pile === null) return newPosition;
 
-        newPosition.x = 0
-        newPosition.y = -props.pileRef.length + props.distanceFromBottom + (props.spacing * props.id) // negative length + bottom * (number * spacing)
-        newPosition.z = 0
+        newPosition[0] = 0
+        newPosition[1] = -pile.length + props.distanceFromBottom + (parseFloat(props.spacing) * props.id) // negative length + bottom * (number * spacing)
+        newPosition[2] = 0
+
+        console.log(props.id, newPosition)
 
         return newPosition;
     }
@@ -91,7 +92,14 @@ const Helix = (props: HelixProps) => {
 
         // Assign the geometry to the mesh
         ref.current.geometry = geometry;
-    }, [props]);
+    }, [props,
+        pile,
+        helixWidth,
+        helixSize,
+        helixRotations,
+        helixClimbLength,
+        helixSegsPerStep,
+        helixRadius]);
 
 
     return (

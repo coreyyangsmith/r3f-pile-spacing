@@ -69,7 +69,7 @@ const PileSpacingExperience = () => {
                 key={i}
                 position={[
                     pile.x,
-                    -pile.length / 2,
+                    pile.y,
                     pile.z]}
                 rotation={[
                     0,
