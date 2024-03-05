@@ -23,6 +23,7 @@ import { CustomizationProvider } from './context/Customization';
 import { SettingsProvider } from './context/SettingsContext';
 import { PileProvider } from './context/PileContext';
 import { HelixProvider } from './context/HelixContext';
+import { SelectionProvider } from './context/SelectionContext';
 
 
 // TODO Export THEME to another file...?
@@ -104,16 +105,18 @@ function App() {
     <>
       <CustomizationProvider>
         <SettingsProvider>
-          <PileProvider>
-            <HelixProvider>
-              <ThemeProvider theme={lightTheme}>
-                <CssBaseline />
-                <Routes>
-                  <Route path="/" element={<PileSpacing />} />
-                </Routes>
-              </ThemeProvider>
-            </HelixProvider>
-          </PileProvider>
+          <SelectionProvider>
+            <PileProvider>
+              <HelixProvider>
+                <ThemeProvider theme={lightTheme}>
+                  <CssBaseline />
+                  <Routes>
+                    <Route path="/" element={<PileSpacing />} />
+                  </Routes>
+                </ThemeProvider>
+              </HelixProvider>
+            </PileProvider>
+          </SelectionProvider>
         </SettingsProvider>
       </CustomizationProvider>
     </>

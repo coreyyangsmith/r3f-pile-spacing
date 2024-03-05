@@ -5,7 +5,7 @@ File: useSettings.tsx
 Type: React Hook
 
 Description:
-This is a react hook for the Context API PileContext.
+This is a react hook for the Context API SettingsContext.
 */
 
 // Imports

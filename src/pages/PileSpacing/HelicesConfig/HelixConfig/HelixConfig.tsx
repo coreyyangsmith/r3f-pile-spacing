@@ -78,6 +78,8 @@ const HelixConfig = () => {
                 </Stack>
 
                 {/* Inidivual Helix Settings */}
+
+
             </Stack>
         </Paper>
     )

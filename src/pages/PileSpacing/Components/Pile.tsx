@@ -33,6 +33,7 @@ const Pile = (props: PileProps) => {
         if (!helices) return (<>Error</>);
 
         return helices.helices.map((helix, i) => {
+            console.log(helix)
             return <Helix
 
                 key={i}

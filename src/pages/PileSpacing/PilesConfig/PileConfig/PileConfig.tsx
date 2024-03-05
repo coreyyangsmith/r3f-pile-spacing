@@ -18,14 +18,30 @@ import { useState } from 'react';
 // Hooks
 import { usePiles } from '../../../../hooks/usePiles';
 import PileConfigContainer from './PileConfigContainer';
+import { useSelection } from '../../../../hooks/useSelection';
+import { ISelection } from '../../../../types/Selection';
 
 // TODO Extract Common MUI Components to a separate file
 const PileConfig = () => {
+    const selection = useSelection();
     const [selectedPile, setSelectedPile] = useState<number>(0);
     const piles = usePiles();
 
     const handlePileSelection = (pileId: number) => {
         setSelectedPile(pileId);
+
+        if (selection?.selection) {
+
+            const newSelection: ISelection = {
+                selectedPile: pileId,
+                selectedHelix: selection.selection.selectedHelix,
+
+                setSelectedPile: selection.selection.setSelectedPile,
+                setSelectedHelix: selection.selection.setSelectedHelix
+            }
+            selection.setSelection(newSelection);
+        }
+
     }
 
     const generateIndividualPileSelection = () => {

@@ -46,6 +46,59 @@ export class Helices implements IHelices {
         this.setSpacing = setSpacing;
         this.setPileRef = setPileRef;
     }
+
+    addNewHelix() {
+        let newHelix: Helix;
+        // If Helix Exists,
+        if (this.helices.length > 0) {
+            // Create New Helix
+            newHelix = new Helix(
+                this.helices.length,
+                this.helices.length,
+                this.helices[0].diameter,
+                this.helices[0].thickness,
+                this.helices[0].rise,
+                this.helices[0].rotations,
+                this.helices[0].segsPerStep,
+                this.helices[0].radius,
+                this.helices[0].x,
+                this.helices[0].y,
+                this.helices[0].z,
+                this.helices[0].rotation,
+
+                this.helices[0].setId,
+                this.helices[0].setNumber,
+                this.helices[0].setDiameter,
+                this.helices[0].setThickness,
+                this.helices[0].setRise,
+                this.helices[0].setRotations,
+                this.helices[0].setSegsPerStep,
+                this.helices[0].setRadius,
+                this.helices[0].setX,
+                this.helices[0].setY,
+                this.helices[0].setZ,
+                this.helices[0].setRotation)
+        }
+        else {
+            // Else Create Default Helix
+            newHelix = new Helix(
+                0,
+                0,
+                1,
+                0.1,
+                0.5,
+                1,
+                1,
+                0.5,
+                0,
+                0,
+                0,
+                0,
+            );
+        }
+
+        this.helices.push(newHelix);
+    }
 }
 
 export class Helix implements IHelix {

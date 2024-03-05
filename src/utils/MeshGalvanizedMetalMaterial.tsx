@@ -7,7 +7,6 @@ const MeshGalvanizedMetalMaterial = () => {
     const normalMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Normal.png')
     const roughnessMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Roughness.png')
     const aoMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_AO.png')
-    const heightMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Height.png')
 
     const repeatAmount = 0.2;
 
@@ -15,13 +14,11 @@ const MeshGalvanizedMetalMaterial = () => {
     normalMap.repeat.set(repeatAmount, repeatAmount);
     roughnessMap.repeat.set(repeatAmount, repeatAmount);
     aoMap.repeat.set(repeatAmount, repeatAmount);
-    heightMap.repeat.set(repeatAmount, repeatAmount);
 
     colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
     normalMap.wrapS = normalMap.wrapT = THREE.RepeatWrapping;
     roughnessMap.wrapS = roughnessMap.wrapT = THREE.RepeatWrapping;
     aoMap.wrapS = aoMap.wrapT = THREE.RepeatWrapping;
-    heightMap.wrapS = heightMap.wrapT = THREE.RepeatWrapping;
 
     return (
         <meshStandardMaterial
@@ -29,7 +26,6 @@ const MeshGalvanizedMetalMaterial = () => {
             normalMap={normalMap}
             roughnessMap={roughnessMap}
             aoMap={aoMap}
-            heightMap={heightMap}
             wireframe={false}
         />
     )
