@@ -38,12 +38,12 @@ const PileSpacingExperience = () => {
     }, [piles, helices, selection, settings])
 
     const generateFloor = () => {
-        if (settings?.settings.showFloor) {
+        if (settings?.state.settings?.showFloor) {
             return (
                 <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
-                    {settings?.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
+                    {settings?.state.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
                     <planeGeometry args={[10, 10, 10]} />
-                    <meshBasicMaterial color={settings?.settings.floorColor} wireframe={settings?.settings.floorWireframe} />
+                    <meshBasicMaterial color={settings?.state.settings.floorColor} wireframe={settings?.state.settings.floorWireframe} />
                 </mesh>
             )
         }
@@ -59,7 +59,7 @@ const PileSpacingExperience = () => {
             // Check if piles are locked, if so, set position and rotation at what's calculated
             // For number == 0, set at default [0, 0, 0]
             // Else calculate
-            if (settings?.settings.lockPiles) {
+            if (settings?.state.settings.lockPiles) {
                 if (piles.piles.number === 1) {
                     pile.rotation = 0;
                     pile.x = 0;
@@ -96,7 +96,7 @@ const PileSpacingExperience = () => {
         <OrbitControls />
 
         {/* Background */}
-        <color args={[settings?.settings.backgroundColor || 'black']} attach="background" />
+        <color args={[settings?.state?.settings?.backgroundColor || 'black']} attach="background" />
 
         {/* Lighting */}
         <ambientLight intensity={1} />
@@ -108,7 +108,7 @@ const PileSpacingExperience = () => {
 
 
         {/* Generate Piles */}
-        {piles && generatePiles(piles)}
+        {piles && generatePiles(piles.state)}
     </>
 }
 

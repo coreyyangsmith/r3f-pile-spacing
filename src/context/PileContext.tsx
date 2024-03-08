@@ -14,17 +14,16 @@ This file also defines the default generation from context
 import { createContext, useState, FC } from 'react';
 
 // Types
-import { PileContextType } from '../types/Pile.ts';
+import { PileContextState, PileContextValue } from '../types/Pile.ts';
 
 // Components
 import { Piles } from '../components/Pile.ts';
-import { useHelicesFromPileId } from '../hooks/useHelicesFromPileId.tsx';
 
-export const PileContext = createContext<PileContextType | null>(null);
+export const PileContext = createContext<PileContextValue | null>(null);
 
 export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [piles, setPiles] = useState<Piles>({
-        piles: [
+    const [state, setState] = useState<PileContextState>({
+        piles: new Piles([
             {
                 id: 0,
                 length: 10,
@@ -47,7 +46,7 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 setRotation: () => { },
             },
             {
-                id: 0,
+                id: 1,
                 length: 10,
                 diameter: 1,
                 batterAngle: 5,
@@ -68,16 +67,17 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 setRotation: () => { },
             },
         ],
-        number: 2,
-        spacingRadius: 1,
+            2, // number
+            1, // spacingRadius
 
-        setPiles: () => { },
-        setNumber: () => { },
-        setSpacingRadius: () => { },
+            () => { },
+            () => { },
+            () => { },
+        )
     });
 
     return (
-        <PileContext.Provider value={{ piles, setPiles }}>
+        <PileContext.Provider value={{ state, setState }}>
             {children}
         </PileContext.Provider>
     );

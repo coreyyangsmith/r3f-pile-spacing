@@ -14,8 +14,8 @@ import { HelixContext } from "../context/HelixContext";
 
 export const useHelicesFromPileId = (id: number) => {
     const context = useContext(HelixContext);
-    const helices = context?.helicesCollection.helicesCollection
+    const helices = context?.state.helices
     const matchingHelix = helices?.find(x => x.pileRef?.id == id)
-    
+
     return matchingHelix ? matchingHelix : null;
 }

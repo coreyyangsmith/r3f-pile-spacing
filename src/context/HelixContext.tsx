@@ -13,15 +13,15 @@ It is a core object in the Pile Visualization.
 import { createContext, useState, FC } from 'react';
 
 // Types
-import { HelixContextType } from '../types/Helix';
+import { HelixContextState, HelixContextValue, } from '../types/Helix';
 import { usePileFromId } from '../hooks/usePileFromId';
-import { Helices, HelicesCollection, Helix } from '../components/Helix';
+import { Helices, Helix } from '../components/Helix';
 
-export const HelixContext = createContext<HelixContextType | null>(null);
+export const HelixContext = createContext<HelixContextValue | undefined>(undefined);
 
 export const HelixProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [helicesCollection, setHelicesCollection] = useState<HelicesCollection>({
-        helicesCollection: [
+    const [state, setState] = useState<HelixContextState>({
+        helices: [
             new Helices(
                 [new Helix(
                     0,
@@ -55,11 +55,10 @@ export const HelixProvider: FC<{ children: React.ReactNode }> = ({ children }) =
                 2.5, // spacing
                 usePileFromId(0), // pileRef
             )],
-        setHelicesCollection: () => { },
     });
 
     return (
-        <HelixContext.Provider value={{ helicesCollection, setHelicesCollection }}>
+        <HelixContext.Provider value={{ state, setState }}>
             {children}
         </HelixContext.Provider >
     );

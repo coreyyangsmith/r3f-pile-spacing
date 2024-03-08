@@ -14,7 +14,7 @@ import { PileContext } from "../context/PileContext";
 
 export const usePileFromId = (id: number) => {
     const context = useContext(PileContext);
-    const piles = context?.piles.piles;
+    const piles = context?.state.piles.piles
     const pile = piles?.find(x => x.id === id)
 
     return pile ? pile : null;

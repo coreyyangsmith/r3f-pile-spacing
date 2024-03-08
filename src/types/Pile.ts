@@ -19,6 +19,7 @@ import { ICommon } from './common/Common.ts';
 // Components
 import { Pile, Piles } from '../components/Pile.ts';
 import { Helices } from '../components/Helix.ts';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface IPile extends ICommon {
     id: number;
@@ -44,9 +45,12 @@ export interface IPiles {
     setSpacingRadius: (spacingRadius: number) => void;
 }
 
-export type PileContextType = {
+// Context
+export type PileContextState = {
     piles: Piles;
-    setPiles: (piles: Piles) => void;
 }
 
-export type setPiles = (piles: Array<IPile>) => void;
+export type PileContextValue = {
+    state: PileContextState;
+    setState: Dispatch<SetStateAction<PileContextState>>;
+}

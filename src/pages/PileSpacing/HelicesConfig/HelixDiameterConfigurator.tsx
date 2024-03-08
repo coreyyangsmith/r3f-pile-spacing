@@ -1,5 +1,4 @@
 import { Paper, Stack, TextField, Typography } from '@mui/material'
-import { useCustomization } from '../../../context/Customization';
 
 
 const HelixDiameterConfigurator = () => {

@@ -10,7 +10,7 @@ It is a core object in the Pile Visualization.
 */
 
 // Type Import
-import { IHelix, IHelices, IHelicesCollection } from "../types/Helix.ts"
+import { IHelix, IHelices } from "../types/Helix.ts"
 import { Pile } from "./Pile.ts";
 
 
@@ -180,18 +180,5 @@ export class Helix implements IHelix {
         this.setY = setY;
         this.setZ = setZ;
         this.setRotation = setRotation;
-    }
-}
-
-export class HelicesCollection implements IHelicesCollection {
-    helicesCollection: Array<Helices>;
-    setHelicesCollection: (helicesCollection: Array<Helices>) => void;
-
-    constructor(
-        helicesCollection: Array<Helices> = [],
-        setHelicesCollection: (helicesCollection: Array<Helices>) => void = () => { },
-    ) {
-        this.helicesCollection = helicesCollection;
-        this.setHelicesCollection = setHelicesCollection;
     }
 }

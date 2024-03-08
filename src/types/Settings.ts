@@ -9,6 +9,9 @@ This is a Type Definition for the Settings object.
 It is a core object in the Pile Visualization.
 */
 
+import { Dispatch, SetStateAction } from "react";
+import Settings from "../components/Settings";
+
 export interface ISettings {
     // General Settings
     backgroundColor: string;
@@ -28,9 +31,11 @@ export interface ISettings {
     setFloorWireframe: (value: boolean) => void;
 }
 
-export type SettingsContextType = {
-    settings: ISettings;
-    setSettings: (settings: ISettings) => void;
+export type SettingsContextState = {
+    settings: Settings | null;
 }
 
-export type setSettings = (settings: ISettings) => void;
+export type SettingsContextValue = {
+    state: SettingsContextState;
+    setState: Dispatch<SetStateAction<SettingsContextState>>;
+}

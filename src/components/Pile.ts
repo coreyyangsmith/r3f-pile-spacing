@@ -9,8 +9,6 @@ This is a Class Definition for the Pile object.
 It is a core object in the Pile Visualization.
 */
 
-// DOCUMENTED
-
 // Types
 import { IPile, IPiles } from '../types/Pile.ts';
 
@@ -42,6 +40,17 @@ export class Piles implements IPiles {
         this.setPiles = setPiles;
         this.setNumber = setNumber;
         this.setSpacingRadius = setSpacingRadius;
+    }
+
+    addPile(pile: Pile) {
+        this.piles.push(pile);
+        this.setNumber(this.number + 1);
+        this.setPiles(this.piles);
+    }
+
+    removePile(id: number) {
+        this.setNumber(this.number - 1);
+        this.setPiles(this.piles.filter(pile => pile.id !== id));
     }
 }
 

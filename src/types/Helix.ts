@@ -16,7 +16,8 @@ import { ICommon } from './common/Common.ts';
 
 // Components
 import { Pile } from '../components/Pile.ts';
-import { Helices, HelicesCollection, Helix } from '../components/Helix.ts';
+import { Helices, Helix } from '../components/Helix.ts';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface IHelix extends ICommon {
     id: number;
@@ -50,15 +51,12 @@ export interface IHelices {
     setPileRef: (pileRef: Pile | null) => void;
 }
 
-export interface IHelicesCollection {
-    helicesCollection: Helices[];
-
-    setHelicesCollection: (helicesCollection: Array<Helices>) => void;
+// Context
+export type HelixContextState = {
+    helices: Helices[]
 }
 
-export type HelixContextType = {
-    helicesCollection: HelicesCollection;
-    setHelicesCollection: (helicesCollection: HelicesCollection) => void;
+export type HelixContextValue = {
+    state: HelixContextState;
+    setState: Dispatch<SetStateAction<HelixContextState>>;
 }
-
-export type setHelices = (helices: Array<Helix>) => void;

@@ -19,7 +19,8 @@ import PileSpacing from './pages/PileSpacing/PileSpacing';
 
 // Routing Imports
 import { Route, Routes } from "react-router-dom"
-import { CustomizationProvider } from './context/Customization';
+
+// Context
 import { SettingsProvider } from './context/SettingsContext';
 import { PileProvider } from './context/PileContext';
 import { HelixProvider } from './context/HelixContext';
@@ -103,22 +104,20 @@ function App() {
 
   return (
     <>
-      <CustomizationProvider>
-        <SettingsProvider>
-          <SelectionProvider>
-            <PileProvider>
-              <HelixProvider>
-                <ThemeProvider theme={lightTheme}>
-                  <CssBaseline />
-                  <Routes>
-                    <Route path="/" element={<PileSpacing />} />
-                  </Routes>
-                </ThemeProvider>
-              </HelixProvider>
-            </PileProvider>
-          </SelectionProvider>
-        </SettingsProvider>
-      </CustomizationProvider>
+      <SettingsProvider>
+        <SelectionProvider>
+          <PileProvider>
+            <HelixProvider>
+              <ThemeProvider theme={lightTheme}>
+                <CssBaseline />
+                <Routes>
+                  <Route path="/" element={<PileSpacing />} />
+                </Routes>
+              </ThemeProvider>
+            </HelixProvider>
+          </PileProvider>
+        </SelectionProvider>
+      </SettingsProvider>
     </>
   )
 }

@@ -13,29 +13,32 @@ It is a core object in the Pile Visualization.
 import { createContext, useState, FC } from 'react'
 
 // Types
-import { ISettings, SettingsContextType } from '../types/Settings.ts'
+import { SettingsContextValue, SettingsContextState } from '../types/Settings.ts'
+import Settings from '../components/Settings.ts';
 
-export const SettingsContext = createContext<SettingsContextType | null>(null);
+export const SettingsContext = createContext<SettingsContextValue | null>(null);
 
 export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [settings, setSettings] = useState<ISettings>({
-        backgroundColor: '#082c6c',
-        axesHelper: true,
-        lockPiles: true,
-        showFloor: true,
-        floorColor: '#2069e0',
-        floorWireframe: true,
+    const [state, setState] = useState<SettingsContextState>({
+        settings: new Settings(
+            '#082c6c', //backgroundColor: string,
+            true, //axesHelper: boolean,
+            true, //lockPiles: boolean,
+            true, //showFloor: boolean,
+            '#2069e0', //floorColor: string,
+            true, //floorWireframe: boolean,
 
-        setAxesHelper: () => { },
-        setBackgroundColor: () => { },
-        setLockPiles: () => { },
-        setShowFloor: () => { },
-        setFloorColor: () => { },
-        setFloorWireframe: () => { }
+            () => { }, //setAxesHelper: (value: boolean) => void,
+            () => { }, //setBackgroundColor: (value: string) => void,
+            () => { }, //setLockPiles: (value: boolean) => void,
+            () => { }, //setShowFloor: (value: boolean) => void,
+            () => { }, //setFloorColor: (value: string) => void,
+            () => { } //setFloorWireframe: (value: boolean) => void
+        )
     });
 
     return (
-        <SettingsContext.Provider value={{ settings, setSettings }}>
+        <SettingsContext.Provider value={{ state, setState }}>
             {children}
         </SettingsContext.Provider>
     )

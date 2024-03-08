@@ -9,6 +9,8 @@ This is a Type Definition for the Selection object.
 It is a core object in the Pile Visualization.
 */
 
+import { Dispatch, SetStateAction } from "react";
+
 export interface ISelection {
     // General Settings
     selectedPile: number | null;
@@ -18,9 +20,11 @@ export interface ISelection {
     setSelectedHelix: (value: number | null) => void;
 }
 
-export type SelectionContextType = {
+export type SelectionContextState = {
     selection: ISelection;
-    setSelection: (selection: ISelection) => void;
 }
 
-export type setSelection = (selection: ISelection) => void;
+export type SelectionContextValue = {
+    state: SelectionContextState
+    setState: Dispatch<SetStateAction<SelectionContextState>>;
+}
