@@ -2,10 +2,8 @@ import { Paper, Stack, TextField, Typography } from '@mui/material'
 
 
 const FirstHelixDistanceConfigurator = () => {
-    const { firstHelixDistFromBottom, setFirstHelixDistFromBottom } = useCustomization();
 
     const handleChange = (event) => {
-        setFirstHelixDistFromBottom(event.target.value);
     }
     return (
         <Paper
@@ -25,7 +23,7 @@ const FirstHelixDistanceConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={firstHelixDistFromBottom}
+                    value={0}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

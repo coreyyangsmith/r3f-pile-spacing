@@ -21,15 +21,16 @@ import { useHelicesFromPileId } from '../../../hooks/useHelicesFromPileId';
 
 const NumOfHelicesConfigurator = () => {
 
-    const selection = useSelection();
     const piles = usePiles();
     const helices = useHelices();
+    const selection = useSelection();
 
-    const helixGroup = useHelicesFromPileId(selection?.selection.selectedPile);
+    const helixGroup = useHelicesFromPileId(selection?.state.selection.selectedPile);
 
     const handleChange = (event) => {
         helixGroup?.addNewHelix();
     }
+
     return (
         <Paper
             square={true}

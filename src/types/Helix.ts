@@ -28,15 +28,6 @@ export interface IHelix extends ICommon {
     rotations: number;
     segsPerStep: number;
     radius: number;
-
-    setId: (id: number) => void;
-    setNumber: (number: number) => void;
-    setDiameter: (diameter: number) => void;
-    setThickness: (thickness: number) => void;
-    setRise: (rise: number) => void;
-    setRotations: (rotations: number) => void;
-    setSegsPerStep: (segsPerStep: number) => void;
-    setRadius: (radius: number) => void;
 }
 
 export interface IHelices {
@@ -44,11 +35,6 @@ export interface IHelices {
     distanceFromBottom: number
     spacing: number | string;
     pileRef: Pile | null;
-
-    setHelices: (helices: Array<Helix>) => void;
-    setDistanceFromBottom: (distanceFromBottom: number) => void;
-    setSpacing: (spacing: number | string) => void;
-    setPileRef: (pileRef: Pile | null) => void;
 }
 
 // Context

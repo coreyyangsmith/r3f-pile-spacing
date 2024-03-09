@@ -35,9 +35,9 @@ const PileLengthConfigurator = () => {
 
             const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < piles?.state.piles.number; i++) {
+            for (let i = 0; i < piles!.state.piles.number; i++) {
                 let newPile: Pile;
-                if (i === selection.state.selection.selectedPile.id) {
+                if (selection.state.selection.selectedPile && i === selection.state.selection.selectedPile.id) {
                     newPile = new Pile(
                         i,
                         newLength,

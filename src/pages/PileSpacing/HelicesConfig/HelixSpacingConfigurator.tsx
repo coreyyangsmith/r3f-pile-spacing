@@ -2,10 +2,8 @@ import { Paper, Stack, TextField, Typography } from '@mui/material'
 
 
 const HelixSpacingConfigurator = () => {
-    const { helixSpacing, setHelixSpacing } = useCustomization();
 
     const handleChange = (event) => {
-        setHelixSpacing(event.target.value);
     }
     return (
         <Paper
@@ -25,7 +23,7 @@ const HelixSpacingConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={helixSpacing}
+                    value={0}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

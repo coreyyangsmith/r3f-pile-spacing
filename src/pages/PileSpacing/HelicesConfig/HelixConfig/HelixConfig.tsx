@@ -1,28 +1,72 @@
 import { Button, Paper, Stack, Typography } from '@mui/material'
-import { useState } from 'react';
 import { usePiles } from '../../../../hooks/usePiles';
 import { useHelices } from '../../../../hooks/useHelices';
+import { useSelection } from '../../../../hooks/useSelection';
+import { ISelection, SelectionContextState } from '../../../../types/Selection';
+import { getHelixObjectFromPileAndHelixId, getPileObjectFromPileId } from '../../../../utils/PileUtils';
+import { Piles } from '../../../../components/Pile';
+import { Helices } from '../../../../components/Helix';
+import HelixConfigContainer from './HelixConfigContainer';
 
 const HelixConfig = () => {
-    const [selectedPile, setSelectedPile] = useState<number>(0);
-    const [selectedHelix, setSelectedHelix] = useState<number>(0);
 
     const piles = usePiles();
     const helices = useHelices()
+    const selection = useSelection()
 
     const handlePileSelection = (pileId: number) => {
-        setSelectedPile(pileId);
+        const currentPileId = selection?.state.selection.selectedPile?.id;
+
+        // If select currently selected, then deselect, else select Pile
+        if (currentPileId === pileId) {
+            const newSelection: ISelection = {
+                selectedPile: null,
+                selectedHelix: null,
+            }
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
+        }
+        else {
+            const pile = getPileObjectFromPileId(piles?.state.piles as Piles, pileId);
+            const newSelection: ISelection = {
+                selectedPile: pile,
+                selectedHelix: null,
+            }
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
+        }
     }
 
     const handleHelixSelection = (helixId: number) => {
-        setSelectedHelix(helixId);
+        const currentHelixId = selection?.state.selection.selectedHelix?.id;
+
+        // If select currently selected, then deselect, else select Helix
+        if (currentHelixId === helixId) {
+            const newSelection: ISelection = {
+                selectedPile: selection!.state.selection.selectedPile,
+                selectedHelix: null,
+            }
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
+        }
+        else {
+            const helix = getHelixObjectFromPileAndHelixId(
+                helices?.state.helices as Helices[],
+                selection?.state.selection.selectedPile?.id as number,
+                helixId);
+
+            const newSelection: ISelection = {
+                selectedPile: selection!.state.selection.selectedPile,
+                selectedHelix: helix,
+            }
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
+        }
+
     }
 
     const generateIndividualPileSelection = () => {
         if (!piles) return (<>Error</>)
-        return piles.piles.piles.map((pile, i) => {
+
+        return piles.state.piles.piles.map((pile, i) => {
             return (
-                <Button className={i == selectedPile && 'active' || ''} key={i} onClick={() => { handlePileSelection(i) }}> Pile {i + 1}</Button >
+                <Button className={i == selection?.state.selection.selectedPile?.id && 'active' || ''} key={i} onClick={() => { handlePileSelection(i) }}> Pile {i + 1}</Button >
             )
         })
     }
@@ -30,14 +74,15 @@ const HelixConfig = () => {
     const generateIndividualHelixSelection = () => {
         if (!piles) return (<>Error</>)
         if (!helices) return (<>Error</>)
-        if (selectedPile === null) return (<>No Pile Selected</>)
+        if (selection?.state.selection.selectedPile === null) return (<>No Pile Selected</>)
 
-        const matchingHelices = helices.helicesCollection.helicesCollection.filter(helices => helices.pileRef.id === selectedPile)
+        const matchingHelices = helices.state.helices.filter(helices => (helices.pileRef && selection) && helices.pileRef.id === selection?.state.selection.selectedPile?.id)
+
         if (matchingHelices.length <= 0) return (<>No Helices</>)
 
         return matchingHelices[0].helices.map((helix, i) => {
             return (
-                <Button className={i == selectedHelix && 'active' || ''} key={i} onClick={() => { handleHelixSelection(i) }}> Helix {i + 1}</Button >
+                <Button className={i == selection?.state.selection.selectedHelix?.id && 'active' || ''} key={i} onClick={() => { handleHelixSelection(i) }}> Helix {i + 1}</Button >
             )
         })
 
@@ -78,7 +123,7 @@ const HelixConfig = () => {
                 </Stack>
 
                 {/* Inidivual Helix Settings */}
-
+                <HelixConfigContainer />
 
             </Stack>
         </Paper>

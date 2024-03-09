@@ -20,31 +20,16 @@ export class Helices implements IHelices {
     spacing: number | string;
     pileRef: Pile | null;
 
-    setHelices: (helices: Array<Helix>) => void;
-    setDistanceFromBottom: (distanceFromBottom: number) => void;
-    setSpacing: (spacing: number | string) => void;
-    setPileRef: (pileRef: Pile | null) => void;
-
     constructor(
         helices: Array<Helix> = [],
         distanceFromBottom: number = 0,
         spacing: number | string = 0,
         pileRef: Pile | null = null,
-
-        setHelices: (helices: Array<Helix>) => void = () => { },
-        setDistanceFromBottom: (distanceFromBottom: number) => void = () => { },
-        setSpacing: (spacing: number | string) => void = () => { },
-        setPileRef: (pileRef: Pile | null) => void = () => { }
     ) {
         this.helices = helices;
         this.distanceFromBottom = distanceFromBottom;
         this.spacing = spacing;
         this.pileRef = pileRef;
-
-        this.setHelices = setHelices;
-        this.setDistanceFromBottom = setDistanceFromBottom;
-        this.setSpacing = setSpacing;
-        this.setPileRef = setPileRef;
     }
 
     addNewHelix() {
@@ -64,20 +49,7 @@ export class Helices implements IHelices {
                 this.helices[0].x,
                 this.helices[0].y,
                 this.helices[0].z,
-                this.helices[0].rotation,
-
-                this.helices[0].setId,
-                this.helices[0].setNumber,
-                this.helices[0].setDiameter,
-                this.helices[0].setThickness,
-                this.helices[0].setRise,
-                this.helices[0].setRotations,
-                this.helices[0].setSegsPerStep,
-                this.helices[0].setRadius,
-                this.helices[0].setX,
-                this.helices[0].setY,
-                this.helices[0].setZ,
-                this.helices[0].setRotation)
+                this.helices[0].rotation,)
         }
         else {
             // Else Create Default Helix
@@ -115,19 +87,6 @@ export class Helix implements IHelix {
     z: number;
     rotation: number;
 
-    setId: (id: number) => void;
-    setNumber: (number: number) => void;
-    setDiameter: (diameter: number) => void;
-    setThickness: (thickness: number) => void;
-    setRise: (rise: number) => void;
-    setRotations: (rotations: number) => void;
-    setSegsPerStep: (segsPerStep: number) => void;
-    setRadius: (radius: number) => void;
-    setX: (x: number) => void;
-    setY: (y: number) => void;
-    setZ: (z: number) => void;
-    setRotation: (rotation: number) => void;
-
     constructor(
         id: number = 999,
         number: number = 0,
@@ -141,19 +100,6 @@ export class Helix implements IHelix {
         y: number = 0,
         z: number = 0,
         rotation: number = 0,
-
-        setId: (id: number) => void = () => { },
-        setNumber: (number: number) => void = () => { },
-        setDiameter: (diameter: number) => void = () => { },
-        setThickness: (thickness: number) => void = () => { },
-        setRise: (rise: number) => void = () => { },
-        setRotations: (rotations: number) => void = () => { },
-        setSegsPerStep: (segsPerStep: number) => void = () => { },
-        setRadius: (radius: number) => void = () => { },
-        setX: (x: number) => void = () => { },
-        setY: (y: number) => void = () => { },
-        setZ: (z: number) => void = () => { },
-        setRotation: (rotation: number) => void = () => { }
     ) {
         this.id = id;
         this.number = number;
@@ -167,18 +113,5 @@ export class Helix implements IHelix {
         this.y = y;
         this.z = z;
         this.rotation = rotation;
-
-        this.setId = setId;
-        this.setNumber = setNumber;
-        this.setDiameter = setDiameter;
-        this.setThickness = setThickness;
-        this.setRise = setRise;
-        this.setRotations = setRotations;
-        this.setSegsPerStep = setSegsPerStep;
-        this.setRadius = setRadius;
-        this.setX = setX;
-        this.setY = setY;
-        this.setZ = setZ;
-        this.setRotation = setRotation;
     }
 }

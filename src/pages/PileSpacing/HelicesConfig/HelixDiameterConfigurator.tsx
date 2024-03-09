@@ -2,10 +2,8 @@ import { Paper, Stack, TextField, Typography } from '@mui/material'
 
 
 const HelixDiameterConfigurator = () => {
-    const { helixDiameter, setHelixDiameter } = useCustomization();
 
     const handleChange = (event) => {
-        setHelixDiameter(event.target.value);
     }
     return (
         <Paper
@@ -25,7 +23,7 @@ const HelixDiameterConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={helixDiameter}
+                    value={0}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

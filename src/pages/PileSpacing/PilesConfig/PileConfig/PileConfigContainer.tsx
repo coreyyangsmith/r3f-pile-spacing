@@ -6,17 +6,8 @@ Type: Layout Component
 
 Description:
 This is a layout component for the Individual Pile Configuration, it is the inside component
-that holds the data components for the individual pile configuration.,
+that holds the data components for the individual pile configuration.
 */
-
-// Individual Pile Controls May Include:
-// - Position Controls (X, Y, Z)
-// - Rotation Control (X, Y, Z)
-// - Batter Angle Control
-// - Pile Length Control
-// - Pile Radius Control
-// - Material?
-// - Any more...?
 
 // Imports
 import { Paper, Stack } from "@mui/material"
