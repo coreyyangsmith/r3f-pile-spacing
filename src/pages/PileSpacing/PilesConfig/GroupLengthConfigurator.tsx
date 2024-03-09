@@ -18,6 +18,7 @@ import { usePiles } from '../../../hooks/usePiles';
 
 // Components
 import { Pile, Piles } from '../../../components/Pile';
+import { PileContextState } from '../../../types/Pile';
 
 
 
@@ -29,46 +30,45 @@ const GroupLengthConfigurator = () => {
 
         if (newLength !== undefined
             && newLength > 0
-            && piles?.piles.spacingRadius !== undefined) {
+            && piles?.state.piles.spacingRadius !== undefined) {
             const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < piles.piles.number; i++) {
+            for (let i = 0; i < piles.state.piles.number; i++) {
                 const newPile = new Pile(
                     i,
                     newLength,
-                    piles.piles.piles[i].diameter,
-                    piles.piles.piles[i].batterAngle,
+                    piles?.state.piles.piles[i].diameter,
+                    piles?.state.piles.piles[i].batterAngle,
                     null,
-                    piles?.piles.piles[i].x,
-                    piles?.piles.piles[i].y,
-                    piles?.piles.piles[i].z,
-                    piles?.piles.piles[i].rotation
+                    piles?.state.piles.piles[i].x,
+                    piles?.state.piles.piles[i].y,
+                    piles?.state.piles.piles[i].z,
+                    piles?.state.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
             const newPiles: Piles = {
                 piles: newPileArray,
-                number: piles.piles.number,
-                spacingRadius: piles.piles.spacingRadius,
+                number: piles.state.piles.number,
+                spacingRadius: piles.state.piles.spacingRadius,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { }
             }
 
-            piles.setPiles(newPiles)
+            piles.setState({ piles: newPiles } as PileContextState)
         }
     }
 
     const getLength = () => {
-        if (piles?.piles) {
+        if (piles?.state.piles) {
             let length: number | string;
-            length = piles?.piles.piles[0].length;
+            length = piles?.state.piles.piles[0].length;
 
-            for (let i = 1; i < piles.piles.number - 1; i++) {
-                if (length === piles.piles.piles[i].length) {
-                    length = piles.piles.piles[i].length;
+            for (let i = 1; i < piles.state.piles.number - 1; i++) {
+                if (length === piles.state.piles.piles[i].length) {
+                    length = piles.state.piles.piles[i].length;
                 } else {
                     length = 'varies';
                     break;

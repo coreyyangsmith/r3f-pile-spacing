@@ -17,7 +17,8 @@ import { ChangeEvent } from 'react'
 import { useSettings } from '../../../hooks/useSettings'
 
 // Components
-import { ISettings } from '../../../types/Settings'
+import { SettingsContextState } from '../../../types/Settings'
+import Settings from '../../../components/Settings'
 
 const ToggleAxesHelper = () => {
     const settings = useSettings()
@@ -25,26 +26,18 @@ const ToggleAxesHelper = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target) {
             let newAxesSettings: boolean;
-            (settings?.settings.axesHelper ? newAxesSettings = false : newAxesSettings = true)
-            if (settings?.settings) {
-                const newSettings: ISettings = {
-                    backgroundColor: settings?.settings.backgroundColor,
+            (settings?.state.settings.axesHelper ? newAxesSettings = false : newAxesSettings = true)
+            if (settings?.state.settings) {
+                const newSettings: Settings = {
+                    backgroundColor: settings?.state.settings.backgroundColor,
                     axesHelper: newAxesSettings,
-                    lockPiles: settings?.settings.lockPiles,
-                    showFloor: settings?.settings.showFloor,
-                    floorColor: settings?.settings.floorColor,
-                    floorWireframe: settings?.settings.floorWireframe,
-
-                    setAxesHelper: settings?.settings.setAxesHelper,
-                    setBackgroundColor: settings?.settings.setBackgroundColor,
-                    setLockPiles: settings?.settings.setLockPiles,
-                    setShowFloor: settings?.settings.setShowFloor,
-                    setFloorColor: settings?.settings.setFloorColor,
-                    setFloorWireframe: settings?.settings.setFloorWireframe
+                    lockPiles: settings?.state.settings.lockPiles,
+                    showFloor: settings?.state.settings.showFloor,
+                    floorColor: settings?.state.settings.floorColor,
+                    floorWireframe: settings?.state.settings.floorWireframe,
                 }
-                settings?.setSettings(newSettings)
+                settings.setState({ settings: newSettings } as SettingsContextState)
             }
-
         }
     }
 
@@ -61,7 +54,7 @@ const ToggleAxesHelper = () => {
             <Stack direction="row" sx={{ display: 'flex', width: 'calc(100%-32px)', justifyContent: 'space-between', marginLeft: '16px', marginRight: '16px' }}>
                 <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Show Axes Helper?</Typography>
                 <Checkbox
-                    checked={settings?.settings.axesHelper}
+                    checked={settings?.state.settings.axesHelper}
                     onChange={handleChange} />
             </Stack>
         </Paper>

@@ -16,30 +16,24 @@ import { colors } from '../../../utils/parameters'
 
 // Hooks
 import { useSettings } from '../../../hooks/useSettings'
-import { ISettings } from '../../../types/Settings'
+import { SettingsContextState } from '../../../types/Settings'
+import Settings from '../../../components/Settings'
 
 const BackgroundColor = () => {
     const settings = useSettings()
 
     const handleColorChange = (event: ColorResult) => {
-        if (settings?.settings && event.hex) {
-            const newSettings: ISettings = {
+        if (settings?.state.settings && event.hex) {
+            const newSettings: Settings = {
                 backgroundColor: event.hex,
-                axesHelper: settings?.settings.axesHelper,
-                lockPiles: settings?.settings.lockPiles,
-                showFloor: settings?.settings.showFloor,
-                floorColor: settings?.settings.floorColor,
-                floorWireframe: settings?.settings.floorWireframe,
-
-                setAxesHelper: settings?.settings.setAxesHelper,
-                setBackgroundColor: settings?.settings.setBackgroundColor,
-                setLockPiles: settings?.settings.setLockPiles,
-                setShowFloor: settings?.settings.setShowFloor,
-                setFloorColor: settings?.settings.setFloorColor,
-                setFloorWireframe: settings?.settings.setFloorWireframe
+                axesHelper: settings?.state.settings.axesHelper,
+                lockPiles: settings?.state.settings.lockPiles,
+                showFloor: settings?.state.settings.showFloor,
+                floorColor: settings?.state.settings.floorColor,
+                floorWireframe: settings?.state.settings.floorWireframe,
             }
 
-            settings.setSettings(newSettings)
+            settings.setState({ settings: newSettings } as SettingsContextState)
         }
     }
 
@@ -59,7 +53,7 @@ const BackgroundColor = () => {
                     width="250px"
                     triangle="hide"
                     colors={colors}
-                    color={settings?.settings.backgroundColor}
+                    color={settings?.state.settings?.backgroundColor}
                     onChangeComplete={handleColorChange} />
             </Stack>
         </Paper>

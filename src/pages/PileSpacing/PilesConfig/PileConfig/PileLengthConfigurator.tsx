@@ -18,73 +18,77 @@ import { useSettings } from "../../../../hooks/useSettings"
 
 // Components
 import { Pile, Piles } from "../../../../components/Pile"
+import { useSelection } from "../../../../hooks/useSelection"
+import { PileContextState } from "../../../../types/Pile"
+import { getPileObjectFromPileId } from "../../../../utils/PileUtils"
 
-
-// Types
-type props = {
-    selectedPile: number
-}
-
-const PileLengthConfigurator = (props: props) => {
+const PileLengthConfigurator = () => {
 
     const piles = usePiles()
     const settings = useSettings()
+    const selection = useSelection();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newLength = parseFloat(event.target.value);
-        if (newLength !== undefined && piles?.piles) {
-            if (settings?.settings.lockPiles) return
+        if (newLength !== undefined && selection?.state.selection.selectedPile !== undefined) {
+            if (settings?.state.settings?.lockPiles) return
 
             const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < piles?.piles.number; i++) {
+            for (let i = 0; i < piles?.state.piles.number; i++) {
                 let newPile: Pile;
-                if (i === props.selectedPile) {
+                if (i === selection.state.selection.selectedPile.id) {
                     newPile = new Pile(
                         i,
                         newLength,
-                        piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].batterAngle,
+                        piles?.state.piles.piles[i].diameter,
+                        piles?.state.piles.piles[i].batterAngle,
                         null,
-                        piles.piles.piles[i].x,
-                        piles.piles.piles[i].y,
-                        piles.piles.piles[i].z,
-                        piles.piles.piles[i].rotation,
+                        piles?.state.piles.piles[i].x,
+                        piles?.state.piles.piles[i].y,
+                        piles?.state.piles.piles[i].z,
+                        piles?.state.piles.piles[i].rotation,
                     )
                 } else {
                     newPile = new Pile(
                         i,
-                        piles.piles.piles[i].length,
-                        piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].batterAngle,
+                        piles?.state.piles.piles[i].length,
+                        piles?.state.piles.piles[i].diameter,
+                        piles?.state.piles.piles[i].batterAngle,
                         null,
-                        piles.piles.piles[i].x,
-                        piles.piles.piles[i].y,
-                        piles.piles.piles[i].z,
-                        piles.piles.piles[i].rotation,
+                        piles?.state.piles.piles[i].x,
+                        piles?.state.piles.piles[i].y,
+                        piles?.state.piles.piles[i].z,
+                        piles?.state.piles.piles[i].rotation,
                     )
                 }
                 newPileArray.push(newPile);
             }
             const newPiles: Piles = {
                 piles: newPileArray,
-                number: piles.piles.number,
-                spacingRadius: piles.piles.spacingRadius,
+                number: piles?.state.piles.number as number,
+                spacingRadius: piles?.state.piles.spacingRadius as number,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { },
             }
-            piles.setPiles(newPiles)
+            piles!.setState({ piles: newPiles } as PileContextState)
+
+            // Update Selection
+            const selectedPileId = selection!.state.selection.selectedPile?.id as number;
+            const newSelectedPile = getPileObjectFromPileId(newPiles, selectedPileId);
+            selection!.setState({
+                selection: {
+                    selectedPile: newSelectedPile,
+                    selectedHelix: null,
+                }
+            });
         }
     }
 
-    const getPileLength = (selectedPile: number) => {
-        let length: number = 0;
-        if (selectedPile !== undefined && piles?.piles) {
-            length = piles?.piles.piles[selectedPile].length;
-        }
-        return length;
+    const getPileLength = () => {
+        if (selection?.state.selection.selectedPile?.length) return selection?.state.selection.selectedPile?.length;
+        else return ''
     }
 
     return (
@@ -99,7 +103,7 @@ const PileLengthConfigurator = (props: props) => {
                 <TextField
                     type='number'
                     variant="standard"
-                    value={getPileLength(props.selectedPile)}
+                    value={getPileLength()}
                     onChange={handleChange} />
             </Stack>
         </Paper>

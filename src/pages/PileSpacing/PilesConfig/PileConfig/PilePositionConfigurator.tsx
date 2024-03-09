@@ -1,11 +1,7 @@
 import { Paper, Stack, Typography } from "@mui/material"
 import CardinalPositionConfig from "./CardinalPositionConfig"
 
-type props = {
-    selectedPile: number
-}
-
-const PilePositionConfigurator = (props: props) => {
+const PilePositionConfigurator = () => {
     return (
         <Paper square={true}
             sx={{
@@ -14,9 +10,9 @@ const PilePositionConfigurator = (props: props) => {
             }}>
             <Typography>Position</Typography>
             <Stack direction='column' spacing={0.5}>
-                <CardinalPositionConfig text={'X'} selectedPile={props.selectedPile} />
-                <CardinalPositionConfig text={'Y'} selectedPile={props.selectedPile} />
-                <CardinalPositionConfig text={'Z'} selectedPile={props.selectedPile} />
+                <CardinalPositionConfig text={'X'} />
+                <CardinalPositionConfig text={'Y'} />
+                <CardinalPositionConfig text={'Z'} />
 
             </Stack>
         </Paper>

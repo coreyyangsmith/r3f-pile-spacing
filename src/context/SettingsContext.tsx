@@ -16,7 +16,19 @@ import { createContext, useState, FC } from 'react'
 import { SettingsContextValue, SettingsContextState } from '../types/Settings.ts'
 import Settings from '../components/Settings.ts';
 
-export const SettingsContext = createContext<SettingsContextValue | null>(null);
+export const SettingsContext = createContext<SettingsContextValue>({
+    state: {
+        settings: {
+            backgroundColor: '#121212',
+            axesHelper: false,
+            lockPiles: true,
+            showFloor: true,
+            floorColor: '#121212',
+            floorWireframe: true
+        }
+    },
+    setState: () => { }
+})
 
 export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, setState] = useState<SettingsContextState>({
@@ -27,13 +39,6 @@ export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }
             true, //showFloor: boolean,
             '#2069e0', //floorColor: string,
             true, //floorWireframe: boolean,
-
-            () => { }, //setAxesHelper: (value: boolean) => void,
-            () => { }, //setBackgroundColor: (value: string) => void,
-            () => { }, //setLockPiles: (value: boolean) => void,
-            () => { }, //setShowFloor: (value: boolean) => void,
-            () => { }, //setFloorColor: (value: string) => void,
-            () => { } //setFloorWireframe: (value: boolean) => void
         )
     });
 

@@ -26,12 +26,8 @@ import PileLengthConfigurator from "./PileLengthConfigurator"
 import PileDiameterConfigurator from "./PileDiameterConfigurator"
 import PileBatterConfigurator from "./PileBatterConfigurator"
 
-// Types
-type props = {
-    selectedPile: number
-}
 
-const PileConfigContainer = (props: props) => {
+const PileConfigContainer = () => {
     return (
         <Paper sx={{
             height: '100%',
@@ -41,11 +37,11 @@ const PileConfigContainer = (props: props) => {
             alignItems: 'center',
         }}>
             <Stack direction="row" sx={{ marginLeft: "16px", marginRight: '16px', marginTop: '8px', marginBottom: '4px' }}>
-                <PilePositionConfigurator selectedPile={props.selectedPile} />
-                <PileRotationConfigurator selectedPile={props.selectedPile} />
-                <PileLengthConfigurator selectedPile={props.selectedPile} />
-                <PileDiameterConfigurator selectedPile={props.selectedPile} />
-                <PileBatterConfigurator selectedPile={props.selectedPile} />
+                <PilePositionConfigurator />
+                <PileRotationConfigurator />
+                <PileLengthConfigurator />
+                <PileDiameterConfigurator />
+                <PileBatterConfigurator />
             </Stack>
         </Paper>
     )

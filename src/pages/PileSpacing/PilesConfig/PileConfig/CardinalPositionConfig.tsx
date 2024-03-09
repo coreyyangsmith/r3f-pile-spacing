@@ -19,27 +19,30 @@ import { Pile, Piles } from "../../../../components/Pile"
 // Context
 import { usePiles } from "../../../../hooks/usePiles"
 import { useSettings } from "../../../../hooks/useSettings"
+import { useSelection } from "../../../../hooks/useSelection"
+import { PileContextState } from "../../../../types/Pile"
+import { getPileObjectFromPileId } from "../../../../utils/PileUtils"
 
 // Types
 type props = {
     text: string,
-    selectedPile: number
 }
 
 const CardinalPositionConfig = (props: props) => {
 
     const piles = usePiles()
+    const selection = useSelection();
     const settings = useSettings()
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newPosPoint = parseFloat(event.target.value);
-        if (newPosPoint !== undefined && piles?.piles && settings?.settings) {
-            if (settings.settings.lockPiles) return
+        if (newPosPoint !== undefined && piles?.state.piles && settings?.state.settings) {
+            if (settings.state.settings.lockPiles) return
 
             const newPosition = [
-                piles?.piles.piles[props.selectedPile].x,
-                piles?.piles.piles[props.selectedPile].y,
-                piles?.piles.piles[props.selectedPile].z
+                selection?.state.selection.selectedPile?.x,
+                selection?.state.selection.selectedPile?.y,
+                selection?.state.selection.selectedPile?.z
             ]
 
             const newPileArray: Pile[] = [];
@@ -48,61 +51,75 @@ const CardinalPositionConfig = (props: props) => {
             else if (props.text === 'Y') newPosition[1] = newPosPoint;
             else if (props.text === 'Z') newPosition[2] = newPosPoint;
 
-            for (let i = 0; i < piles?.piles.number; i++) {
+            for (let i = 0; i < piles?.state.piles.number; i++) {
                 let newPile: Pile;
-                if (i === props.selectedPile) {
+                if (i === selection?.state.selection.selectedPile?.id) {
                     newPile = new Pile(
                         i,
-                        piles.piles.piles[i].length,
-                        piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].batterAngle,
+                        piles.state.piles.piles[i].length,
+                        piles.state.piles.piles[i].diameter,
+                        piles.state.piles.piles[i].batterAngle,
                         null,
                         newPosition[0],
                         newPosition[1],
                         newPosition[2],
-                        piles.piles.piles[i].rotation,
+                        piles.state.piles.piles[i].rotation,
                     )
                 } else {
                     newPile = new Pile(
                         i,
-                        piles.piles.piles[i].length,
-                        piles.piles.piles[i].diameter,
-                        piles.piles.piles[i].batterAngle,
+                        piles.state.piles.piles[i].length,
+                        piles.state.piles.piles[i].diameter,
+                        piles.state.piles.piles[i].batterAngle,
                         null,
-                        piles.piles.piles[i].x,
-                        piles.piles.piles[i].y,
-                        piles.piles.piles[i].z,
-                        piles.piles.piles[i].rotation,
+                        piles.state.piles.piles[i].x,
+                        piles.state.piles.piles[i].y,
+                        piles.state.piles.piles[i].z,
+                        piles.state.piles.piles[i].rotation,
                     );
                 }
                 newPileArray.push(newPile);
             }
 
+            // Update Piles
             const newPiles: Piles = {
                 piles: newPileArray,
-                number: piles.piles.number,
-                spacingRadius: piles.piles.spacingRadius,
+                number: piles.state.piles.number,
+                spacingRadius: piles.state.piles.spacingRadius,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { }
             }
-            piles.setPiles(newPiles)
+            piles.setState({ piles: newPiles } as PileContextState)
+
+            // Update Selection
+            const selectedPileId = selection!.state.selection.selectedPile?.id as number;
+            const newSelectedPile = getPileObjectFromPileId(newPiles, selectedPileId);
+            selection!.setState({
+                selection: {
+                    selectedPile: newSelectedPile,
+                    selectedHelix: null,
+                }
+            });
+
+
         }
     }
 
-
-
-    const getPilePosition = (id: number, text: string) => {
+    const getPilePosition = (text: string) => {
         let position: number | string;
-        if (piles?.piles) {
-            if (text === 'X') position = piles?.piles.piles[id].x;
-            else if (text === 'Y') position = piles?.piles.piles[id].y;
-            else if (text === 'Z') position = piles?.piles.piles[id].z;
-            else position = 'error';
+
+        if (selection?.state.selection.selectedPile) {
+            if (text === 'X') position = selection.state.selection.selectedPile.x
+            else if (text === 'Y') position = selection.state.selection.selectedPile.y
+            else if (text === 'Z') position = selection.state.selection.selectedPile.z
+            else position = '';
+
+            position = position.toFixed(2);
 
             return position;
         }
+        else return '';
     }
 
     return (
@@ -111,7 +128,7 @@ const CardinalPositionConfig = (props: props) => {
             <TextField
                 type='number'
                 variant="standard"
-                value={getPilePosition(props.selectedPile, props.text)}
+                value={getPilePosition(props.text)}
                 onChange={handleChange} />
         </Stack>
     )

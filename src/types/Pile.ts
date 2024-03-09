@@ -27,22 +27,12 @@ export interface IPile extends ICommon {
     diameter: number;
     batterAngle: number;
     helices: Helices | null;
-
-    setId: (id: number) => void;
-    setLength: (length: number) => void;
-    setDiameter: (diameter: number) => void;
-    setBatterAngle: (batterAngle: number) => void;
-    setHelices: (helices: Helices) => void;
 }
 
 export interface IPiles {
     piles: Array<Pile>;
     number: number;
     spacingRadius: number;
-
-    setPiles: (piles: Array<Pile>) => void;
-    setNumber: (number: number) => void;
-    setSpacingRadius: (spacingRadius: number) => void;
 }
 
 // Context

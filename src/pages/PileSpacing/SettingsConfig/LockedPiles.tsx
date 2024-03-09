@@ -17,7 +17,8 @@ import { ChangeEvent } from 'react'
 import { useSettings } from '../../../hooks/useSettings'
 
 // Types
-import { ISettings } from '../../../types/Settings'
+import Settings from '../../../components/Settings'
+import { SettingsContextState } from '../../../types/Settings'
 
 const LockedPiles = () => {
     const settings = useSettings()
@@ -25,25 +26,18 @@ const LockedPiles = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target) {
             let newPileSettings: boolean;
-            (settings?.settings.lockPiles ? newPileSettings = false : newPileSettings = true)
+            (settings?.state.settings.lockPiles ? newPileSettings = false : newPileSettings = true)
 
-            if (settings?.settings) {
-                const newSettings: ISettings = {
-                    backgroundColor: settings?.settings.backgroundColor,
-                    axesHelper: settings?.settings.axesHelper,
+            if (settings?.state.settings) {
+                const newSettings: Settings = {
+                    backgroundColor: settings?.state.settings.backgroundColor,
+                    axesHelper: settings?.state.settings.axesHelper,
                     lockPiles: newPileSettings,
-                    showFloor: settings?.settings.showFloor,
-                    floorColor: settings?.settings.floorColor,
-                    floorWireframe: settings?.settings.floorWireframe,
-
-                    setAxesHelper: settings?.settings.setAxesHelper,
-                    setBackgroundColor: settings?.settings.setBackgroundColor,
-                    setLockPiles: settings?.settings.setLockPiles,
-                    setShowFloor: settings?.settings.setShowFloor,
-                    setFloorColor: settings?.settings.setFloorColor,
-                    setFloorWireframe: settings?.settings.setFloorWireframe
+                    showFloor: settings?.state.settings.showFloor,
+                    floorColor: settings?.state.settings.floorColor,
+                    floorWireframe: settings?.state.settings.floorWireframe,
                 }
-                settings.setSettings(newSettings)
+                settings.setState({ settings: newSettings } as SettingsContextState)
             }
         }
     }
@@ -61,7 +55,7 @@ const LockedPiles = () => {
             <Stack direction="row" sx={{ display: 'flex', width: 'calc(100%-32px)', justifyContent: 'space-between', marginLeft: '16px', marginRight: '16px' }}>
                 <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Lock Piles?</Typography>
                 <Checkbox
-                    checked={settings?.settings.lockPiles}
+                    checked={settings?.state.settings.lockPiles}
                     onChange={handleChange} />
             </Stack>
         </Paper>

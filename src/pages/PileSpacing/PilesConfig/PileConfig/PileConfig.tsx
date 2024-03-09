@@ -13,33 +13,40 @@ and generates all related piles in the visualization.
 
 // Import
 import { Button, Paper, Stack, Typography } from '@mui/material'
-import { useState } from 'react';
 
 // Hooks
 import { usePiles } from '../../../../hooks/usePiles';
 import PileConfigContainer from './PileConfigContainer';
 import { useSelection } from '../../../../hooks/useSelection';
-import { ISelection } from '../../../../types/Selection';
+import { ISelection, SelectionContextState } from '../../../../types/Selection';
+import { getPileObjectFromPileId } from '../../../../utils/PileUtils';
+import { Piles } from '../../../../components/Pile';
 
-// TODO Extract Common MUI Components to a separate file
 const PileConfig = () => {
+    // State
+
+    // Context
     const selection = useSelection();
-    const [selectedPile, setSelectedPile] = useState<number>(0);
     const piles = usePiles();
 
     const handlePileSelection = (pileId: number) => {
-        setSelectedPile(pileId);
+        const currentPileId = selection?.state.selection.selectedPile?.id;
 
-        if (selection?.selection) {
-
+        // If select currently selected, then deselect, else select pile
+        if (currentPileId === pileId) {
             const newSelection: ISelection = {
-                selectedPile: pileId,
-                selectedHelix: selection.selection.selectedHelix,
-
-                setSelectedPile: selection.selection.setSelectedPile,
-                setSelectedHelix: selection.selection.setSelectedHelix
+                selectedPile: null,
+                selectedHelix: null,
             }
-            selection.setSelection(newSelection);
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
+        }
+        else {
+            const pile = getPileObjectFromPileId(piles?.state.piles as Piles, pileId);
+            const newSelection: ISelection = {
+                selectedPile: pile,
+                selectedHelix: null,
+            }
+            if (selection) selection.setState({ selection: newSelection } as SelectionContextState);
         }
 
     }
@@ -47,9 +54,9 @@ const PileConfig = () => {
     const generateIndividualPileSelection = () => {
         if (!piles) return (<>Error</>)
 
-        return piles.piles.piles.map((pile, i) => {
+        return piles.state.piles.piles.map((pile, i) => {
             return (
-                <Button className={i == selectedPile && 'active' || ''} key={i} onClick={() => { handlePileSelection(i) }}> Pile {i + 1}</Button >
+                <Button className={i == selection?.state.selection.selectedPile?.id && 'active' || ''} key={i} onClick={() => { handlePileSelection(i) }}> Pile {i + 1}</Button >
             )
         })
     }
@@ -85,7 +92,7 @@ const PileConfig = () => {
                 </Stack>
 
                 {/* Inidivual Pile Settings */}
-                <PileConfigContainer selectedPile={selectedPile} />
+                <PileConfigContainer />
             </Stack>
         </Paper>
     )

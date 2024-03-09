@@ -10,14 +10,13 @@ It is a core object in the Pile Visualization.
 */
 
 import { Dispatch, SetStateAction } from "react";
+import { Pile } from "../components/Pile";
+import { Helix } from "../components/Helix";
 
 export interface ISelection {
     // General Settings
-    selectedPile: number | null;
-    selectedHelix: number | null;
-
-    setSelectedPile: (value: number | null) => void;
-    setSelectedHelix: (value: number | null) => void;
+    selectedPile: Pile | null;
+    selectedHelix: Helix | null;
 }
 
 export type SelectionContextState = {

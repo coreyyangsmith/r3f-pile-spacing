@@ -22,17 +22,10 @@ export interface ISettings {
     showFloor: boolean,
     floorColor: string,
     floorWireframe: boolean,
-
-    setAxesHelper: (value: boolean) => void;
-    setBackgroundColor: (value: string) => void;
-    setLockPiles: (value: boolean) => void;
-    setShowFloor: (value: boolean) => void;
-    setFloorColor: (value: string) => void;
-    setFloorWireframe: (value: boolean) => void;
 }
 
 export type SettingsContextState = {
-    settings: Settings | null;
+    settings: Settings;
 }
 
 export type SettingsContextValue = {

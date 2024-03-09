@@ -19,41 +19,43 @@ import { Pile, Piles } from '../../../components/Pile';
 
 // Context
 import { usePiles } from '../../../hooks/usePiles';
+import { PileContextState } from '../../../types/Pile';
 
 const NumOfPilesConfigurator = () => {
     const piles = usePiles();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newNumber = parseInt(event.target.value);
-        piles?.piles.setNumber(newNumber); // set Number of Piles for Configurator
 
         if (newNumber !== undefined
             && newNumber > 0
-            && piles?.piles.spacingRadius !== undefined
-            && piles?.piles.piles) {
+            && piles?.state.piles.spacingRadius !== undefined
+            && piles?.state.piles.piles) {
+
+
 
             const newPileArray: Pile[] = [];
 
-            if (newNumber > piles?.piles.number) {
+            if (newNumber > piles?.state.piles.number) {
                 // Incrementing Pile Counts
                 // Copy Old Piles & Initialize
                 for (let i = 0; i < newNumber - 1; i++) {
                     newPileArray.push(new Pile(
                         i,
-                        piles?.piles.piles[i].length,
-                        piles?.piles.piles[i].diameter,
-                        piles?.piles.piles[i].batterAngle,
+                        piles?.state.piles.piles[i].length,
+                        piles?.state.piles.piles[i].diameter,
+                        piles?.state.piles.piles[i].batterAngle,
                         null,
-                        piles?.piles.piles[i].x,
-                        piles?.piles.piles[i].y,
-                        piles?.piles.piles[i].z,
-                        piles?.piles.piles[i].rotation
+                        piles?.state.piles.piles[i].x,
+                        piles?.state.piles.piles[i].y,
+                        piles?.state.piles.piles[i].z,
+                        piles?.state.piles.piles[i].rotation
                     ));
                     newPileArray.push(new Pile(
                         newNumber - 1,
-                        piles?.piles.piles[0].length,
-                        piles?.piles.piles[0].diameter,
-                        piles?.piles.piles[0].batterAngle,
+                        piles?.state.piles.piles[0].length,
+                        piles?.state.piles.piles[0].diameter,
+                        piles?.state.piles.piles[0].batterAngle,
                         null,
                         0,
                         0,
@@ -66,27 +68,26 @@ const NumOfPilesConfigurator = () => {
                 for (let i = 0; i < newNumber; i++) {
                     newPileArray.push(new Pile(
                         i,
-                        piles?.piles.piles[i].length,
-                        piles?.piles.piles[i].diameter,
-                        piles?.piles.piles[i].batterAngle,
+                        piles?.state.piles.piles[i].length,
+                        piles?.state.piles.piles[i].diameter,
+                        piles?.state.piles.piles[i].batterAngle,
                         null,
-                        piles?.piles.piles[i].x,
-                        piles?.piles.piles[i].y,
-                        piles?.piles.piles[i].z,
-                        piles?.piles.piles[i].rotation
+                        piles?.state.piles.piles[i].x,
+                        piles?.state.piles.piles[i].y,
+                        piles?.state.piles.piles[i].z,
+                        piles?.state.piles.piles[i].rotation
                     ));
                 }
             }
             const newPiles: Piles = {
                 piles: newPileArray,
                 number: parseInt(event.target.value),
-                spacingRadius: piles?.piles.spacingRadius,
+                spacingRadius: piles?.state.piles.spacingRadius as number,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { }
             }
-            piles?.setPiles(newPiles)
+            piles?.setState({ piles: newPiles } as PileContextState)
         }
     }
 
@@ -108,7 +109,7 @@ const NumOfPilesConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={piles?.piles.number}
+                    value={piles?.state.piles.number}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

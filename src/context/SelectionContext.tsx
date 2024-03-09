@@ -13,21 +13,28 @@ It is a core object in the Pile Visualization.
 import { createContext, useState, FC } from 'react'
 
 // Types
-import { ISelection, SelectionContextType } from '../types/Selection.ts';
+import { SelectionContextState, SelectionContextValue } from '../types/Selection.ts';
 
-export const SelectionContext = createContext<SelectionContextType | null>(null);
+export const SelectionContext = createContext<SelectionContextValue>({
+    state: {
+        selection: {
+            selectedPile: null,
+            selectedHelix: null
+        }
+    },
+    setState: () => { }
+});
 
 export const SelectionProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [selection, setSelection] = useState<ISelection>({
-        selectedPile: null,
-        selectedHelix: null,
-
-        setSelectedPile: () => { },
-        setSelectedHelix: () => { },
+    const [state, setState] = useState<SelectionContextState>({
+        selection: {
+            selectedPile: null,
+            selectedHelix: null
+        }
     });
 
     return (
-        <SelectionContext.Provider value={{ selection, setSelection }}>
+        <SelectionContext.Provider value={{ state, setState }}>
             {children}
         </SelectionContext.Provider>
     )

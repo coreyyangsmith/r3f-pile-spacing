@@ -18,6 +18,7 @@ import { usePiles } from '../../../hooks/usePiles';
 
 // Components
 import { Pile, Piles } from '../../../components/Pile';
+import { PileContextState } from '../../../types/Pile';
 
 const GroupBatterConfigurator = () => {
     const piles = usePiles()
@@ -25,47 +26,46 @@ const GroupBatterConfigurator = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newBatterAngle = parseFloat(event.target.value);
 
-        if (newBatterAngle !== undefined && newBatterAngle >= 0 && piles?.piles) {
+        if (newBatterAngle !== undefined && newBatterAngle >= 0 && piles?.state.piles) {
             const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < piles.piles.number; i++) {
+            for (let i = 0; i < piles.state.piles.number; i++) {
                 const newPile = new Pile(
                     i,
-                    piles.piles.piles[i].length,
-                    piles.piles.piles[i].diameter,
+                    piles?.state.piles.piles[i].length,
+                    piles?.state.piles.piles[i].diameter,
                     newBatterAngle,
                     null,
-                    piles?.piles.piles[i].x,
-                    piles?.piles.piles[i].y,
-                    piles?.piles.piles[i].z,
-                    piles?.piles.piles[i].rotation
+                    piles?.state.piles.piles[i].x,
+                    piles?.state.piles.piles[i].y,
+                    piles?.state.piles.piles[i].z,
+                    piles?.state.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
             const newPiles: Piles = {
                 piles: newPileArray,
-                number: piles.piles.number,
-                spacingRadius: piles.piles.spacingRadius,
+                number: piles.state.piles.number,
+                spacingRadius: piles.state.piles.spacingRadius,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { }
             }
 
-            piles.setPiles(newPiles)
+            piles.setState({ piles: newPiles } as PileContextState)
         }
     }
 
 
     const getBatterAngle = () => {
-        if (piles?.piles) {
+        if (piles?.state.piles) {
             let batterAngle: number | string;
-            batterAngle = piles?.piles.piles[0].batterAngle;
+            batterAngle = piles?.state.piles.piles[0].batterAngle;
 
-            for (let i = 1; i < piles?.piles.number - 1; i++) {
-                if (batterAngle === piles?.piles.piles[i].batterAngle) {
-                    batterAngle = piles?.piles.piles[i].batterAngle;
+            for (let i = 1; i < piles?.state.piles.number - 1; i++) {
+                if (batterAngle === piles?.state.piles.piles[i].batterAngle) {
+                    batterAngle = piles?.state.piles.piles[i].batterAngle;
                 } else {
                     batterAngle = 'varies';
                     break;

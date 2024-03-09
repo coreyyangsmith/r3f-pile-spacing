@@ -17,7 +17,7 @@ import { ChangeEvent } from 'react'
 import { useSettings } from '../../../hooks/useSettings'
 
 // Types
-import { ISettings } from '../../../types/Settings'
+import { ISettings, SettingsContextState } from '../../../types/Settings'
 
 const ShowFloor = () => {
     const settings = useSettings()
@@ -25,25 +25,18 @@ const ShowFloor = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target) {
             let newFloorSettings: boolean;
-            (settings?.settings.showFloor ? newFloorSettings = false : newFloorSettings = true)
+            (settings?.state.settings.showFloor ? newFloorSettings = false : newFloorSettings = true)
 
-            if (settings?.settings) {
+            if (settings?.state.settings) {
                 const newSettings: ISettings = {
-                    backgroundColor: settings?.settings.backgroundColor,
-                    axesHelper: settings?.settings.axesHelper,
-                    lockPiles: settings?.settings.lockPiles,
+                    backgroundColor: settings?.state.settings.backgroundColor,
+                    axesHelper: settings?.state.settings.axesHelper,
+                    lockPiles: settings?.state.settings.lockPiles,
                     showFloor: newFloorSettings,
-                    floorColor: settings?.settings.floorColor,
-                    floorWireframe: settings?.settings.floorWireframe,
-
-                    setAxesHelper: settings?.settings.setAxesHelper,
-                    setBackgroundColor: settings?.settings.setBackgroundColor,
-                    setLockPiles: settings?.settings.setLockPiles,
-                    setShowFloor: settings?.settings.setShowFloor,
-                    setFloorColor: settings?.settings.setFloorColor,
-                    setFloorWireframe: settings?.settings.setFloorWireframe
+                    floorColor: settings?.state.settings.floorColor,
+                    floorWireframe: settings?.state.settings.floorWireframe,
                 }
-                settings.setSettings(newSettings)
+                settings.setState({ settings: newSettings } as SettingsContextState)
             }
         }
     }
@@ -61,7 +54,7 @@ const ShowFloor = () => {
             <Stack direction="row" sx={{ display: 'flex', width: 'calc(100%-32px)', justifyContent: 'space-between', marginLeft: '16px', marginRight: '16px' }}>
                 <Typography variant='body1' sx={{ marginRight: '8px', marginLeft: '4px', display: 'flex', alignItems: 'center' }}>Show Floor?</Typography>
                 <Checkbox
-                    checked={settings?.settings.showFloor}
+                    checked={settings?.state.settings.showFloor}
                     onChange={handleChange} />
             </Stack>
         </Paper>

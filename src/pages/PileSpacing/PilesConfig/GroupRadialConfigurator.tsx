@@ -18,6 +18,7 @@ import { usePiles } from '../../../hooks/usePiles';
 
 // Components
 import { Pile, Piles } from '../../../components/Pile';
+import { PileContextState } from '../../../types/Pile';
 
 const GroupRadialConfigurator = () => {
     const piles = usePiles();
@@ -25,41 +26,40 @@ const GroupRadialConfigurator = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newRadius = parseFloat(event.target.value);
 
-        if (newRadius !== undefined && newRadius > 0 && piles?.piles) {
+        if (newRadius !== undefined && newRadius > 0 && piles?.state.piles) {
             const newPileArray: Pile[] = [];
 
-            for (let i = 0; i < piles.piles.number; i++) {
+            for (let i = 0; i < piles?.state.piles.number; i++) {
                 const newPile = new Pile(
                     i,
-                    piles.piles.piles[i].length,
-                    piles.piles.piles[i].diameter,
-                    piles.piles.piles[i].batterAngle,
+                    piles?.state.piles.piles[i].length,
+                    piles?.state.piles.piles[i].diameter,
+                    piles?.state.piles.piles[i].batterAngle,
                     null,
-                    piles?.piles.piles[i].x,
-                    piles?.piles.piles[i].y,
-                    piles?.piles.piles[i].z,
-                    piles?.piles.piles[i].rotation
+                    piles?.state.piles.piles[i].x,
+                    piles?.state.piles.piles[i].y,
+                    piles?.state.piles.piles[i].z,
+                    piles?.state.piles.piles[i].rotation
                 );
                 newPileArray.push(newPile);
             }
 
             const newPiles: Piles = {
                 piles: newPileArray,
-                number: piles.piles.number,
+                number: piles?.state.piles.number,
                 spacingRadius: newRadius,
 
-                setPiles: () => { },
-                setNumber: () => { },
-                setSpacingRadius: () => { }
+                addPile: () => { },
+                removePile: () => { }
             }
 
-            piles.setPiles(newPiles)
+            piles.setState({ piles: newPiles } as PileContextState)
         }
     }
 
     const getRadius = () => {
-        if (piles?.piles) {
-            const radius: number | string = piles?.piles.spacingRadius;
+        if (piles?.state.piles) {
+            const radius: number | string = piles?.state.piles.spacingRadius;
             return radius;
         }
         return -1;
