@@ -1,12 +1,12 @@
 /*
 Date: 2024-03-10
 Author: Corey Yang-Smith
-File: HelixDiameterConfigurator.tsx
+File: HelixRotationsConfigurator.tsx
 Type: Data Component
 
 Description:
 This is a Data Component for individual Helix Object.
-This component configures the diameter for a specific Helix.
+This component configures the rotations for a specific Helix.
 */
 
 // Import
@@ -25,17 +25,17 @@ import { Helices, Helix } from '../../../../components/Helix';
 import { getHelixGroupFromPileId } from '../../../../utils/PileUtils';
 
 
-const HelixDiameterConfigurator = () => {
+const HelixRotationsConfigurator = () => {
 
     const settings = useSettings()
     const selection = useSelection();
     const helices = useHelices();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newDiameter = parseFloat(event.target.value);
-        if (newDiameter !== undefined &&
+        const newRotations = parseFloat(event.target.value);
+        if (newRotations !== undefined &&
             selection?.state.selection.selectedHelix?.id !== undefined
-            && newDiameter > 0) {
+            && newRotations > 0) {
             if (settings?.state.settings?.lockPiles) return
 
             // Get Reference
@@ -46,7 +46,7 @@ const HelixDiameterConfigurator = () => {
 
             // Update Helices
             const newHelixArray: Helix[] = [...selectedHelixGroup.helices];
-            newHelixArray[selection.state.selection.selectedHelix?.id as number].diameter = newDiameter;
+            newHelixArray[selection.state.selection.selectedHelix?.id as number].rotations = newRotations;
 
             const newHelices: Helices = {
                 helices: newHelixArray,
@@ -67,8 +67,8 @@ const HelixDiameterConfigurator = () => {
 
     }
 
-    const getHelixDiameter = () => {
-        if (selection?.state.selection.selectedHelix?.diameter) return selection?.state.selection.selectedHelix?.diameter;
+    const getHelixRotations = () => {
+        if (selection?.state.selection.selectedHelix?.rotations) return selection?.state.selection.selectedHelix?.rotations;
         else return ''
     }
 
@@ -78,17 +78,17 @@ const HelixDiameterConfigurator = () => {
                 background: 'rgba(255,255,255,0.0)',
                 width: '100%',
             }}>
-            <Typography>Diameter</Typography>
+            <Typography>Rotations</Typography>
             <Stack direction='row'>
-                <Typography sx={{ paddingRight: '16px' }}>(m)</Typography>
+                <Typography sx={{ paddingRight: '16px' }}>(ea)</Typography>
                 <TextField
                     type='number'
                     variant="standard"
-                    value={getHelixDiameter()}
+                    value={getHelixRotations()}
                     onChange={handleChange} />
             </Stack>
         </Paper>
     )
 }
 
-export default HelixDiameterConfigurator
+export default HelixRotationsConfigurator

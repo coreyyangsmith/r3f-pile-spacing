@@ -9,10 +9,14 @@ This is a layout component for the Individual Helix Configuration, it is the ins
 that holds the data components for the individual helix configuration.
 */
 
-
 // Imports
 import { Paper, Stack } from "@mui/material"
 import HelixDiameterConfigurator from "./HelixDiameterConfigurator"
+import HelixThicknessConfigurator from "./HelixThicknessConfigurator"
+import HelixRiseConfigurator from "./HelixRiseConfigurator"
+import HelixRotationsConfigurator from "./HelixRotationsConfigurator"
+import HelixResolutionConfigurator from "./HelixResolutionConfigurator"
+import HelixRadiusConfigurator from "./HelixRadiusConfigurator"
 
 
 const HelixConfigContainer = () => {
@@ -27,6 +31,13 @@ const HelixConfigContainer = () => {
             <Stack direction="row" sx={{ marginLeft: "16px", marginRight: '16px', marginTop: '8px', marginBottom: '4px' }}>
                 {/* Data Components */}
                 <HelixDiameterConfigurator />
+                <HelixThicknessConfigurator />
+                <HelixRiseConfigurator />
+                <HelixRotationsConfigurator />
+                <HelixResolutionConfigurator />
+                <HelixRadiusConfigurator />
+
+
             </Stack>
         </Paper>
     )

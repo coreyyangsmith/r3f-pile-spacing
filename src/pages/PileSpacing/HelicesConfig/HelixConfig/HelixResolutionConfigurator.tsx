@@ -1,12 +1,12 @@
 /*
 Date: 2024-03-10
 Author: Corey Yang-Smith
-File: HelixDiameterConfigurator.tsx
+File: HelixResolutionConfigurator.tsx
 Type: Data Component
 
 Description:
 This is a Data Component for individual Helix Object.
-This component configures the diameter for a specific Helix.
+This component configures the resolutions (segments per step) for a specific Helix.
 */
 
 // Import
@@ -25,17 +25,17 @@ import { Helices, Helix } from '../../../../components/Helix';
 import { getHelixGroupFromPileId } from '../../../../utils/PileUtils';
 
 
-const HelixDiameterConfigurator = () => {
+const HelixResolutionConfigurator = () => {
 
     const settings = useSettings()
     const selection = useSelection();
     const helices = useHelices();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newDiameter = parseFloat(event.target.value);
-        if (newDiameter !== undefined &&
+        const newResolution = parseFloat(event.target.value);
+        if (newResolution !== undefined &&
             selection?.state.selection.selectedHelix?.id !== undefined
-            && newDiameter > 0) {
+            && newResolution > 0) {
             if (settings?.state.settings?.lockPiles) return
 
             // Get Reference
@@ -46,7 +46,7 @@ const HelixDiameterConfigurator = () => {
 
             // Update Helices
             const newHelixArray: Helix[] = [...selectedHelixGroup.helices];
-            newHelixArray[selection.state.selection.selectedHelix?.id as number].diameter = newDiameter;
+            newHelixArray[selection.state.selection.selectedHelix?.id as number].segsPerStep = newResolution;
 
             const newHelices: Helices = {
                 helices: newHelixArray,
@@ -67,8 +67,8 @@ const HelixDiameterConfigurator = () => {
 
     }
 
-    const getHelixDiameter = () => {
-        if (selection?.state.selection.selectedHelix?.diameter) return selection?.state.selection.selectedHelix?.diameter;
+    const getHelixResolution = () => {
+        if (selection?.state.selection.selectedHelix?.segsPerStep) return selection?.state.selection.selectedHelix?.segsPerStep;
         else return ''
     }
 
@@ -78,17 +78,17 @@ const HelixDiameterConfigurator = () => {
                 background: 'rgba(255,255,255,0.0)',
                 width: '100%',
             }}>
-            <Typography>Diameter</Typography>
+            <Typography>Resolution</Typography>
             <Stack direction='row'>
-                <Typography sx={{ paddingRight: '16px' }}>(m)</Typography>
+                <Typography sx={{ paddingRight: '16px' }}>(ea)</Typography>
                 <TextField
                     type='number'
                     variant="standard"
-                    value={getHelixDiameter()}
+                    value={getHelixResolution()}
                     onChange={handleChange} />
             </Stack>
         </Paper>
     )
 }
 
-export default HelixDiameterConfigurator
+export default HelixResolutionConfigurator

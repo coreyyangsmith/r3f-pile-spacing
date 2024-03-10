@@ -5,6 +5,7 @@ const FirstHelixDistanceConfigurator = () => {
 
     const handleChange = (event) => {
     }
+    
     return (
         <Paper
             square={true}

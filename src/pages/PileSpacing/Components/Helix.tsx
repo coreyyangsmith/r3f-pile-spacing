@@ -50,9 +50,7 @@ const Helix = (props: HelixProps) => {
     const calculateHelixPosition = () => {
         const newPosition: Array<number> = [0, 0, 0];
 
-        console.log(pile)
         if (pile === null) return newPosition;
-        console.log(newPosition)
 
         newPosition[0] = 0
         newPosition[1] = -pile.length + props.distanceFromBottom + (parseFloat(props.spacing) * props.id) // negative length + bottom * (number * spacing)

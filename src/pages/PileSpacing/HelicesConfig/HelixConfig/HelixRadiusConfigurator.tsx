@@ -1,16 +1,17 @@
 /*
 Date: 2024-03-10
 Author: Corey Yang-Smith
-File: HelixDiameterConfigurator.tsx
+File: HelixRadiusConfigurator.tsx
 Type: Data Component
 
 Description:
 This is a Data Component for individual Helix Object.
-This component configures the diameter for a specific Helix.
+This component configures the radius for a specific Helix.
 */
 
 // Import
 import { Paper, Stack, TextField, Typography } from '@mui/material'
+import { Helices, Helix } from '../../../../components/Helix';
 
 // Context
 import { useSettings } from '../../../../hooks/useSettings';
@@ -18,24 +19,20 @@ import { useSelection } from '../../../../hooks/useSelection';
 import { useHelices } from '../../../../hooks/useHelices';
 import { HelixContextState } from '../../../../types/Helix';
 
-// Objects
-import { Helices, Helix } from '../../../../components/Helix';
-
 // Utils
 import { getHelixGroupFromPileId } from '../../../../utils/PileUtils';
 
-
-const HelixDiameterConfigurator = () => {
+const HelixRadiusConfigurator = () => {
 
     const settings = useSettings()
     const selection = useSelection();
     const helices = useHelices();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newDiameter = parseFloat(event.target.value);
-        if (newDiameter !== undefined &&
+        const newRadius = parseFloat(event.target.value);
+        if (newRadius !== undefined &&
             selection?.state.selection.selectedHelix?.id !== undefined
-            && newDiameter > 0) {
+            && newRadius > 0) {
             if (settings?.state.settings?.lockPiles) return
 
             // Get Reference
@@ -46,7 +43,7 @@ const HelixDiameterConfigurator = () => {
 
             // Update Helices
             const newHelixArray: Helix[] = [...selectedHelixGroup.helices];
-            newHelixArray[selection.state.selection.selectedHelix?.id as number].diameter = newDiameter;
+            newHelixArray[selection.state.selection.selectedHelix?.id as number].radius = newRadius;
 
             const newHelices: Helices = {
                 helices: newHelixArray,
@@ -67,8 +64,8 @@ const HelixDiameterConfigurator = () => {
 
     }
 
-    const getHelixDiameter = () => {
-        if (selection?.state.selection.selectedHelix?.diameter) return selection?.state.selection.selectedHelix?.diameter;
+    const getHelixRadius = () => {
+        if (selection?.state.selection.selectedHelix?.radius) return selection?.state.selection.selectedHelix?.radius;
         else return ''
     }
 
@@ -78,17 +75,17 @@ const HelixDiameterConfigurator = () => {
                 background: 'rgba(255,255,255,0.0)',
                 width: '100%',
             }}>
-            <Typography>Diameter</Typography>
+            <Typography>Radius</Typography>
             <Stack direction='row'>
-                <Typography sx={{ paddingRight: '16px' }}>(m)</Typography>
+                <Typography sx={{ paddingRight: '16px' }}> (m)</Typography>
                 <TextField
                     type='number'
                     variant="standard"
-                    value={getHelixDiameter()}
+                    value={getHelixRadius()}
                     onChange={handleChange} />
             </Stack>
         </Paper>
     )
 }
 
-export default HelixDiameterConfigurator
+export default HelixRadiusConfigurator
