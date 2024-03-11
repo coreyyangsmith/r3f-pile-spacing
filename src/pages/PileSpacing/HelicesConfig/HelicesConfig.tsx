@@ -19,8 +19,25 @@ import NumOfHelicesConfigurator from './NumOfHelicesConfigurator'
 import FirstHelixDistanceConfigurator from './FirstHelixDistanceConfigurator'
 import HelixSpacingConfigurator from './HelixSpacingConfigurator'
 import HelixDiameterConfigurator from './HelixDiameterConfigurator'
+import { useSelection } from '../../../hooks/useSelection'
 
 const HelicesConfig = () => {
+    const selection = useSelection();
+
+    const pileNotSelected = selection?.state.selection.selectedPile === null || selection?.state.selection.selectedPile === undefined
+
+    const getSubtitleText = () => {
+        if (selection) {
+            if (pileNotSelected) {
+                return "Select a pile to configure its helices"
+            } else {
+                return `Configuring Helices for Pile ${selection?.state.selection.selectedPile.id + 1 as number}`
+            }
+        }
+    }
+
+
+
     return (
         <Paper
             square={true}
@@ -52,13 +69,17 @@ const HelicesConfig = () => {
                 <Typography variant="h6" // TODO, implement theme to make text size responsive
                     sx={{ padding: '8px', textAlign: 'center', color: 'white' }}>Helices Configuration</Typography>
 
+                <Typography variant="body1">{getSubtitleText()}</Typography>
+
                 {/* Data Components */}
 
-                <NumOfHelicesConfigurator />
-                <FirstHelixDistanceConfigurator />
-                <HelixSpacingConfigurator />
-                <HelixDiameterConfigurator />
+                {!pileNotSelected && <>
 
+                    <NumOfHelicesConfigurator />
+                    <FirstHelixDistanceConfigurator />
+                    <HelixSpacingConfigurator />
+                    <HelixDiameterConfigurator />
+                </>}
             </Stack>
 
         </Paper >

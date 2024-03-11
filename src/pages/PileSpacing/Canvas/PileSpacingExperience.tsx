@@ -22,20 +22,11 @@ import { usePiles } from "../../../hooks/usePiles";
 
 // Components
 import Pile from "../Components/Pile";
-import { useSelection } from "../../../hooks/useSelection";
-import { useEffect } from "react";
-import { useHelices } from "../../../hooks/useHelices";
 
 const PileSpacingExperience = () => {
 
     const settings = useSettings()
     const piles = usePiles();
-    const selection = useSelection();
-    const helices = useHelices();
-
-    useEffect(() => {
-        console.log('re-render')
-    }, [piles, helices, selection, settings])
 
     const generateFloor = () => {
         if (settings?.state.settings?.showFloor) {

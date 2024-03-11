@@ -17,6 +17,10 @@ import { useSelection } from '../../../hooks/useSelection';
 import { usePiles } from '../../../hooks/usePiles';
 import { useHelices } from '../../../hooks/useHelices';
 import { useHelicesFromPileId } from '../../../hooks/useHelicesFromPileId';
+import React from 'react';
+import { HelixContextState } from '../../../types/Helix';
+import { Pile } from '../../../components/Pile';
+import { Helices, Helix } from '../../../components/Helix';
 
 
 const NumOfHelicesConfigurator = () => {
@@ -25,10 +29,67 @@ const NumOfHelicesConfigurator = () => {
     const helices = useHelices();
     const selection = useSelection();
 
-    const helixGroup = useHelicesFromPileId(selection?.state.selection.selectedPile);
+    let selectedHelixGroup = useHelicesFromPileId(selection?.state.selection.selectedPile.id);
 
-    const handleChange = (event) => {
-        helixGroup?.addNewHelix();
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newHelixCount = parseInt(event.target.value);
+
+        // Valid Input
+        if (newHelixCount !== undefined &&
+            newHelixCount > -1) {
+
+            let updatedHelices: Helices[] = [...helices?.state.helices as Helices[]]
+
+            // Originally Zero
+            if (selectedHelixGroup === null) {
+                selectedHelixGroup = {
+                    helices: [
+                        new Helix(
+                            0,
+                            0,
+                            1,
+                            0.1,
+                            0.5,
+                            1,
+                            64,
+                            0.5,
+                            0,
+                            0,
+                            0,
+                            0,
+                        )
+                    ],
+                    spacing: 1,
+                    distanceFromBottom: 1,
+                    pileRef: selection?.state.selection.selectedPile as Pile,
+                    addNewHelix: () => { },
+                    removeLastHelix: () => { }
+                }
+                updatedHelices.push(selectedHelixGroup)
+            }
+            // Increasing
+            else if (newHelixCount > selectedHelixGroup?.helices.length) {
+                // Update Helix Group
+                selectedHelixGroup?.addNewHelix();
+            }
+            // Decreasing
+            else {
+                selectedHelixGroup?.removeLastHelix();
+                if (selectedHelixGroup?.helices.length == 0) {
+                    // remove from helices
+                }
+            }
+
+            // Set Helices
+
+            helices?.setState({ helices: updatedHelices } as HelixContextState)
+
+
+            // Set Selection
+        }
+
+
+
     }
 
     return (
@@ -49,7 +110,7 @@ const NumOfHelicesConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={helixGroup?.helices.length}
+                    value={selectedHelixGroup?.helices.length as number}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

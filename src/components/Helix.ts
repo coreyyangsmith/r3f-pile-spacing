@@ -60,7 +60,7 @@ export class Helices implements IHelices {
                 0.1,
                 0.5,
                 1,
-                1,
+                64,
                 0.5,
                 0,
                 0,
@@ -70,6 +70,10 @@ export class Helices implements IHelices {
         }
 
         this.helices.push(newHelix);
+    }
+
+    removeLastHelix() {
+        this.helices.pop();
     }
 }
 
@@ -94,7 +98,7 @@ export class Helix implements IHelix {
         thickness: number = 0.1,
         rise: number = 0.5,
         rotations: number = 1,
-        segsPerStep: number = 1,
+        segsPerStep: number = 64,
         radius: number = 0.5,
         x: number = 0,
         y: number = 0,
