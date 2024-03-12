@@ -78,7 +78,7 @@ const HelixConfig = () => {
 
         const matchingHelices = helices.state.helices.filter(helices => (helices.pileRef && selection) && helices.pileRef.id === selection?.state.selection.selectedPile?.id)
 
-        if (matchingHelices.length <= 0) return (<>No Helices</>)
+        if (matchingHelices.length <= 0) return (<></>)
 
         return matchingHelices[0].helices.map((helix, i) => {
             return (

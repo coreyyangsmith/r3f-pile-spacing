@@ -38,12 +38,12 @@ const NumOfHelicesConfigurator = () => {
         if (newHelixCount !== undefined &&
             newHelixCount > -1) {
 
-            let updatedHelices: Helices[] = [...helices?.state.helices as Helices[]]
+            const updatedHelices: Helices[] = [...helices?.state.helices as Helices[]]
 
-            // Originally Zero
+            // Originally Zero, Create new group
             if (selectedHelixGroup === null) {
-                selectedHelixGroup = {
-                    helices: [
+                selectedHelixGroup = new Helices(
+                    [
                         new Helix(
                             0,
                             0,
@@ -59,12 +59,10 @@ const NumOfHelicesConfigurator = () => {
                             0,
                         )
                     ],
-                    spacing: 1,
-                    distanceFromBottom: 1,
-                    pileRef: selection?.state.selection.selectedPile as Pile,
-                    addNewHelix: () => { },
-                    removeLastHelix: () => { }
-                }
+                    1,
+                    1,
+                    selection?.state.selection.selectedPile as Pile,
+                )
                 updatedHelices.push(selectedHelixGroup)
             }
             // Increasing
@@ -75,21 +73,13 @@ const NumOfHelicesConfigurator = () => {
             // Decreasing
             else {
                 selectedHelixGroup?.removeLastHelix();
-                if (selectedHelixGroup?.helices.length == 0) {
-                    // remove from helices
-                }
             }
 
             // Set Helices
-
             helices?.setState({ helices: updatedHelices } as HelixContextState)
 
 
-            // Set Selection
         }
-
-
-
     }
 
     return (
@@ -110,7 +100,7 @@ const NumOfHelicesConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={selectedHelixGroup?.helices.length as number}
+                    value={selectedHelixGroup?.helices.length as number || 0}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>

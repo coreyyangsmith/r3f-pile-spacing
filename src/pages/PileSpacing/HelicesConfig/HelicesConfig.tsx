@@ -17,8 +17,10 @@ import { Paper, Stack, Typography } from '@mui/material'
 // Components
 import NumOfHelicesConfigurator from './NumOfHelicesConfigurator'
 import FirstHelixDistanceConfigurator from './FirstHelixDistanceConfigurator'
-import HelixSpacingConfigurator from './HelixSpacingConfigurator'
-import HelixDiameterConfigurator from './HelixDiameterConfigurator'
+import HelixGroupSpacingConfigurator from './HelixGroupSpacingConfigurator'
+import HelixGroupDiameterConfigurator from './HelixGroupDiameterConfigurator'
+
+// Context
 import { useSelection } from '../../../hooks/useSelection'
 
 const HelicesConfig = () => {
@@ -77,8 +79,8 @@ const HelicesConfig = () => {
 
                     <NumOfHelicesConfigurator />
                     <FirstHelixDistanceConfigurator />
-                    <HelixSpacingConfigurator />
-                    <HelixDiameterConfigurator />
+                    <HelixGroupSpacingConfigurator />
+                    <HelixGroupDiameterConfigurator />
                 </>}
             </Stack>
 
