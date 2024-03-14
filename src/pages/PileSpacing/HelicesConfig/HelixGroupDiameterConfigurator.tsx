@@ -45,7 +45,7 @@ const HelixGroupDiameterConfigurator = () => {
                     variant='standard'
                     color='primary'
                     onChange={handleChange}
-                    value={selectedHelixGroup?.helices[0].diameter as number || 0}
+                    value={(selectedHelixGroup?.helices[0]?.diameter as number) || 0}
                     sx={{ input: { color: 'white', textAlign: 'right', paddingRight: '16px' }, width: "150px" }} />
             </Stack>
         </Paper>
