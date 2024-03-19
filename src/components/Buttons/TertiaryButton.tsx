@@ -4,30 +4,31 @@ import { Button, Typography } from "@mui/material";
 // Themes
 import { useTheme } from '@mui/material/styles';
 
-
-type CTAButtonProps = {
+type TertiaryButtonProps = {
     text: string;
     onClick: () => void;
-    size: "small" | "medium" | "large";
 }
 
-const CTAButton = (props: CTAButtonProps) => {
+const TertiaryButton = (props: TertiaryButtonProps) => {
     const theme = useTheme();
-    console.log(theme)
 
     return (
         <Button
-            variant="contained"
-            size={props.size}
+            variant="text"
+            size="large"
+            color="secondary"
             style={{
                 borderRadius: 25,
-                backgroundColor: theme.palette.primary1.main,
             }}
             onClick={props.onClick}
         >
-            <Typography variant="body1">{props.text}</Typography>
+            <Typography
+                variant="body1"
+                color={theme.palette.dark6.main}
+            >
+                {props.text}</Typography>
         </Button>
     )
 }
 
-export default CTAButton
+export default TertiaryButton

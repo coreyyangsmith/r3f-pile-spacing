@@ -29,6 +29,7 @@ import { SelectionProvider } from './context/SelectionContext';
 // Theme
 import { CssBaseline } from '@mui/material';
 import { lightTheme } from './themes/Theme';
+import Editor from './pages/Editor/Editor';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                 <CssBaseline />
                 <Routes>
                   <Route path="/" element={<Landing />} />
+                  <Route path="/editor" element={<Editor />} />
                   <Route path="/pile-spacing" element={<PileSpacing />} />
                 </Routes>
               </ThemeProvider>

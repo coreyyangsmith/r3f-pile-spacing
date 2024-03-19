@@ -6,7 +6,7 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1C1C1C;
+  background: #262419;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -20,7 +20,7 @@ body,
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 
-  font-family: 'Roboto';
+  font-family: 'Outfit';
 }
 
 .active {
@@ -75,38 +75,4 @@ body,
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 800;
-  src: local('Inter'),
-    local('Inter'),
-    url('./assets/fonts/Inter/Inter-ExtraBold.ttf') format('ttf');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Inter'),
-    local('Inter'),
-    url('./assets/fonts/Inter/Inter-Medium.ttf') format('ttf');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* Body */
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Inter'),
-    local('Inter'),
-    url('./assets/fonts/Inter/Inter-Medium.ttf') format('ttf');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

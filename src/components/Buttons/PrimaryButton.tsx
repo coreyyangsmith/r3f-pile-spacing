@@ -5,15 +5,14 @@ import { Button, Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 
 
-type CTAButtonProps = {
+type PrimaryButtonProps = {
     text: string;
     onClick: () => void;
     size: "small" | "medium" | "large";
 }
 
-const CTAButton = (props: CTAButtonProps) => {
+const PrimaryButton = (props: PrimaryButtonProps) => {
     const theme = useTheme();
-    console.log(theme)
 
     return (
         <Button
@@ -21,7 +20,9 @@ const CTAButton = (props: CTAButtonProps) => {
             size={props.size}
             style={{
                 borderRadius: 25,
-                backgroundColor: theme.palette.primary1.main,
+                backgroundColor: theme.palette.primary6.main,
+                width: "100px",
+                height: '35px'
             }}
             onClick={props.onClick}
         >
@@ -30,4 +31,4 @@ const CTAButton = (props: CTAButtonProps) => {
     )
 }
 
-export default CTAButton
+export default PrimaryButton
