@@ -11,11 +11,11 @@ It also wraps the entire application in the context providers.
 */
 
 // MUI Dependencies
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 // Components
-import { CssBaseline } from '@mui/material';
 import PileSpacing from './pages/PileSpacing/PileSpacing';
+import Landing from './pages/Landing/Landing';
 
 // Routing Imports
 import { Route, Routes } from "react-router-dom"
@@ -26,79 +26,10 @@ import { PileProvider } from './context/PileContext';
 import { HelixProvider } from './context/HelixContext';
 import { SelectionProvider } from './context/SelectionContext';
 
+// Theme
+import { CssBaseline } from '@mui/material';
+import { lightTheme } from './themes/Theme';
 
-// TODO Export THEME to another file...?
-// Theme Definition
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#C42929',
-    },
-    secondary: {
-      main: '#40c4ff',
-    },
-    success: {
-      main: '#72EA8C',
-    },
-
-  },
-  typography: {
-    button: {
-      textTransform: 'none'
-    },
-    fontFamily: [
-      'inter',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Segoe UI',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    subtitle1: { // title
-      lineHeight: 1.6,
-      fontSize: 52,
-      fontWeight: 800,
-      fontFamily: 'inter',
-      color: 'black',
-      letterSpacing: '3px',
-    },
-    h1: {
-      lineHeight: 1.6,
-      fontSize: 64,
-      fontWeight: 600,
-      fontFamily: 'inter',
-      color: 'white',
-    },
-    h2: {
-      lineHeight: 1.6,
-      fontSize: 36,
-      fontWeight: 600,
-      fontFamily: 'inter',
-      color: 'white',
-    },
-    h3: {
-      lineHeight: 1.6,
-      fontSize: 28,
-      fontWeight: 600,
-      fontFamily: 'inter',
-      color: 'white',
-    },
-    body1: {
-      lineHeight: 1.6,
-      fontSize: 18,
-      fontWeight: 500,
-      fontFamily: 'inter',
-      color: 'white',
-    },
-  },
-},
-);
 
 function App() {
 
@@ -111,7 +42,8 @@ function App() {
               <ThemeProvider theme={lightTheme}>
                 <CssBaseline />
                 <Routes>
-                  <Route path="/" element={<PileSpacing />} />
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/pile-spacing" element={<PileSpacing />} />
                 </Routes>
               </ThemeProvider>
             </HelixProvider>
