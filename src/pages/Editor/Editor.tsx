@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material"
 import NavDrawer from "../../components/Navigation/NavDrawer"
 import MainEditorContainer from "./MainEditorContainer"
+import SingleEditorContainer from "./SingleEditorContainer"
 
 const Editor = () => {
     return (
@@ -11,7 +12,7 @@ const Editor = () => {
             {/* Data Components */}
             <Stack direction="column" >
                 <MainEditorContainer />
-                <MainEditorContainer />
+                <SingleEditorContainer />
             </Stack>
 
             {/* Three.js Scene */}

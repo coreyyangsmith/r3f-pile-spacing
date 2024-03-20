@@ -18,6 +18,7 @@ import { SelectionContextState, SelectionContextValue } from '../types/Selection
 export const SelectionContext = createContext<SelectionContextValue>({
     state: {
         selection: {
+            selectedSection: 'Conflict',
             selectedPile: null,
             selectedHelix: null
         }
@@ -28,6 +29,7 @@ export const SelectionContext = createContext<SelectionContextValue>({
 export const SelectionProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, setState] = useState<SelectionContextState>({
         selection: {
+            selectedSection: 'Conflict',
             selectedPile: null,
             selectedHelix: null
         }

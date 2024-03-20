@@ -23,9 +23,15 @@ body,
   font-family: 'Outfit';
 }
 
+
+/* Chip Container */
+.active:has(.active) {
+  border: 1px solid #FFEB3B !important;
+}
+
+/* Chip Text */
 .active {
-  color: white !important;
-  background-color: blue;
+  color: #FFEB3B !important;
 }
 
 .configurator {

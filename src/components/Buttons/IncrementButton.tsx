@@ -11,9 +11,10 @@ const IncrementButton = () => {
     }
 
     return (
-        <Stack direction="column"
+        <Stack
+            direction="column"
             sx={{
-                width: "25px",
+                width: "20px",
                 border: '1px solid gray'
 
             }}>
@@ -28,7 +29,6 @@ const IncrementButton = () => {
                 onClick={() => console.log('decrement')}
                 style={imgStyle}
             />
-            <div></div>
         </Stack>
     )
 }

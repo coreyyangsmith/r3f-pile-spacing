@@ -15,6 +15,7 @@ import { Helix } from "../components/Helix";
 
 export interface ISelection {
     // General Settings
+    selectedSection: string;
     selectedPile: Pile | null;
     selectedHelix: Helix | null;
 }
