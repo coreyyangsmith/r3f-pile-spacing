@@ -1,13 +1,14 @@
 import { useTheme } from '@emotion/react'
-import ChipContainer from './ChipContainer';
+import ChipContainer from './SelectionChipContainer';
 import { Stack, Typography } from '@mui/material';
 import Divider from '../../components/Divider';
 import DataComponent from './DataComponent';
 import CTAButton from '../../components/Buttons/CTAButton';
 import TertiaryButton from '../../components/Buttons/TertiaryButton';
 import PrimaryButton from '../../components/Buttons/PrimaryButton';
+import SelectionChipContainer from './SelectionChipContainer';
 
-const SingleEditorContainer = () => {
+const PileMainEditorContainer = () => {
     const theme = useTheme();
 
     return (
@@ -19,7 +20,7 @@ const SingleEditorContainer = () => {
                 padding: "24px 16px 24px 16px"
             }}
         >
-            <ChipContainer />
+            <SelectionChipContainer />
             <Divider />
             <Typography variant="body1" sx={{
                 color: 'white',
@@ -54,4 +55,4 @@ const SingleEditorContainer = () => {
     )
 }
 
-export default SingleEditorContainer
+export default PileMainEditorContainer

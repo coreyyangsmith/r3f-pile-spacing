@@ -2,8 +2,10 @@ import { useSelection } from "../../hooks/useSelection"
 import Chip from "./Chip"
 import { BaseSyntheticEvent } from "react"
 
-const ChipContainer = () => {
+const SelectionChipContainer = () => {
     const selection = useSelection();
+
+    const categories = ['Conflict', 'Pile', 'Helix', 'Settings']
 
     const handleClick = (event: BaseSyntheticEvent) => {
         const target = event?.currentTarget
@@ -17,7 +19,19 @@ const ChipContainer = () => {
         }
     }
 
-
+    const generateChips = (type: string, arr: any) => {
+        return arr.map((item, i) => {
+            return (
+                <Chip
+                    key={i}
+                    onClick={handleClick}
+                    text={item}
+                    type={type}
+                    class={selection?.state.selection.selectedSection === item ? "active" : ""}
+                />
+            )
+        })
+    }
 
     return (
         <div style={{
@@ -26,28 +40,12 @@ const ChipContainer = () => {
             width: "100%",
         }}>
             {/* Chips */}
-            <Chip
-                text="Conflict"
-                onClick={handleClick}
-                type="selection"
-            />
-            <Chip
-                text="Pile"
-                onClick={handleClick}
-                type="selection"
-            />
-            <Chip
-                text="Helix"
-                onClick={handleClick}
-                type="selection"
-            />
-            <Chip
-                text="Settings"
-                onClick={handleClick}
-                type="selection"
-            />
+            {generateChips(
+                'section',
+                categories
+            )}
         </div>
     )
 }
 
-export default ChipContainer
+export default SelectionChipContainer
