@@ -33,12 +33,18 @@ export const SettingsContext = createContext<SettingsContextValue>({
 export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, setState] = useState<SettingsContextState>({
         settings: new Settings(
-            '#082c6c', //backgroundColor: string,
-            true, //axesHelper: boolean,
             true, //lockPiles: boolean,
             true, //showFloor: boolean,
             '#2069e0', //floorColor: string,
+            '#262419', //backgroundColor: string,
+
+            true, //axesHelper: boolean,
+            false, //pileAxesHelper: boolean,
+            false, //helixAxesHelper: boolean,
+
             true, //floorWireframe: boolean,
+            false, //pileWireframe: boolean,
+            false, //helixWireframe: boolean,
         )
     });
 

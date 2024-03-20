@@ -4,12 +4,18 @@ import IncrementButton from '../../components/Buttons/IncrementButton'
 
 type DataComponentProps = {
     value: string,
+    setter: any,
     unit: string,
     text: string,
+    style: string,
 }
 
 const DataComponent = (props: DataComponentProps) => {
     const theme = useTheme();
+
+    const unlockedStyle = { color: theme.palette.primary6.main, }
+    const lockedStyle = { color: theme.palette.dark6.main, }
+
     return (
         <div style={{
             paddingLeft: "16px",
@@ -20,17 +26,27 @@ const DataComponent = (props: DataComponentProps) => {
             alignItems: 'center',
         }}>
             <Stack direction="row" spacing={1}>
-                <Typography variant='body1'
-                    style={{
-                        color: theme.palette.primary6.main,
-                    }}><u><b>{props.value} {props.unit}</b></u></Typography>
+                {props.style === 'unlocked'
+                    ?
+                    <Typography variant='body1'
+                        style={unlockedStyle}><u><b>
+                            {props.value} {props.unit}
+                        </b></u></Typography>
+                    :
+                    <Typography variant='body1'
+                        style={lockedStyle}><u><b>
+                            {props.value} {props.unit}
+                        </b></u></Typography>
+                }
+
                 <Typography
                     variant='body1'
                     style={{
                         color: theme.palette.dark6.main,
                     }}>{props.text}</Typography>
             </Stack>
-            <IncrementButton />
+
+            <IncrementButton value={parseInt(props.value)} setter={props.setter} />
         </div>
     )
 }

@@ -7,12 +7,11 @@ import CTAButton from '../../components/Buttons/CTAButton';
 import TertiaryButton from '../../components/Buttons/TertiaryButton';
 import PrimaryButton from '../../components/Buttons/PrimaryButton';
 import SelectionChipContainer from './SelectionChipContainer';
+import CheckboxComponent from './CheckboxComponent';
 import PileSelectionChipContainer from './PileSelectionChipContainer';
-import { useSelection } from '../../hooks/useSelection';
 
-const HelixMainEditorContainer = () => {
+const ConflictMainEditorContainer = () => {
     const theme = useTheme();
-    const selection = useSelection();
 
     return (
         <div
@@ -23,48 +22,32 @@ const HelixMainEditorContainer = () => {
                 borderRadius: "25px",
                 backgroundColor: theme.palette.mixed2.main,
                 padding: "24px 16px 24px 16px",
-                height: "50%",
+                height: "100%",
             }}
         >
             <SelectionChipContainer />
+            <Divider />
+            <Typography variant="body1" sx={{
+                color: 'white',
+            }}>
+                Conflict Settings
+            </Typography>
+
+            {/* Form Info */}
             <div style={{ height: '16px' }} />
             <PileSelectionChipContainer />
-            <Divider />
+            <div style={{ height: '16px' }} />
+            <PileSelectionChipContainer />
 
             <div style={{
                 display: 'flex',
-                flexGrow: '1',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                flexGrow: 1,
             }}>
-                {selection?.state.selection.selectedPile ?
-                    <>
-                        <Typography variant='body1'
-                            style={{
-                                color: 'white',
-                            }}>
-                            Group Helix Settings
-                        </Typography>
-
-                        {/* Form Info */}
-                        <DataComponent value='8' unit="ea" text="helices in design" />
-                        <DataComponent value='1.25' unit="m" text="diameter" />
-                        <DataComponent value='0.50' unit="m" text="first dist from bottom" />
-                        <DataComponent value='2.50' unit="m" text="spacing between" />
-                    </> :
-                    <Typography variant='body1'
-                        style={{
-                            display: 'flex',
-                            height: '100%',
-                            color: theme.palette.primary6.main,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}>
-                        No Pile Selected
-                    </Typography>}
+                {/* Conflcit Info Here*/}
             </div>
-            <Divider />
 
+            <Divider />
             {/* Button Container */}
             <Stack
                 direction="row"
@@ -79,8 +62,8 @@ const HelixMainEditorContainer = () => {
                 <TertiaryButton text="Cancel" onClick={() => console.log("Cancel")} />
             </Stack>
 
-        </div >
+        </div>
     )
 }
 
-export default HelixMainEditorContainer
+export default ConflictMainEditorContainer

@@ -12,45 +12,57 @@ const PileSingleEditorContainer = () => {
     const theme = useTheme();
     const selection = useSelection();
 
-
-
     return (
         <div
             style={{
+                display: 'flex',
+                flexDirection: 'column',
                 width: "350px",
                 borderRadius: "25px",
                 backgroundColor: theme.palette.mixed2.main,
                 padding: "24px 16px 24px 16px",
+                height: "50%"
             }}
         >
             <PileSelectionChipContainer />
             <Divider />
 
             {/* Conditional Form Info */}
-            {selection?.state.selection.selectedPile ?
-                <>
-                    <Stack direction="row"
-                        sx={{
-                            marginBottom: '16px',
+            <div
+                style={{
+                    display: 'flex',
+                    flexGrow: '1',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                }}>
+                {selection?.state.selection.selectedPile ?
+                    <>
+                        <Stack direction="row"
+                            sx={{
+                                marginBottom: '16px',
+                            }}>
+                            <PositionDataComponent text="X" value="1.00" />
+                            <PositionDataComponent text="Y" value="1.00" />
+                            <PositionDataComponent text="Z" value="1.00" />
+                        </Stack>
+                        <DataComponent value='0' unit="deg" text="rotation" />
+                        <DataComponent value='10' unit="m" text="length" />
+                        <DataComponent value='235' unit="cm" text="diameter" />
+                        <DataComponent value='5' unit="degrees" text="batter angle" />
+                    </>
+                    :
+                    <Typography variant='body1'
+                        style={{
+                            display: 'flex',
+                            height: '100%',
+                            color: theme.palette.primary6.main,
+                            justifyContent: 'center',
+                            alignItems: 'center',
                         }}>
-                        <PositionDataComponent text="X" value="1.00" />
-                        <PositionDataComponent text="Y" value="1.00" />
-                        <PositionDataComponent text="Z" value="1.00" />
-                    </Stack>
-                    <DataComponent value='0' unit="deg" text="rotation" />
-                    <DataComponent value='10' unit="m" text="length" />
-                    <DataComponent value='235' unit="cm" text="diameter" />
-                    <DataComponent value='5' unit="degrees" text="batter angle" />
-                </>
-                :
-                <Typography variant='body1'
-                    style={{
-                        color: theme.palette.primary6.main,
-                        textAlign: 'center',
-                    }}>
-                    No Pile Selected
-                </Typography>
-            }
+                        No Pile Selected
+                    </Typography>
+                }
+            </div>
 
             <Divider />
 

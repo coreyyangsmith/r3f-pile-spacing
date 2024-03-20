@@ -13,15 +13,20 @@ import { Dispatch, SetStateAction } from "react";
 import Settings from "../components/Settings";
 
 export interface ISettings {
-    // General Settings
-    backgroundColor: string;
-    axesHelper: boolean;
+    // Scene Settings
     lockPiles: boolean;
-
-    // Floor Settings
     showFloor: boolean,
     floorColor: string,
+    backgroundColor: string;
+
+    // Debug Settings
+    axesHelper: boolean;
+    pileAxesHelper: boolean;
+    helixAxesHelper: boolean;
+
     floorWireframe: boolean,
+    pileWireframe: boolean,
+    helixWireframe: boolean;
 }
 
 export type SettingsContextState = {

@@ -13,27 +13,46 @@ It is a core object in the Pile Visualization.
 import { ISettings } from "../types/Settings";
 
 export default class Settings implements ISettings {
-    backgroundColor: string;
-    axesHelper: boolean;
     lockPiles: boolean;
     showFloor: boolean;
     floorColor: string;
+    backgroundColor: string;
+
+    axesHelper: boolean;
+    pileAxesHelper: boolean;
+    helixAxesHelper: boolean;
+
     floorWireframe: boolean;
+    pileWireframe: boolean;
+    helixWireframe: boolean;
 
     constructor(
-        backgroundColor: string = '#121212',
-        axesHelper: boolean = false,
         lockPiles: boolean = true,
         showFloor: boolean = true,
         floorColor: string = '#121212',
+        backgroundColor: string = '#121212',
+
+
+        axesHelper: boolean = false,
+        pileAxesHelper: boolean = false,
+        helixAxesHelper: boolean = false,
+
         floorWireframe: boolean = true,
+        pileWireframe: boolean = false,
+        helixWireframe: boolean = false,
 
     ) {
-        this.backgroundColor = backgroundColor;
-        this.axesHelper = axesHelper;
         this.lockPiles = lockPiles;
         this.showFloor = showFloor;
         this.floorColor = floorColor;
+        this.backgroundColor = backgroundColor;
+
+        this.axesHelper = axesHelper;
+        this.pileAxesHelper = pileAxesHelper;
+        this.helixAxesHelper = helixAxesHelper;
+
         this.floorWireframe = floorWireframe;
+        this.pileWireframe = pileWireframe;
+        this.helixWireframe = helixWireframe;
     }
 }

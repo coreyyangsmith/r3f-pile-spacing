@@ -7,17 +7,26 @@ import CTAButton from '../../components/Buttons/CTAButton';
 import TertiaryButton from '../../components/Buttons/TertiaryButton';
 import PrimaryButton from '../../components/Buttons/PrimaryButton';
 import SelectionChipContainer from './SelectionChipContainer';
+import { useState } from 'react';
+import { usePiles } from '../../hooks/usePiles';
 
 const PileMainEditorContainer = () => {
     const theme = useTheme();
+    const piles = usePiles();
+
+    const [count, setCount] = useState(piles?.state.piles.number as string);
+
 
     return (
         <div
             style={{
+                display: 'flex',
+                flexDirection: 'column',
                 width: "350px",
                 borderRadius: "25px",
                 backgroundColor: theme.palette.mixed2.main,
-                padding: "24px 16px 24px 16px"
+                padding: "24px 16px 24px 16px",
+                height: "50%",
             }}
         >
             <SelectionChipContainer />
@@ -29,12 +38,18 @@ const PileMainEditorContainer = () => {
             </Typography>
 
             {/* Form Info */}
-            <DataComponent value='8' unit="ea" text="piles in design" />
-            <DataComponent value='10' unit="m" text="length" />
-            <DataComponent value='235' unit="cm" text="diameter" />
-            <DataComponent value='5' unit="degrees" text="batter angle" />
-            <DataComponent value='1.50' unit="m" text="spacing radius" />
-
+            <div style={{
+                display: 'flex',
+                flexGrow: '1',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+            }}>
+                <DataComponent value={count} setter={setCount} unit="ea" text="piles in design" />
+                <DataComponent value='10' unit="m" text="length" />
+                <DataComponent value='235' unit="cm" text="diameter" />
+                <DataComponent value='5' unit="degrees" text="batter angle" />
+                <DataComponent value='1.50' unit="m" text="spacing radius" />
+            </div>
             <Divider />
 
             {/* Button Container */}
