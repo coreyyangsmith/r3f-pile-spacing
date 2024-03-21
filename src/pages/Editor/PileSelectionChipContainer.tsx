@@ -15,18 +15,29 @@ const PileSelectionChipContainer = () => {
             const pileId = extractNumberFromText(target.id)! - 1;
             const pile = getPileObjectFromPileId(piles?.state.piles, pileId)
 
-            selection?.setState({
-                selection: {
-                    ...selection.state.selection,
-                    selectedPile: pile,
-                    selectedHelix: null
-                }
-            })
+            if (selection?.state.selection.selectedPile?.id === pileId) {
+                // Deselect the target if it is already part of the selection
+                selection?.setState({
+                    selection: {
+                        ...selection.state.selection,
+                        selectedPile: null,
+                        selectedHelix: null
+                    }
+                })
+            } else {
+                // Select the target if it is not part of the selection
+                selection?.setState({
+                    selection: {
+                        ...selection.state.selection,
+                        selectedPile: pile,
+                        selectedHelix: null
+                    }
+                })
+            }
         }
     }
 
     const generateChips = (type: string, arr: any) => {
-        console.log(arr)
         return arr.map((item, i) => {
             const pileText = "Pile " + (item.id + 1)
             return (

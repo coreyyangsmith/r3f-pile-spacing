@@ -2,6 +2,29 @@
 import { createTheme } from "@mui/material";
 
 const fontFamily = "Outfit"
+import {
+    primary1,
+    primary2,
+    primary3,
+    primary4,
+    primary5,
+    primary6,
+    dark1,
+    dark2,
+    dark3,
+    dark4,
+    dark5,
+    dark6,
+    mixed1,
+    mixed2,
+    mixed3,
+    mixed4,
+    mixed5,
+    mixed6,
+    text_black,
+    text_dg,
+    text_lg
+} from "./Color"
 
 declare module "@mui/material/styles" {
     interface Palette {
@@ -70,26 +93,26 @@ declare module "@mui/material/Typography" {
 export const lightTheme = createTheme({
     palette: {
         mode: "light",
-        primary1: { main: "#FFEB3B", },
-        primary2: { main: "#FFED58", },
-        primary3: { main: "#FFEF70", },
-        primary4: { main: "#FFF186", },
-        primary5: { main: "#FFF49B", },
-        primary6: { main: "#FFF6AF", },
+        primary1: { main: primary1, },
+        primary2: { main: primary2, },
+        primary3: { main: primary3, },
+        primary4: { main: primary4, },
+        primary5: { main: primary5, },
+        primary6: { main: primary6, },
 
-        dark1: { main: "#121212", },
-        dark2: { main: "#282828", },
-        dark3: { main: "#3F3F3F", },
-        dark4: { main: "#575757", },
-        dark5: { main: "#717171", },
-        dark6: { main: "#8B8B8B", },
+        dark1: { main: dark1, },
+        dark2: { main: dark2, },
+        dark3: { main: dark3, },
+        dark4: { main: dark4, },
+        dark5: { main: dark5, },
+        dark6: { main: dark6, },
 
-        mixed1: { main: "#262419", },
-        mixed2: { main: "#3B382E", },
-        mixed3: { main: "#504E45", },
-        mixed4: { main: "#67655C", },
-        mixed5: { main: "#7E7D75", },
-        mixed6: { main: "#97958F", },
+        mixed1: { main: mixed1, },
+        mixed2: { main: mixed2, },
+        mixed3: { main: mixed3, },
+        mixed4: { main: mixed4, },
+        mixed5: { main: mixed5, },
+        mixed6: { main: mixed6, },
 
         text_black: { main: "#000000", },
         text_dg: { main: "#6d6e71", },

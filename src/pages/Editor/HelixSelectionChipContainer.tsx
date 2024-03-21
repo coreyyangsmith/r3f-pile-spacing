@@ -25,12 +25,24 @@ const HelixSelectionChipContainer = () => {
                 helixId
             )
 
-            selection?.setState({
-                selection: {
-                    ...selection.state.selection,
-                    selectedHelix: helix
-                }
-            })
+            // Check if the target is already selected
+            if (selection?.state.selection.selectedHelix?.id === helix?.id) {
+                // Deselect the target
+                selection?.setState({
+                    selection: {
+                        ...selection.state.selection,
+                        selectedHelix: null
+                    }
+                })
+            } else {
+                // Select the target
+                selection?.setState({
+                    selection: {
+                        ...selection.state.selection,
+                        selectedHelix: helix
+                    }
+                })
+            }
         }
     }
 

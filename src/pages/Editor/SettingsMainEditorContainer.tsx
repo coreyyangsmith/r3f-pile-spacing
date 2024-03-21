@@ -12,6 +12,7 @@ import { useSettings } from '../../hooks/useSettings';
 import BackgroundColor from '../PileSpacing/SettingsConfig/BackgroundColor';
 import ColorComponent from './ColorComponent';
 import { useEffect, useState } from 'react';
+import { backgroundColors, floorColors } from '../../themes/Color';
 
 const SettingsMainEditorContainer = () => {
     const theme = useTheme();
@@ -85,12 +86,14 @@ const SettingsMainEditorContainer = () => {
                 text="Show Floor" />
             <ColorComponent
                 value={floorColor}
+                colors={floorColors}
                 setter={setFloorColor}
                 text="Floor Color" />
             <ColorComponent
                 value={backgroundColor}
+                colors={backgroundColors}
                 setter={setBackgroundColor}
-                text="Background Color" />
+                text="BG Color" />
 
             <Typography variant="body1" sx={{
                 color: 'white',
