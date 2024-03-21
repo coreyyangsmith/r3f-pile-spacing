@@ -13,14 +13,15 @@ const Chip = (props: ChipProps) => {
     const theme = useTheme();
 
     const chipStyle = {
+        display: 'flex',
         border: '1px solid ' + theme.palette.dark6.main,
         borderRadius: '50px',
         height: '25px',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         padding: '4px 16px 4px 16px',
         marginRight: '8px',
+        whiteSpace: 'nowrap',
     }
 
     const typographyStyle = {

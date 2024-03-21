@@ -3,12 +3,19 @@ import { Stack, Typography } from '@mui/material'
 import IncrementButton from '../../components/Buttons/IncrementButton'
 
 type PositionDataComponentProps = {
+    value: number,
+    setter: React.Dispatch<React.SetStateAction<number>>,
     text: string
-    value: string,
+    style: string,
 }
 
 const PositionDataComponent = (props: PositionDataComponentProps) => {
     const theme = useTheme();
+
+    const unlockedStyle = { color: theme.palette.primary6.main, }
+    const lockedStyle = { color: theme.palette.dark6.main, }
+    const style = props.style === 'unlocked' ? unlockedStyle : lockedStyle;
+
     return (
         <div style={{
             marginTop: '4px',
@@ -23,20 +30,17 @@ const PositionDataComponent = (props: PositionDataComponentProps) => {
                 }}>
 
                 <Typography variant='body1'
-                    style={{
-                        color: theme.palette.dark6.main,
-                    }}>
+                    style={lockedStyle}>
                     {props.text}
                 </Typography>
 
                 <Typography variant='body1'
-                    style={{
-                        color: theme.palette.primary6.main,
-                        paddingRight: '4px'
-                    }}>
+                    style={style}>
                     {props.value}
                 </Typography>
-                <IncrementButton />
+
+
+                <IncrementButton value={props.value} setter={props.setter} style={props.style} />
             </Stack>
 
         </div>

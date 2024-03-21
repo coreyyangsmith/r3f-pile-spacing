@@ -20,7 +20,7 @@ export interface ISettings {
     backgroundColor: string;
 
     // Debug Settings
-    axesHelper: boolean;
+    floorAxesHelper: boolean;
     pileAxesHelper: boolean;
     helixAxesHelper: boolean;
 

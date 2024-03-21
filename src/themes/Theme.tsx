@@ -153,7 +153,7 @@ export const lightTheme = createTheme({
         },
         body1: {
             lineHeight: 1.6,
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 400,
             fontFamily: fontFamily,
             color: "black",

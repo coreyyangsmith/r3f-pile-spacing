@@ -1,8 +1,12 @@
 import { useTexture } from "@react-three/drei";
 import * as THREE from 'three'
 
+type MeshGalvanizedMetalMaterialProps = {
+    wireframe: boolean
+}
 
-const MeshGalvanizedMetalMaterial = () => {
+
+const MeshGalvanizedMetalMaterial = (props: MeshGalvanizedMetalMaterialProps) => {
     const colorMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_BaseColor.png')
     const normalMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Normal.png')
     const roughnessMap = useTexture('/materials/galvanizedSteel/GalvanizedSteel01_1K_Roughness.png')
@@ -26,7 +30,7 @@ const MeshGalvanizedMetalMaterial = () => {
             normalMap={normalMap}
             roughnessMap={roughnessMap}
             aoMap={aoMap}
-            wireframe={false}
+            wireframe={props.wireframe}
         />
     )
 }

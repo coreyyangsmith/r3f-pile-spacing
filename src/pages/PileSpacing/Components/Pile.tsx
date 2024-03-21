@@ -12,6 +12,7 @@ Given props from the PileSpacingExperience.tsx, this component will generate the
 // Components
 import { Helices } from "../../../components/Helix"
 import { useHelicesFromPileId } from "../../../hooks/useHelicesFromPileId";
+import { useSettings } from "../../../hooks/useSettings";
 import MeshGalvanizedMetalMaterial from "../../../utils/MeshGalvanizedMetalMaterial";
 import Helix from "./Helix";
 
@@ -27,6 +28,7 @@ type PileProps = {
 }
 
 const Pile = (props: PileProps) => {
+    const settings = useSettings()
     const helices = useHelicesFromPileId(props.id)
 
     const generateHelices = (helices: Helices) => {
@@ -59,7 +61,7 @@ const Pile = (props: PileProps) => {
             props.position[2]
         ]}
         rotation={[props.rotation[0], props.rotation[1], props.rotation[2]]}>
-        <axesHelper />
+        {settings?.state.settings.pileAxesHelper && <axesHelper scale={[1, 1, 1]} />}
 
         {/* Main Pipe */}
         <mesh position={[
@@ -73,7 +75,7 @@ const Pile = (props: PileProps) => {
                 0
             ]}>
             <cylinderGeometry args={[props.diameter / 2, props.diameter / 2, props.length, 16, 1]} />
-            <MeshGalvanizedMetalMaterial />
+            <MeshGalvanizedMetalMaterial wireframe={settings?.state.settings.pileWireframe} />
         </mesh>
 
         {/* Bottom Cone */}
@@ -88,7 +90,7 @@ const Pile = (props: PileProps) => {
                 Math.PI
             ]}>
             <coneGeometry args={[props.diameter / 2, props.diameter / 2, 16, 1, false, 0, Math.PI * 2]} />
-            <MeshGalvanizedMetalMaterial />
+            <MeshGalvanizedMetalMaterial wireframe={settings?.state.settings.pileWireframe} />
         </mesh>
 
         {helices && generateHelices(helices)}

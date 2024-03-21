@@ -53,17 +53,22 @@ const PileSelectionChipContainer = () => {
     }
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            width: "100%",
-        }}>
-            {generateChips(
-                'piles',
-                piles?.state.piles.piles
-            )}
-        </div>
+        <div
+            className="scrollable-chip-container"
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                width: "300px",
+                overflowX: 'scroll',
+            }}>
+            {
+                generateChips(
+                    'piles',
+                    piles?.state.piles.piles
+                )
+            }
+        </div >
     )
 }
 

@@ -7,10 +7,32 @@ import PrimaryButton from '../../components/Buttons/PrimaryButton';
 import PileSelectionChipContainer from './PileSelectionChipContainer';
 import PositionDataComponent from './PositionDataComponent';
 import { useSelection } from '../../hooks/useSelection';
+import { useSettings } from '../../hooks/useSettings';
+import { useEffect, useState } from 'react';
+import { getPileObjectFromPileId } from '../../utils/PileUtils';
 
 const PileSingleEditorContainer = () => {
     const theme = useTheme();
     const selection = useSelection();
+    const settings = useSettings();
+
+    const selectedPile = selection?.state.selection.selectedPile
+    console.log(selectedPile)
+
+    const [xPos, setXPos] = useState(selectedPile?.x as number);
+    const [yPos, setYPos] = useState(selectedPile?.y as number);
+    const [zPos, setZPos] = useState(selectedPile?.z as number);
+    const [rotation, setRotation] = useState(selectedPile?.rotation as number);
+    const [length, setLength] = useState(selectedPile?.length as number);
+    const [diameter, setDiameter] = useState(selectedPile?.diameter as number);
+    const [batterAngle, setBatterAngle] = useState(selectedPile?.batterAngle as number);
+
+    // Individual pile settings edtiable when lockPiles = False
+    const style = settings?.state.settings.lockPiles ? 'locked' : 'unlocked';
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div
@@ -24,9 +46,9 @@ const PileSingleEditorContainer = () => {
                 height: "50%"
             }}
         >
+
             <PileSelectionChipContainer />
             <Divider />
-
             {/* Conditional Form Info */}
             <div
                 style={{
@@ -41,14 +63,50 @@ const PileSingleEditorContainer = () => {
                             sx={{
                                 marginBottom: '16px',
                             }}>
-                            <PositionDataComponent text="X" value="1.00" />
-                            <PositionDataComponent text="Y" value="1.00" />
-                            <PositionDataComponent text="Z" value="1.00" />
+                            <PositionDataComponent
+                                value={xPos}
+                                setter={setXPos}
+                                text="X"
+                                style={style} />
+                            <PositionDataComponent
+                                value={yPos}
+                                setter={setYPos}
+                                text="Y"
+                                style={style} />
+                            <PositionDataComponent
+                                value={zPos}
+                                setter={setZPos}
+                                text="Z"
+                                style={style} />
                         </Stack>
-                        <DataComponent value='0' unit="deg" text="rotation" />
-                        <DataComponent value='10' unit="m" text="length" />
-                        <DataComponent value='235' unit="cm" text="diameter" />
-                        <DataComponent value='5' unit="degrees" text="batter angle" />
+                        <DataComponent
+                            value={rotation}
+                            setter={setRotation}
+                            unit="deg"
+                            text="rotation"
+                            style={style}
+                        />
+                        <DataComponent
+                            value={length}
+                            setter={setLength}
+                            unit="m"
+                            text="length"
+                            style={style}
+                        />
+                        <DataComponent
+                            value={diameter}
+                            setter={setDiameter}
+                            unit="cm"
+                            text="diameter"
+                            style={style}
+                        />
+                        <DataComponent
+                            value={batterAngle}
+                            setter={setBatterAngle}
+                            unit="degrees"
+                            text="batter angle"
+                            style={style}
+                        />
                     </>
                     :
                     <Typography variant='body1'

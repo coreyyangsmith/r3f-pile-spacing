@@ -3,8 +3,8 @@ import { Stack, Typography } from '@mui/material'
 import IncrementButton from '../../components/Buttons/IncrementButton'
 
 type DataComponentProps = {
-    value: string,
-    setter: any,
+    value: number,
+    setter: React.Dispatch<React.SetStateAction<number>>,
     unit: string,
     text: string,
     style: string,
@@ -15,6 +15,7 @@ const DataComponent = (props: DataComponentProps) => {
 
     const unlockedStyle = { color: theme.palette.primary6.main, }
     const lockedStyle = { color: theme.palette.dark6.main, }
+    const style = props.style === 'unlocked' ? unlockedStyle : lockedStyle;
 
     return (
         <div style={{
@@ -26,19 +27,10 @@ const DataComponent = (props: DataComponentProps) => {
             alignItems: 'center',
         }}>
             <Stack direction="row" spacing={1}>
-                {props.style === 'unlocked'
-                    ?
-                    <Typography variant='body1'
-                        style={unlockedStyle}><u><b>
-                            {props.value} {props.unit}
-                        </b></u></Typography>
-                    :
-                    <Typography variant='body1'
-                        style={lockedStyle}><u><b>
-                            {props.value} {props.unit}
-                        </b></u></Typography>
-                }
-
+                <Typography variant='body1'
+                    style={style}><u><b>
+                        {props.value} {props.unit}
+                    </b></u></Typography>
                 <Typography
                     variant='body1'
                     style={{
@@ -46,7 +38,7 @@ const DataComponent = (props: DataComponentProps) => {
                     }}>{props.text}</Typography>
             </Stack>
 
-            <IncrementButton value={parseInt(props.value)} setter={props.setter} />
+            <IncrementButton value={props.value} setter={props.setter} style={props.style} />
         </div>
     )
 }

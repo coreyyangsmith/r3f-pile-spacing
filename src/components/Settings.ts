@@ -18,7 +18,7 @@ export default class Settings implements ISettings {
     floorColor: string;
     backgroundColor: string;
 
-    axesHelper: boolean;
+    floorAxesHelper: boolean;
     pileAxesHelper: boolean;
     helixAxesHelper: boolean;
 
@@ -33,7 +33,7 @@ export default class Settings implements ISettings {
         backgroundColor: string = '#121212',
 
 
-        axesHelper: boolean = false,
+        floorAxesHelper: boolean = false,
         pileAxesHelper: boolean = false,
         helixAxesHelper: boolean = false,
 
@@ -47,7 +47,7 @@ export default class Settings implements ISettings {
         this.floorColor = floorColor;
         this.backgroundColor = backgroundColor;
 
-        this.axesHelper = axesHelper;
+        this.floorAxesHelper = floorAxesHelper;
         this.pileAxesHelper = pileAxesHelper;
         this.helixAxesHelper = helixAxesHelper;
 

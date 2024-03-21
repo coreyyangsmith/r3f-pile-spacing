@@ -27,7 +27,7 @@ const HelixMainEditorContainer = () => {
             }}
         >
             <SelectionChipContainer />
-            <div style={{ height: '16px' }} />
+            <div style={{ marginTop: '16px' }} />
             <PileSelectionChipContainer />
             <Divider />
 

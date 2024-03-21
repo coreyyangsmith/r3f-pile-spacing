@@ -22,7 +22,7 @@ const SettingsMainEditorContainer = () => {
     const [showFloor, setShowFloor] = useState(settings?.state.settings.showFloor)
     const [floorColor, setFloorColor] = useState(settings?.state.settings.floorColor)
     const [backgroundColor, setBackgroundColor] = useState(settings?.state.settings.backgroundColor)
-    const [axesHelper, setAxesHelper] = useState(settings?.state.settings.axesHelper)
+    const [floorAxesHelper, setFloorAxesHelper] = useState(settings?.state.settings.floorAxesHelper)
     const [pileAxesHelper, setPileAxesHelper] = useState(settings?.state.settings.pileAxesHelper)
     const [helixAxesHelper, setHelixAxesHelper] = useState(settings?.state.settings.helixAxesHelper)
     const [floorWireframe, setFloorWireframe] = useState(settings?.state.settings.floorWireframe)
@@ -36,7 +36,7 @@ const SettingsMainEditorContainer = () => {
                 showFloor: showFloor,
                 floorColor: floorColor,
                 backgroundColor: backgroundColor,
-                axesHelper: axesHelper,
+                floorAxesHelper: floorAxesHelper,
                 pileAxesHelper: pileAxesHelper,
                 helixAxesHelper: helixAxesHelper,
                 floorWireframe: floorWireframe,
@@ -48,7 +48,7 @@ const SettingsMainEditorContainer = () => {
         showFloor,
         floorColor,
         backgroundColor,
-        axesHelper,
+        floorAxesHelper,
         pileAxesHelper,
         helixAxesHelper,
         floorWireframe,
@@ -102,8 +102,8 @@ const SettingsMainEditorContainer = () => {
                 Debug Settings
             </Typography>
             <CheckboxComponent
-                value={axesHelper}
-                setter={setAxesHelper}
+                value={floorAxesHelper}
+                setter={setFloorAxesHelper}
                 text="Show Floor Axes Helper" />
             <CheckboxComponent
                 value={pileAxesHelper}

@@ -17,6 +17,7 @@ import * as THREE from 'three'
 import MeshGalvanizedMetalMaterial from '../../../utils/MeshGalvanizedMetalMaterial.jsx'
 import { Pile } from "../../../components/Pile.js";
 import { usePileFromId } from "../../../hooks/usePileFromId.js";
+import { useSettings } from "../../../hooks/useSettings.js";
 
 type HelixProps = {
     key: number,
@@ -37,6 +38,7 @@ type HelixProps = {
 
 const Helix = (props: HelixProps) => {
     const pile = usePileFromId(props.pileRef.id);
+    const settings = useSettings();
 
     const helixWidth = 1;
     const helixSize = props.diameter;
@@ -102,8 +104,8 @@ const Helix = (props: HelixProps) => {
 
     return (
         <mesh ref={ref} position={calculateHelixPosition()}>
-            <axesHelper />
-            <MeshGalvanizedMetalMaterial />
+            {settings?.state.settings.helixAxesHelper && <axesHelper scale={[1, 1, 1]} />}
+            <MeshGalvanizedMetalMaterial wireframe={settings?.state.settings.helixWireframe} />
         </mesh>
     )
 }

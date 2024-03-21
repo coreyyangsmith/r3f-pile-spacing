@@ -32,7 +32,7 @@ const PileSpacingExperience = () => {
         if (settings?.state.settings?.showFloor) {
             return (
                 <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
-                    {settings?.state.settings.axesHelper && <axesHelper scale={[10, 10, 10]} />}
+                    {settings?.state.settings.floorAxesHelper && <axesHelper scale={[10, 10, 10]} />}
                     <planeGeometry args={[10, 10, 10]} />
                     <meshBasicMaterial color={settings?.state.settings.floorColor} wireframe={settings?.state.settings.floorWireframe} />
                 </mesh>

@@ -19,12 +19,18 @@ import Settings from '../components/Settings.ts';
 export const SettingsContext = createContext<SettingsContextValue>({
     state: {
         settings: {
-            backgroundColor: '#121212',
-            axesHelper: false,
             lockPiles: true,
             showFloor: true,
             floorColor: '#121212',
-            floorWireframe: true
+            backgroundColor: '#121212',
+
+            floorAxesHelper: false,
+            pileAxesHelper: false,
+            helixAxesHelper: false,
+
+            floorWireframe: true,
+            pileWireframe: false,
+            helixWireframe: false,
         }
     },
     setState: () => { }

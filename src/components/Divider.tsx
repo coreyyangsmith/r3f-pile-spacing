@@ -7,9 +7,9 @@ const Divider = () => {
             width: '100%',
             height: '2px',
             backgroundColor: theme.palette.mixed3.main,
-            margin: '16px 0 16px 0'
+            marginTop: '16px',
+            marginBottom: '8px',
         }}>
-
         </div>
     )
 }
