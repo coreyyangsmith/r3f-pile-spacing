@@ -4,6 +4,11 @@ import TertiaryButton from "../Buttons/TertiaryButton"
 import TertiaryNavigationButton from "../Buttons/TertiaryNavigationButton"
 
 const NavBar = () => {
+    const smallLogoPath = "/icons/logo-small.png"
+    const logoColor = {
+        filter: 'invert(100%) sepia(99%) saturate(100%) hue-rotate(81deg) brightness(111%) contrast(0%)',
+    }
+
     return (
         <Stack direction="row"
             style={{
@@ -17,8 +22,17 @@ const NavBar = () => {
                 border: "1px solid gray",
                 borderRadius: "50%",
                 height: '50px',
-                width: '50px'
+                width: '50px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}>
+                <img
+                    src={smallLogoPath}
+                    style={logoColor}
+                    width="75%"
+                    alt="icon" />
+
             </div>
 
             {/* Middle Navigation */}
