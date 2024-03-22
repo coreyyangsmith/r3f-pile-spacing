@@ -91,12 +91,16 @@ const PileMainEditorContainer = () => {
                 <DataComponent
                     value={count}
                     setter={setCount}
+                    step={1}
+                    precision={0}
                     style={style}
                     unit="ea"
                     text="piles in design" />
                 <DataComponent
                     value={length}
                     setter={setLength}
+                    step={0.25}
+                    precision={2}
                     unit="m"
                     style={style}
                     text="length"
@@ -104,6 +108,8 @@ const PileMainEditorContainer = () => {
                 <DataComponent
                     value={diameter}
                     setter={setDiameter}
+                    step={0.25}
+                    precision={2}
                     unit="cm"
                     style={style}
                     text="diameter"
@@ -111,6 +117,8 @@ const PileMainEditorContainer = () => {
                 <DataComponent
                     value={batterAngle}
                     setter={setBatterAngle}
+                    step={1}
+                    precision={0}
                     unit="degrees"
                     style={style}
                     text="batter angle"
@@ -118,6 +126,8 @@ const PileMainEditorContainer = () => {
                 <DataComponent
                     value={spacingRadius}
                     setter={setSpacingRadius}
+                    step={0.25}
+                    precision={2}
                     unit="m"
                     style={style}
                     text="spacing radius" />

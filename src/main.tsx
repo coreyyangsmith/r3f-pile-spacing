@@ -9,11 +9,11 @@ This is the root react component for the entire project.
 */
 
 // Imports
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
 
 // Components
+import React from 'react'
 import App from './App.tsx'
 
 // Styling
@@ -24,5 +24,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

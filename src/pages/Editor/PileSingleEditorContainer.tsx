@@ -8,8 +8,9 @@ import PileSelectionChipContainer from './PileSelectionChipContainer';
 import PositionDataComponent from './PositionDataComponent';
 import { useSelection } from '../../hooks/useSelection';
 import { useSettings } from '../../hooks/useSettings';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getPileObjectFromPileId } from '../../utils/PileUtils';
+import PositionDataComponentTest from './PositionDataComponentTest';
 
 const PileSingleEditorContainer = () => {
     const theme = useTheme();
@@ -17,22 +18,21 @@ const PileSingleEditorContainer = () => {
     const settings = useSettings();
 
     const selectedPile = selection?.state.selection.selectedPile
-    console.log(selectedPile)
 
-    const [xPos, setXPos] = useState(selectedPile?.x as number);
-    const [yPos, setYPos] = useState(selectedPile?.y as number);
-    const [zPos, setZPos] = useState(selectedPile?.z as number);
-    const [rotation, setRotation] = useState(selectedPile?.rotation as number);
-    const [length, setLength] = useState(selectedPile?.length as number);
-    const [diameter, setDiameter] = useState(selectedPile?.diameter as number);
-    const [batterAngle, setBatterAngle] = useState(selectedPile?.batterAngle as number);
+    const [xPos, setXPos] = useState(selectedPile?.x);
+    const [yPos, setYPos] = useState(selectedPile?.y);
+    const [zPos, setZPos] = useState(selectedPile?.z);
+    const [rotation, setRotation] = useState(selectedPile?.rotation);
+    const [length, setLength] = useState(selectedPile?.length);
+    const [diameter, setDiameter] = useState(selectedPile?.diameter);
+    const [batterAngle, setBatterAngle] = useState(selectedPile?.batterAngle);
 
     // Individual pile settings edtiable when lockPiles = False
     const style = settings?.state.settings.lockPiles ? 'locked' : 'unlocked';
 
     useEffect(() => {
-
-    }, [])
+        console.log('new pile selected')
+    }, [selectedPile])
 
     return (
         <div
@@ -66,22 +66,30 @@ const PileSingleEditorContainer = () => {
                             <PositionDataComponent
                                 value={xPos}
                                 setter={setXPos}
-                                text="X"
+                                step={0.25}
+                                precision={2}
+                                text="Y"
                                 style={style} />
                             <PositionDataComponent
                                 value={yPos}
                                 setter={setYPos}
+                                step={0.25}
+                                precision={2}
                                 text="Y"
                                 style={style} />
                             <PositionDataComponent
                                 value={zPos}
                                 setter={setZPos}
+                                step={0.25}
+                                precision={2}
                                 text="Z"
                                 style={style} />
                         </Stack>
                         <DataComponent
                             value={rotation}
                             setter={setRotation}
+                            step={2}
+                            precision={2}
                             unit="deg"
                             text="rotation"
                             style={style}
@@ -89,6 +97,8 @@ const PileSingleEditorContainer = () => {
                         <DataComponent
                             value={length}
                             setter={setLength}
+                            step={2}
+                            precision={2}
                             unit="m"
                             text="length"
                             style={style}
@@ -96,6 +106,8 @@ const PileSingleEditorContainer = () => {
                         <DataComponent
                             value={diameter}
                             setter={setDiameter}
+                            step={2}
+                            precision={2}
                             unit="cm"
                             text="diameter"
                             style={style}
@@ -103,6 +115,8 @@ const PileSingleEditorContainer = () => {
                         <DataComponent
                             value={batterAngle}
                             setter={setBatterAngle}
+                            step={2}
+                            precision={2}
                             unit="degrees"
                             text="batter angle"
                             style={style}
@@ -120,6 +134,7 @@ const PileSingleEditorContainer = () => {
                         No Pile Selected
                     </Typography>
                 }
+
             </div>
 
             <Divider />

@@ -1,10 +1,13 @@
 import { useTheme } from '@emotion/react'
 import { Stack, Typography } from '@mui/material'
 import IncrementButton from '../../components/Buttons/IncrementButton'
+import { useEffect } from 'react'
 
 type DataComponentProps = {
     value: number,
     setter: React.Dispatch<React.SetStateAction<number>>,
+    step: number,
+    precision: number,
     unit: string,
     text: string,
     style: string,
@@ -29,7 +32,7 @@ const DataComponent = (props: DataComponentProps) => {
             <Stack direction="row" spacing={1}>
                 <Typography variant='body1'
                     style={style}><u><b>
-                        {props.value} {props.unit}
+                        {parseFloat(`${props.value}`).toFixed(`${props.precision}`)} {props.unit}
                     </b></u></Typography>
                 <Typography
                     variant='body1'
@@ -38,7 +41,11 @@ const DataComponent = (props: DataComponentProps) => {
                     }}>{props.text}</Typography>
             </Stack>
 
-            <IncrementButton value={props.value} setter={props.setter} style={props.style} />
+            <IncrementButton
+                value={props.value}
+                setter={props.setter}
+                step={props.step}
+                style={props.style} />
         </div>
     )
 }

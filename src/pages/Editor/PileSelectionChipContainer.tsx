@@ -1,5 +1,6 @@
 import { usePiles } from "../../hooks/usePiles";
 import { useSelection } from "../../hooks/useSelection"
+import { mixed2, mixed3 } from "../../themes/Color";
 import { getPileObjectFromPileId } from "../../utils/PileUtils";
 import { extractNumberFromText } from "../../utils/contextUtils";
 import Chip from "./Chip"
@@ -59,8 +60,9 @@ const PileSelectionChipContainer = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
-                width: "300px",
+                width: "100%",
                 overflowX: 'scroll',
+                zIndex: 10,
             }}>
             {
                 generateChips(

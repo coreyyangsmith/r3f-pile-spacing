@@ -3,15 +3,14 @@ import { Stack, Typography } from '@mui/material'
 import IncrementButton from '../../components/Buttons/IncrementButton'
 
 type PositionDataComponentProps = {
-    value: number,
-    setter: React.Dispatch<React.SetStateAction<number>>,
+    value: any,
     step: number,
     precision: number,
     text: string
     style: string,
 }
 
-const PositionDataComponent = (props: PositionDataComponentProps) => {
+const PositionDataComponentTest = (props: PositionDataComponentProps) => {
     const theme = useTheme();
 
     const unlockedStyle = { color: theme.palette.primary6.main, }
@@ -38,12 +37,12 @@ const PositionDataComponent = (props: PositionDataComponentProps) => {
 
                 <Typography variant='body1'
                     style={style}>
-                    {parseFloat(props.value).toFixed(props.precision)}
+                    {parseFloat(props.value.current).toFixed(props.precision)}
                 </Typography>
 
 
                 <IncrementButton
-                    value={props.value}
+                    value={props.value.current}
                     setter={props.setter}
                     step={props.step}
                     style={props.style} />
@@ -53,4 +52,4 @@ const PositionDataComponent = (props: PositionDataComponentProps) => {
     )
 }
 
-export default PositionDataComponent
+export default PositionDataComponentTest

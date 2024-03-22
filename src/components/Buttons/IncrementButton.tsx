@@ -3,8 +3,9 @@ import React from 'react'
 
 type IncrementButtonProps = {
     value: number,
-    style: string,
     setter: React.Dispatch<React.SetStateAction<number>>,
+    step: number,
+    style: string,
 }
 
 const IncrementButton = (props: IncrementButtonProps) => {
@@ -36,13 +37,13 @@ const IncrementButton = (props: IncrementButtonProps) => {
                     }}>
                     <img src={upArrowPath}
                         alt="increment"
-                        onClick={() => handleChange(1)}
+                        onClick={() => handleChange(1 * props.step)}
                         style={imgStyleUnlocked}
                     />
                     <img
                         src={downArrowPath}
                         alt="decrement"
-                        onClick={() => handleChange(-1)}
+                        onClick={() => handleChange(-1 * props.step)}
                         style={imgStyleUnlocked}
                     />
                 </Stack>
