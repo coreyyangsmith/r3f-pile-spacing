@@ -8,10 +8,17 @@ import PileSelectionChipContainer from './PileSelectionChipContainer';
 import PositionDataComponent from './PositionDataComponent';
 import { useSelection } from '../../hooks/useSelection';
 import HelixSelectionChipContainer from './HelixSelectionChipContainer';
+import { useState } from 'react';
 
 const HelixSingleEditorContainer = () => {
     const theme = useTheme();
     const selection = useSelection();
+
+    const [thickness, setThickness] = useState()
+    const [diameter, setDiameter] = useState()
+    const [rise, setRise] = useState()
+    const [rotations, setRotations] = useState()
+    const [segments, setSegments] = useState()
 
     return (
         <div

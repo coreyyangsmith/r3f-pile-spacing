@@ -70,9 +70,6 @@ declare module "@mui/material/styles" {
         mixed4?: PaletteOptions["primary"];
         mixed5?: PaletteOptions["primary"];
         mixed6?: PaletteOptions["primary"];
-        text_black: PaletteOptions["primary"];
-        text_dg: PaletteOptions["primary"];
-        text_lg: PaletteOptions["primary"];
     }
 
     interface TypographyVariants {
@@ -93,6 +90,7 @@ declare module "@mui/material/Typography" {
 export const lightTheme = createTheme({
     palette: {
         mode: "light",
+        primary: { main: primary1, },
         primary1: { main: primary1, },
         primary2: { main: primary2, },
         primary3: { main: primary3, },

@@ -1,15 +1,15 @@
 import { useTheme } from "@emotion/react"
 import NavBar from "../../components/Navigation/NavBar"
-import { Button, Hidden, Stack, Typography } from "@mui/material";
-import { Canvas } from "@react-three/fiber";
+import { Button, Stack, Typography } from "@mui/material";
 import LandingScene from "./LandingScene";
-import { dark1, dark6, mixed1, mixed2, mixed3, primary6 } from "../../themes/Color";
+import { dark6, mixed1, primary6 } from "../../themes/Color";
 
 const Landing = () => {
     const theme = useTheme();
 
+    const circleRadius = 600;
 
-    const fullLogoPath = "/icons/logo-full.png"
+    // const fullLogoPath = "/icons/logo-full.png"
     const smallLogoPath = "/icons/icon-drilling.png"
 
     const logoColor = {
@@ -20,7 +20,7 @@ const Landing = () => {
         <div style={{
             background: theme.palette.mixed1.main,
             width: '100%',
-            height: '100%'
+            height: `${circleRadius}px`,
         }}>
             {/* NavBar */}
             <NavBar />
@@ -30,7 +30,8 @@ const Landing = () => {
                 style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    height: '500px',
+                    width: '100%',
+                    height: "100%",
                 }}>
                 {/* Copy Block */}
                 <div style={{
@@ -40,15 +41,17 @@ const Landing = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
+                    marginLeft: '64px',
                 }}>
                     {/* Container */}
                     <div style={{
                         display: 'flex',
-                        width: '500px',
-                        height: '100%',
+                        height: '50%',
+                        width: "500px",
                         flexDirection: 'column',
                         alignItems: 'flex-start',
-                        justifyContent: 'center',
+                        justifyContent: 'space-evenly',
+                        marginTop: '50px',
                     }}>
                         {/* Icon */}
                         <div style={{
@@ -63,7 +66,7 @@ const Landing = () => {
                         </div>
                         {/* Copy */}
                         <Typography
-                            variant="h3"
+                            variant="h2"
                             style={{
                                 color: 'white',
                                 textAlign: 'left',
@@ -73,7 +76,7 @@ const Landing = () => {
                         </Typography>
 
                         <Typography
-                            variant="body2"
+                            variant="h3"
                             style={{
                                 color: 'gray',
                                 textAlign: 'left',
@@ -88,26 +91,37 @@ const Landing = () => {
                             height: '50px',
                             display: 'flex',
                             justifyContent: 'space-between',
-                            alignItems: 'center',
+                            alignItems: 'flex-end',
                             paddingLeft: '32px',
                             paddingRight: '48px',
-                            paddingTop: '16px',
+                            marginTop: "48px",
                         }}>
                             <Button variant="outlined"
                                 color="primary"
-
                                 sx={{
                                     borderRadius: '50px',
                                     color: 'black',
-                                    background: primary6,
-                                    border: '1px solid ' + primary6,
+                                    background: `${primary6}aa`,
+                                    border: `1px solid ` + primary6,
+                                    padding: "8px 16px",
                                 }}>
-                                Get Started
+                                <Typography
+                                    variant="body1" sx={{
+                                        '&:hover': {
+                                            color: 'white',
+                                        }
+                                    }}>
+                                    <b>
+                                        Get Started
+                                    </b>
+                                </Typography>
                             </Button>
 
                             <Button
                                 sx={{
                                     color: dark6,
+
+
                                 }}>
                                 Learn More
                             </Button>
@@ -118,15 +132,15 @@ const Landing = () => {
                 {/* Three JS */}
                 <div className='container' style={{
                     position: 'relative',
-                    width: '500px',
-                    height: '500px',
-                    minHeight: '500px',
-                    minWidth: '500px',
-                    marginRight: '32px',
+                    width: `${circleRadius}px`,
+                    height: `${circleRadius}px`,
+                    minHeight: `${circleRadius}px`,
+                    minWidth: `${circleRadius}px`,
+                    marginRight: '64px',
                 }}>
                     <div style={{
                         zIndex: 10,
-                        background: `radial-gradient(circle at center, transparent, transparent 250px, ${mixed1} 150px)`,
+                        background: `radial-gradient(circle at center, transparent, transparent ${circleRadius / 2}px, ${mixed1} 150px)`,
                         width: '100%',
                         height: '100%',
                         overflow: 'hidden',

@@ -1,6 +1,7 @@
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { dark1, dark2, mixed2 } from '../../themes/Color'
+import Pile from '../PileSpacing/Components/Pile'
 
 const LandingScene = () => {
     return (
@@ -14,10 +15,17 @@ const LandingScene = () => {
                 left: 0,
             }}>
             <Canvas>
+                <PerspectiveCamera
+                    makeDefault
+                    position={[-10, 15, 0]}
+                    fov={40}
+                    zoom={0.9}
+                />
                 {/* Controls */}
                 <OrbitControls
+                    minZoom={0.1}
                     autoRotate
-                    autoRotateSpeed={3}
+                    autoRotateSpeed={9}
                     enablePan={false}
                     enableZoom={false}
                     enableRotate={true} />
@@ -31,10 +39,23 @@ const LandingScene = () => {
                 <pointLight position={[10, 10, 10]} />
 
                 {/* Mesh */}
-                <mesh>
-                    <boxGeometry />
-                    <meshStandardMaterial color="yellow" />
-                </mesh>
+                <Pile
+                    key={-1}
+                    id={-1}
+                    diameter={1}
+                    length={20}
+                    position={[0, 6.6, 0]}
+                    rotation={[0.2, 0, 0]}
+                    helices={
+                        {
+                            distanceFromBottom: 0,
+                            spacing: 0,
+                            pileRef: null,
+                            helices: []
+                        }
+
+                    }
+                />
             </Canvas>
         </div>
     )

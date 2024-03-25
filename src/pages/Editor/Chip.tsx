@@ -1,6 +1,6 @@
-import { useTheme } from '@emotion/react';
 import { Typography } from '@mui/material';
 import { BaseSyntheticEvent } from 'react';
+import { dark6 } from '../../themes/Color';
 
 type ChipProps = {
     text: string;
@@ -10,11 +10,9 @@ type ChipProps = {
 }
 
 const Chip = (props: ChipProps) => {
-    const theme = useTheme();
-
     const chipStyle = {
         display: 'flex',
-        border: '1px solid ' + theme.palette.dark6.main,
+        border: '1px solid ' + dark6,
         borderRadius: '50px',
         height: '25px',
         justifyContent: 'center',
@@ -25,7 +23,7 @@ const Chip = (props: ChipProps) => {
     }
 
     const typographyStyle = {
-        color: theme.palette.dark6.main,
+        color: dark6,
         marginLeft: '4px',
         marginRight: '4px',
     }

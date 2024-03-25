@@ -1,5 +1,5 @@
-import { useTheme } from '@emotion/react'
 import { Checkbox, Stack, Typography } from '@mui/material'
+import { dark6, primary6 } from '../../themes/Color';
 
 type CheckboxComponentProps = {
     value: boolean,
@@ -8,7 +8,6 @@ type CheckboxComponentProps = {
 }
 
 const CheckboxComponent = (props: CheckboxComponentProps) => {
-    const theme = useTheme();
 
     return (
         <div style={{
@@ -33,7 +32,7 @@ const CheckboxComponent = (props: CheckboxComponentProps) => {
                     sx={{
                         color: '#FFFFFFab',
                         '&.Mui-checked': {
-                            color: theme.palette.primary6.main,
+                            color: primary6,
                         },
                     }} />
 
@@ -41,13 +40,13 @@ const CheckboxComponent = (props: CheckboxComponentProps) => {
                     <Typography
                         variant='body1'
                         style={{
-                            color: theme.palette.dark6.main,
+                            color: dark6,
                         }}><b>{props.text}</b></Typography>
                     :
                     <Typography
                         variant='body1'
                         style={{
-                            color: theme.palette.dark6.main,
+                            color: dark6,
                         }}>{props.text}</Typography>
                 }
 

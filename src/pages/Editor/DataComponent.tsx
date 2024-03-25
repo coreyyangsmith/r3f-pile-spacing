@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import { Stack, Typography } from '@mui/material'
 import IncrementButton from '../../components/Buttons/IncrementButton'
-import { useEffect } from 'react'
+import { dark6, primary6 } from '../../themes/Color'
 
 type DataComponentProps = {
     value: number,
@@ -14,10 +14,8 @@ type DataComponentProps = {
 }
 
 const DataComponent = (props: DataComponentProps) => {
-    const theme = useTheme();
-
-    const unlockedStyle = { color: theme.palette.primary6.main, }
-    const lockedStyle = { color: theme.palette.dark6.main, }
+    const unlockedStyle = { color: primary6, }
+    const lockedStyle = { color: dark6, }
     const style = props.style === 'unlocked' ? unlockedStyle : lockedStyle;
 
     return (
@@ -37,7 +35,7 @@ const DataComponent = (props: DataComponentProps) => {
                 <Typography
                     variant='body1'
                     style={{
-                        color: theme.palette.dark6.main,
+                        color: dark6,
                     }}>{props.text}</Typography>
             </Stack>
 

@@ -55,64 +55,64 @@ export default class Common implements ICommon {
     }
 }
 
-class Orientation implements IOrientation {
-    x: number;
-    y: number;
-    z: number;
-    rotation: number;
+// class Orientation implements IOrientation {
+//     x: number;
+//     y: number;
+//     z: number;
+//     rotation: number;
 
-    setX: (x: number) => void;
-    setY: (y: number) => void;
-    setZ: (z: number) => void;
-    setRotation: (rotation: number) => void;
+//     setX: (x: number) => void;
+//     setY: (y: number) => void;
+//     setZ: (z: number) => void;
+//     setRotation: (rotation: number) => void;
 
-    constructor(
-        x: number = 0,
-        y: number = 0,
-        z: number = 0,
-        rotation: number = 0,
+//     constructor(
+//         x: number = 0,
+//         y: number = 0,
+//         z: number = 0,
+//         rotation: number = 0,
 
-        setX: (x: number) => void = () => { },
-        setY: (y: number) => void = () => { },
-        setZ: (z: number) => void = () => { },
-        setRotation: (rotation: number) => void = () => { }
-    ) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.rotation = rotation;
+//         setX: (x: number) => void = () => { },
+//         setY: (y: number) => void = () => { },
+//         setZ: (z: number) => void = () => { },
+//         setRotation: (rotation: number) => void = () => { }
+//     ) {
+//         this.x = x;
+//         this.y = y;
+//         this.z = z;
+//         this.rotation = rotation;
 
-        this.setX = setX;
-        this.setY = setY;
-        this.setZ = setZ;
-        this.setRotation = setRotation;
-    }
-}
+//         this.setX = setX;
+//         this.setY = setY;
+//         this.setZ = setZ;
+//         this.setRotation = setRotation;
+//     }
+// }
 
-class Position implements IPosition {
-    x: number;
-    y: number;
-    z: number;
+// class Position implements IPosition {
+//     x: number;
+//     y: number;
+//     z: number;
 
-    setX: (x: number) => void;
-    setY: (y: number) => void;
-    setZ: (z: number) => void;
+//     setX: (x: number) => void;
+//     setY: (y: number) => void;
+//     setZ: (z: number) => void;
 
-    constructor(
-        x: number = 0,
-        y: number = 0,
-        z: number = 0,
+//     constructor(
+//         x: number = 0,
+//         y: number = 0,
+//         z: number = 0,
 
-        setX: (x: number) => void = () => { },
-        setY: (y: number) => void = () => { },
-        setZ: (z: number) => void = () => { }
-    ) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+//         setX: (x: number) => void = () => { },
+//         setY: (y: number) => void = () => { },
+//         setZ: (z: number) => void = () => { }
+//     ) {
+//         this.x = x;
+//         this.y = y;
+//         this.z = z;
 
-        this.setX = setX;
-        this.setY = setY;
-        this.setZ = setZ;
-    }
-}
+//         this.setX = setX;
+//         this.setY = setY;
+//         this.setZ = setZ;
+//     }
+// }
