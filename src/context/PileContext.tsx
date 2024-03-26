@@ -26,7 +26,7 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
         piles: new Piles([
             {
                 id: 0,
-                length: 10,
+                length: 15,
                 diameter: 1,
                 batterAngle: 5,
                 helices: null,
@@ -37,7 +37,7 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
             },
             {
                 id: 1,
-                length: 10,
+                length: 15,
                 diameter: 1,
                 batterAngle: 5,
                 helices: null,
@@ -48,7 +48,7 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
             },
             {
                 id: 2,
-                length: 10,
+                length: 15,
                 diameter: 1,
                 batterAngle: 5,
                 helices: null,
@@ -57,32 +57,9 @@ export const PileProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
                 z: 0,
                 rotation: 0,
             },
-            {
-                id: 3,
-                length: 10,
-                diameter: 1,
-                batterAngle: 5,
-                helices: null,
-                x: 0,
-                y: 0,
-                z: 0,
-                rotation: 0,
-            },
-            {
-                id: 4,
-                length: 10,
-                diameter: 1,
-                batterAngle: 5,
-                helices: null,
-                x: 0,
-                y: 0,
-                z: 0,
-                rotation: 0,
-            },
-
         ],
-            5, // number
-            1, // spacingRadius
+            3, // number
+            1.75, // spacingRadius
         )
     });
 

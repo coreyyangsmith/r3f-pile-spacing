@@ -50,7 +50,7 @@ const HelixSelectionChipContainer = () => {
         if (arr) {
             return arr.map((item, i) => {
                 const helixText = "Helix " + (item.id + 1)
-                console.log(item)
+                // console.log(item)
                 return (
                     <Chip
                         key={i}
@@ -76,6 +76,13 @@ const HelixSelectionChipContainer = () => {
                 'helix',
                 matchingHelix?.helices
             )}
+            <Chip
+                key={-1}
+                onClick={handleClick}
+                text="+"
+                type="null"
+                class="cat"
+            />
         </div>
     )
 }

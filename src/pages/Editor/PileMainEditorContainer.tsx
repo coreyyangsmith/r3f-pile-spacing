@@ -10,6 +10,7 @@ import { usePiles } from '../../hooks/usePiles';
 import { useSettings } from '../../hooks/useSettings';
 import { Pile, Piles } from '../../components/Pile';
 import { PileContextState } from '../../types/Pile';
+import { Helices } from '../../components/Helix';
 
 const PileMainEditorContainer = () => {
     const theme = useTheme();
@@ -29,8 +30,17 @@ const PileMainEditorContainer = () => {
     useEffect(() => {
         const newPileArray: Pile[] = [];
 
+        const defaultHelices: Helices = {
+            helices: [],
+            distanceFromBottom: 1.25,
+            spacing: 1,
+            pileRef: null,
+            addNewHelix: () => { },
+            removeLastHelix: () => { },
+        }
+
         for (let i = 0; i < count; i++) {
-            newPileArray.push(new Pile(
+            const newPile = new Pile(
                 i,
                 length,
                 diameter,
@@ -40,9 +50,11 @@ const PileMainEditorContainer = () => {
                 0,
                 0,
                 0
-            ));
+            )
+            defaultHelices.pileRef = newPile;
+            newPile.helices = defaultHelices
+            newPileArray.push(newPile)
         }
-
 
         const newPiles: Piles = {
             piles: newPileArray,

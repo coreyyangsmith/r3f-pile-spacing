@@ -73,8 +73,26 @@ export const HelixProvider: FC<{ children: React.ReactNode }> = ({ children }) =
                 1, // distanceFromBottom
                 2.5, // spacing
                 usePileFromId(1), // pileRef
-            )
-
+            ),
+            new Helices(
+                [new Helix(
+                    0,
+                    0,
+                    1.25,
+                    1,
+                    1,
+                    1,
+                    128,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                )],
+                1, // distanceFromBottom
+                2.5, // spacing
+                usePileFromId(2), // pileRef
+            ),
         ],
     });
 

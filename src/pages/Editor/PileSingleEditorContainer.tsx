@@ -35,7 +35,7 @@ const PileSingleEditorContainer = () => {
     const style = settings?.state.settings.lockPiles ? 'locked' : 'unlocked';
 
     /**
-     * Update States when Piles are Changed
+     * Update States when PileSelection Changes
      */
     useEffect(() => {
         setXPos(selectedPile?.x);

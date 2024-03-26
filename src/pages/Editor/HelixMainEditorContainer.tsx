@@ -8,25 +8,86 @@ import PileSelectionChipContainer from './PileSelectionChipContainer';
 import { useSelection } from '../../hooks/useSelection';
 import { mixed2, primary6 } from '../../themes/Color';
 import { useEffect, useState } from 'react';
+import { useHelices } from '../../hooks/useHelices';
+import { getHelixObjectFromPileId, getPileObjectFromPileId } from '../../utils/PileUtils';
+import { HelixContextState } from '../../types/Helix';
+import { usePiles } from '../../hooks/usePiles';
+import { PileContextState } from '../../types/Pile';
 
 const HelixMainEditorContainer = () => {
     const selection = useSelection();
-    const unlockedStyle = { color: primary6, }
+    const helices = useHelices();
+    const piles = usePiles()
 
-    const [number, setNumber] = useState();
-    const [diameter, setDiameter] = useState();
-    const [firstDist, setFirstDist] = useState();
-    const [spacing, setSpacing] = useState();
+    const [number, setNumber] = useState(0);
+    const [diameter, setDiameter] = useState(0);
+    const [firstDist, setFirstDist] = useState(0);
+    const [spacing, setSpacing] = useState(0);
 
+    /**
+     * Update State when PileSelection Changes
+     */
     useEffect(() => {
         if (selection?.state.selection.selectedPile) {
-            const helixSettings = selection?.state.selection.selectedPile.helices;
-            setNumber(selection.state.selection);
-            setDiameter(1.25);
-            setFirstDist(0.50);
-            setSpacing(2.50);
+            const oldHelix = getHelixObjectFromPileId(helices?.state.helices, selection?.state.selection.selectedPile.id)[0]
+            setNumber(oldHelix.helices.length);
+            setDiameter(oldHelix.helices[0].diameter);
+            setFirstDist(oldHelix.distanceFromBottom);
+            setSpacing(oldHelix.spacing);
+        } else {
+            setNumber(0)
+            setDiameter(0)
+            setFirstDist(0)
+            setSpacing(0)
         }
     }, [selection?.state.selection.selectedPile])
+
+    /**
+     * Update Pile and Helix Context when State Changes
+     */
+    useEffect(() => {
+        if (selection?.state.selection.selectedPile) {
+            const newHelix = getHelixObjectFromPileId(helices?.state.helices, selection?.state.selection.selectedPile.id)[0]
+
+            // Update Helix Context
+            if (number > newHelix.helices.length) newHelix.addNewHelix()
+            else if (number < newHelix.helices.length) newHelix.removeLastHelix()
+
+            for (let i = 0; i < newHelix.helices.length; i++) {
+                newHelix.helices[i].diameter = diameter;
+            }
+
+            newHelix.spacing = spacing;
+            newHelix.distanceFromBottom = firstDist;
+
+            // Set Helices Context
+            const newHelices = helices?.state.helices
+            for (let i = 0; i < newHelices?.length; i++) {
+                if (newHelices[i].pileRef.id == selection?.state.selection.selectedPile.id) {
+                    newHelices[i] = newHelix;
+                }
+            }
+
+            helices?.setState({ helices: newHelices } as HelixContextState)
+
+            // Update Pile Context
+            const newPile = getPileObjectFromPileId(piles?.state.piles, selection?.state.selection.selectedPile.id)
+            newPile.helices = newHelix;
+
+            const newPiles = piles?.state.piles;
+            for (let i = 0; i < newPiles?.piles.length; i++) {
+                if (newPiles.piles[i].id == selection?.state.selection.selectedPile.id) {
+                    newPiles.piles[i] = newPile
+                }
+            }
+            piles?.setState({ piles: newPiles } as PileContextState)
+        }
+    }, [
+        number,
+        diameter,
+        firstDist,
+        spacing
+    ])
 
     return (
         <div
@@ -68,7 +129,7 @@ const HelixMainEditorContainer = () => {
                             precision={0}
                             unit="ea"
                             text="helices in design"
-                            style={unlockedStyle}
+                            style='unlocked'
                         />
                         <DataComponent
                             value={diameter}
@@ -77,7 +138,7 @@ const HelixMainEditorContainer = () => {
                             precision={2}
                             unit="m"
                             text="diameter"
-                            style={unlockedStyle}
+                            style='unlocked'
                         />
                         <DataComponent
                             value={firstDist}
@@ -86,7 +147,7 @@ const HelixMainEditorContainer = () => {
                             precision={2}
                             unit="m"
                             text="first dist from bottom"
-                            style={unlockedStyle}
+                            style='unlocked'
                         />
                         <DataComponent
                             value={spacing}
@@ -95,7 +156,7 @@ const HelixMainEditorContainer = () => {
                             precision={2}
                             unit="m"
                             text="spacing between"
-                            style={unlockedStyle}
+                            style='unlocked'
                         />
                     </> :
                     <Typography variant='body1'
