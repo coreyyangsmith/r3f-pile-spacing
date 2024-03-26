@@ -41,7 +41,7 @@ export const SettingsProvider: FC<{ children: React.ReactNode }> = ({ children }
         settings: new Settings(
             true, //lockPiles: boolean,
             true, //showFloor: boolean,
-            '#2069e0', //floorColor: string,
+            '#2060DF', //floorColor: string,
             '#262419', //backgroundColor: string,
 
             true, //axesHelper: boolean,

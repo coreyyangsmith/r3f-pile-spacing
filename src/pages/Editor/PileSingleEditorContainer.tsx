@@ -8,16 +8,20 @@ import PileSelectionChipContainer from './PileSelectionChipContainer';
 import PositionDataComponent from './PositionDataComponent';
 import { useSelection } from '../../hooks/useSelection';
 import { useSettings } from '../../hooks/useSettings';
-import { useEffect, useRef, useState } from 'react';
-import { getPileObjectFromPileId } from '../../utils/PileUtils';
-import PositionDataComponentTest from './PositionDataComponentTest';
+import { useEffect, useState } from 'react';
+import { usePiles } from '../../hooks/usePiles';
+import { Pile, Piles } from '../../components/Pile';
+import { PileContextState } from '../../types/Pile';
+import { mixed2 } from '../../themes/Color';
 
 const PileSingleEditorContainer = () => {
     const theme = useTheme();
     const selection = useSelection();
     const settings = useSettings();
+    const piles = usePiles();
 
     const selectedPile = selection?.state.selection.selectedPile
+
 
     const [xPos, setXPos] = useState(selectedPile?.x);
     const [yPos, setYPos] = useState(selectedPile?.y);
@@ -30,9 +34,75 @@ const PileSingleEditorContainer = () => {
     // Individual pile settings edtiable when lockPiles = False
     const style = settings?.state.settings.lockPiles ? 'locked' : 'unlocked';
 
+    /**
+     * Update States when Piles are Changed
+     */
     useEffect(() => {
-        console.log('new pile selected')
+        setXPos(selectedPile?.x);
+        setYPos(selectedPile?.y);
+        setZPos(selectedPile?.z);
+        setRotation(selectedPile?.rotation);
+        setLength(selectedPile?.length);
+        setDiameter(selectedPile?.diameter);
+        setBatterAngle(selectedPile?.batterAngle);
     }, [selectedPile])
+
+    /**
+     * Update Pile Context when State Changes
+     */
+    useEffect(() => {
+        // Get New Pile Array
+        const newPileArray: Pile[] = [];
+
+        for (let i = 0; i < piles!.state.piles.number; i++) {
+            let newPile: Pile;
+            if (i === selection?.state.selection.selectedPile?.id) {
+                newPile = new Pile(
+                    i,
+                    length,
+                    diameter,
+                    batterAngle,
+                    null,
+                    xPos,
+                    yPos,
+                    zPos,
+                    rotation
+                )
+            } else {
+                newPile = new Pile(
+                    i,
+                    piles?.state.piles.piles[i].length,
+                    piles?.state.piles.piles[i].diameter,
+                    piles?.state.piles.piles[i].batterAngle,
+                    null,
+                    piles?.state.piles.piles[i].x,
+                    piles?.state.piles.piles[i].y,
+                    piles?.state.piles.piles[i].z,
+                    piles?.state.piles.piles[i].rotation,
+                )
+            }
+            newPileArray.push(newPile)
+        }
+
+        // Update Piles
+        const newPiles: Piles = {
+            piles: newPileArray,
+            number: piles?.state.piles.number as number,
+            spacingRadius: piles?.state.piles.spacingRadius as number,
+
+            addPile: () => { },
+            removePile: () => { },
+        }
+        piles!.setState({ piles: newPiles } as PileContextState)
+    }, [
+        xPos,
+        yPos,
+        zPos,
+        rotation,
+        length,
+        diameter,
+        batterAngle
+    ])
 
     return (
         <div
@@ -41,7 +111,7 @@ const PileSingleEditorContainer = () => {
                 flexDirection: 'column',
                 width: "350px",
                 borderRadius: "25px",
-                backgroundColor: theme.palette.mixed2.main,
+                backgroundColor: mixed2,
                 padding: "24px 16px 24px 16px",
                 height: "50%"
             }}
@@ -68,7 +138,7 @@ const PileSingleEditorContainer = () => {
                                 setter={setXPos}
                                 step={0.25}
                                 precision={2}
-                                text="Y"
+                                text="X"
                                 style={style} />
                             <PositionDataComponent
                                 value={yPos}
