@@ -1,12 +1,19 @@
 import { Stack, Typography } from '@mui/material';
+import { useState } from 'react'
 import Divider from '../../../components/Divider';
 import TertiaryButton from '../../../components/Buttons/TertiaryButton';
 import PrimaryButton from '../../../components/Buttons/PrimaryButton';
 import SelectionChipContainer from './SelectionChipContainer';
-import PileSelectionChipContainer from './PileSelectionChipContainer';
-import { mixed2 } from '../../../themes/Color';
+import { mixed1, mixed2 } from '../../../themes/Color';
+import DataComponent from '../components/DataComponent';
+import ConflictPileSelectionChipContainer from './ConflictPileSelectionChipContainer';
+import Table from "../../../components/Tables/Table.tsx"
 
 const ConflictMainEditorContainer = () => {
+    const [firstPile, setFirstPile] = useState();
+    const [secondPile, setSecondPile] = useState();
+    const [calcDiameter, setCalcDiameter] = useState(2.5);
+
     return (
         <div
             style={{
@@ -20,6 +27,18 @@ const ConflictMainEditorContainer = () => {
             }}
         >
             <SelectionChipContainer />
+            {/* Form Info */}
+            <div style={{ height: '16px' }} />
+            <ConflictPileSelectionChipContainer
+                value={firstPile}
+                setter={setFirstPile}
+            />
+
+            <div style={{ height: '16px' }} />
+            <ConflictPileSelectionChipContainer
+                value={secondPile}
+                setter={setSecondPile}
+            />
             <Divider />
             <Typography variant="body1" sx={{
                 color: 'white',
@@ -27,18 +46,37 @@ const ConflictMainEditorContainer = () => {
                 Conflict Settings
             </Typography>
 
-            {/* Form Info */}
-            <div style={{ height: '16px' }} />
-            <PileSelectionChipContainer />
-            <div style={{ height: '16px' }} />
-            <PileSelectionChipContainer />
-
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                flexGrow: 1,
             }}>
-                {/* Conflcit Info Here*/}
+                <DataComponent
+                    value={calcDiameter}
+                    setter={setCalcDiameter}
+                    step={0.25}
+                    precision={2}
+                    unit="x"
+                    text="helix diameter"
+                    style="unlocked" />
+            </div>
+
+            <Divider />
+            <Typography variant="body1" sx={{
+                color: 'white',
+            }}>
+                Calculation
+            </Typography>
+
+            {/* Table Container */}
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexGrow: 1,
+                background: mixed1,
+                borderRadius: '25px',
+                height: '500px',
+            }}>
+                <Table />
             </div>
 
             <Divider />
@@ -47,13 +85,10 @@ const ConflictMainEditorContainer = () => {
                 direction="row"
                 style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    justifyContent: 'flex-end',
                     alignItems: 'center',
-                    marginLeft: "16px",
-                    marginRight: '16px',
                 }}>
-                <PrimaryButton text="Save" size="small" onClick={() => console.log("Save")} />
-                <TertiaryButton text="Cancel" onClick={() => console.log("Cancel")} />
+                <TertiaryButton text="Export Design to CSV" onClick={() => console.log("Export Design to CSV")} />
             </Stack>
 
         </div>
