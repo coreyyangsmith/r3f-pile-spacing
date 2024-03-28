@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material'
-import { mixed1, mixed2 } from '../../themes/Color'
+import { mixed2 } from '../../themes/Color'
 
 type CellProps = {
     value: number | string
     height: number
     width: number
+    color: string
 }
 
 const Cell = (props: CellProps) => {
@@ -17,7 +18,7 @@ const Cell = (props: CellProps) => {
             }}>
             <Typography
                 variant='body1'
-                color='white'
+                color={props.color}
                 style={{
                     textAlign: 'center',
                     justifyContent: 'center',

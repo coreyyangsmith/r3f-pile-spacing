@@ -11,11 +11,14 @@ import { useSettings } from '../../../hooks/useSettings';
 import { Pile, Piles } from '../../../components/Pile';
 import { PileContextState } from '../../../types/Pile';
 import { Helices } from '../../../components/Helix';
+import { getHelixObjectFromPileId } from '../../../utils/PileUtils';
+import { useHelices } from '../../../hooks/useHelices';
 
 const PileMainEditorContainer = () => {
     const theme = useTheme();
     const piles = usePiles();
     const settings = useSettings();
+    const helices = useHelices()
 
     // Group Settings editable when lockPiles = True
     const style = settings?.state.settings.lockPiles ? 'unlocked' : 'locked';
@@ -30,32 +33,53 @@ const PileMainEditorContainer = () => {
     useEffect(() => {
         const newPileArray: Pile[] = [];
 
-        const defaultHelices: Helices = {
-            helices: [],
-            distanceFromBottom: 1.25,
-            spacing: 1,
-            pileRef: null,
-            addNewHelix: () => { },
-            removeLastHelix: () => { },
-        }
-
         for (let i = 0; i < count; i++) {
-            const newPile = new Pile(
-                i,
-                length,
-                diameter,
-                batterAngle,
-                null,
-                0,
-                0,
-                0,
-                0
-            )
-            defaultHelices.pileRef = newPile;
-            newPile.helices = defaultHelices
-            newPileArray.push(newPile)
+            // Get Matching Helix
+            const matchingHelix = getHelixObjectFromPileId(helices?.state.helices, i)
+            console.log('matching helix', matchingHelix)
+
+            // Set Default
+            const defaultHelices: Helices = {
+                helices: [],
+                distanceFromBottom: 1.25,
+                spacing: 1,
+                pileRef: null,
+                addNewHelix: () => { },
+                removeLastHelix: () => { },
+            }
+
+            if (matchingHelix) {
+                const newPile = new Pile(
+                    i,
+                    length,
+                    diameter,
+                    batterAngle,
+                    matchingHelix[0],
+                    0,
+                    0,
+                    0,
+                    0
+                )
+                newPileArray.push(newPile)
+            } else {
+                const newPile = new Pile(
+                    i,
+                    length,
+                    diameter,
+                    batterAngle,
+                    null,
+                    0,
+                    0,
+                    0,
+                    0
+                )
+                defaultHelices.pileRef = newPile;
+                newPile.helices = defaultHelices
+                newPileArray.push(newPile)
+            }
         }
 
+        // Se Piles
         const newPiles: Piles = {
             piles: newPileArray,
             number: count,
@@ -65,6 +89,7 @@ const PileMainEditorContainer = () => {
             removePile: () => { },
         }
 
+        // Set Pile State
         piles?.setState({ piles: newPiles } as PileContextState);
 
     }, [count,
