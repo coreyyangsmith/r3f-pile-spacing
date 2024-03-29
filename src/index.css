@@ -1,13 +1,44 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --primary-1: #FFEB3B;
+  --primary-2: #FFED58;
+  --primary-3: #FFEF70;
+  --primary-4: #FFF186;
+  --primary-5: #FFF49B;
+  --primary-6: #FFF6AF;
+
+  --dark-1: #121212;
+  --dark-2: #282828;
+  --dark-3: #3F3F3F;
+  --dark-4: #575757;
+  --dark-5: #717171;
+  --dark-6: #8B8B8B;
+
+  --mixed-1: #262419;
+  --mixed-2: #3B382E;
+  --mixed-3: #504E45;
+  --mixed-4: #67655C;
+  --mixed-5: #7E7D75;
+  --mixed-6: #97958F;
+}
+
 html,
 body,
 #root {
   position: fixed;
   top: 0;
+  z-index: -1;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #262419;
   font-family: 'Outfit';
+  background: var(--mixed-1);
+  overflow: 'scroll';
 }
 
 /* Chip Container */
@@ -37,4 +68,107 @@ body,
   border-radius: 25px;
   background-color: #FFF6AF;
   box-shadow: 0 0 1px #504E45
+}
+
+.card1 {
+  background: var(--mixed-2);
+  z-index: 1;
+  border-radius: 0.5rem;
+  padding: 32px;
+  flex-grow: 1;
+
+  position: relative;
+}
+
+.card1::before,
+.card1::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: conic-gradient(from var(--gradient-angle),
+      var(--mixed-2),
+      var(--mixed-3),
+      var(--mixed-4),
+      var(--mixed-3),
+      var(--mixed-2));
+  border-radius: inherit;
+  animation: rotation 30s linear infinite;
+  border-radius: 25px;
+}
+
+.card1::after {
+  filter: blur(1.0rem);
+}
+
+.card2 {
+  background: var(--mixed-2);
+  z-index: 1;
+  border-radius: 0.5rem;
+  padding: 32px;
+  flex-grow: 1;
+
+  position: relative;
+}
+
+.card2::before,
+.card2::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: linear-gradient(var(--gradient-angle),
+      var(--mixed-1),
+      var(--mixed-3),
+      var(--mixed-4),
+      var(--mixed-3),
+      var(--mixed-1));
+  border-radius: inherit;
+  animation: rotation 30s linear infinite;
+  border-radius: 25px;
+}
+
+.card2::after {
+  filter: blur(1.0rem);
+}
+
+.card3 {
+  background: var(--mixed-2);
+  z-index: 1;
+  border-radius: 0.5rem;
+  padding: 32px;
+  flex-grow: 1;
+
+  position: relative;
+}
+
+.card3::before,
+.card3::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: conic-gradient(from var(--gradient-angle),
+      var(--mixed-2),
+      var(--mixed-3),
+      var(--mixed-4),
+      var(--mixed-3),
+      var(--mixed-2));
+  border-radius: inherit;
+  animation: rotation 35s linear infinite;
+  border-radius: 25px;
+}
+
+.card3::after {
+  filter: blur(1.0rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  100% {
+    --gradient-angle: 360deg;
+  }
 }
