@@ -1,11 +1,18 @@
 import { Stack } from "@mui/material"
 import CTAButton from "../Buttons/CTAButton"
 import TertiaryNavigationButton from "../Buttons/TertiaryNavigationButton"
+import { useNavigate } from "react-router-dom"
 
 const NavBar = () => {
     const smallLogoPath = "/icons/logo-small.png"
     const logoColor = {
         filter: 'invert(100%) sepia(99%) saturate(100%) hue-rotate(81deg) brightness(111%) contrast(0%)',
+    }
+
+    const navigate = useNavigate();
+
+    const startApp = () => {
+        navigate("./editor")
     }
 
     return (
@@ -54,7 +61,7 @@ const NavBar = () => {
                 <CTAButton
                     text="Try Now!"
                     size="large"
-                    onClick={() => console.log("Try Now!")}
+                    onClick={() => startApp()}
                 />
             </div>
         </Stack>

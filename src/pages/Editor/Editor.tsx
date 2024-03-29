@@ -69,7 +69,7 @@ const Editor = () => {
     return (
         <Stack direction="row" sx={{ border: '1px solid white', height: '100vh', width: '100vw' }}>
             {/* Navigation */}
-            <NavDrawer />
+            {/* <NavDrawer /> */}
 
             {/* Data Components */}
             {handleSelection(selection?.state.selection.selectedSection as string)}
