@@ -2,7 +2,8 @@ import Divider from "../../components/Divider";
 import NavBar from "../../components/Navigation/NavBar"
 import { mixed1 } from "../../themes/Color";
 import LandingFeaureContent from "./LandingFeaureContent";
-import LandingHeroContent from "./LandingHeroContext";
+import LandingHeroContent from "./LandingHeroContent";
+import LandingPricingContent from "./LandingPricingContent";
 
 const Landing = () => {
 
@@ -18,11 +19,10 @@ const Landing = () => {
 
             <Divider />
             <div style={{ marginTop: '32px' }} />
-            {/* Hero Content */}
             <LandingHeroContent />
+            <div style={{ marginTop: '32px' }} />
             <LandingFeaureContent />
-
-
+            {/* <LandingPricingContent /> */}
 
         </div >
     )

@@ -1,27 +1,20 @@
 import { Typography } from '@mui/material'
-import { mixed2 } from '../../themes/Color'
+import { dark1, dark2, dark4, dark5, dark6, mixed1, mixed4, mixed5, mixed6 } from '../../themes/Color'
 
 type FeatureCardProps = {
     iconPath: string
+    class: string
     headingText: string
     detailText: string
 }
 
 const FeatureCard = (props: FeatureCardProps) => {
 
-    const logoColor = {
-        filter: 'invert(100%) sepia(99%) saturate(100%) hue-rotate(81deg) brightness(111%) contrast(0%)',
-    }
+    const logoColor = { filter: 'invert(100%) sepia(99%) saturate(100%) hue-rotate(81deg) brightness(111%) contrast(0%)' }
 
     return (
-        <div
-            style={{
-                background: mixed2,
-                height: "100%",
-                width: "100%",
-                borderRadius: '25px',
-                padding: '16px',
-            }}>
+        <div className={props.class}>
+
             {/* Icon */}
             <div style={{
                 height: '64px',
@@ -32,18 +25,22 @@ const FeatureCard = (props: FeatureCardProps) => {
                     style={logoColor}
                     width="100%"
                     alt="icon" />
-            </div>
+            </div >
+
+            {/* Heading */}
             <Typography
                 variant='h3'
-                color="white">
+                color='white'>
                 {props.headingText}
             </Typography>
+
+            {/* Details */}
             <Typography
                 variant='h6'
-                color="gray">
+                color={mixed6}>
                 {props.detailText}
             </Typography>
-        </div>
+        </div >
     )
 }
 

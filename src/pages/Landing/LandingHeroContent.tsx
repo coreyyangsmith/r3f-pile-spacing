@@ -77,7 +77,7 @@ const LandingHeroContent = () => {
                         paddingLeft: '32px',
                         paddingRight: '48px',
                     }}>
-                        <Button variant="outlined"
+                        {/* <Button variant="outlined"
                             color="primary"
                             sx={{
                                 borderRadius: '50px',
@@ -96,16 +96,8 @@ const LandingHeroContent = () => {
                                     Get Started
                                 </b>
                             </Typography>
-                        </Button>
+                        </Button> */}
 
-                        <Button
-                            sx={{
-                                color: dark6,
-
-
-                            }}>
-                            Learn More
-                        </Button>
                     </div>
                 </div>
             </div>

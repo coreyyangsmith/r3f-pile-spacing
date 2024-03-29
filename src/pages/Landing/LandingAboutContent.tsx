@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material"
 import FeatureCard from "./FeatureCard"
 
-const LandingFeaureContent = () => {
+const LandingAboutContent = () => {
     return (
         <div style={{
             width: "100%",
@@ -14,17 +14,14 @@ const LandingFeaureContent = () => {
                 {/* Feature Card Container */}
                 <FeatureCard
                     iconPath="/icons/icon-drilling.png"
-                    class="card1"
                     headingText="Effortlessly create and manipulate 3D models of grouped helical piles."
                     detailText="Manupilate pile and helix designs, and surrounding soil properties." />
                 <FeatureCard
-                    class="card2"
                     iconPath="/icons/icon-drilling.png"
                     headingText="Analyze pile spacing, depth, and load distribution in real-time."
                     detailText="Instantly assess pile performance and stability across a range of conditions."
                 />
                 <FeatureCard
-                    class="card3"
                     iconPath="/icons/icon-drilling.png"
                     headingText="Export high-quality visuals for presentations and reports."
                     detailText="Effortlessly export professional-grade visuals for presentations and reports to effectively communicate design concepts and findings." />
@@ -33,4 +30,4 @@ const LandingFeaureContent = () => {
     )
 }
 
-export default LandingFeaureContent
+export default LandingAboutContent
