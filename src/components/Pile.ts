@@ -57,7 +57,7 @@ export class Pile implements IPile {
         length: number = 10,
         diameter: number = 1,
         batterAngle: number = 5,
-        helices: null = null,
+        helices: Helices | null,
         x: number = 0,
         y: number = 0,
         z: number = 0,
